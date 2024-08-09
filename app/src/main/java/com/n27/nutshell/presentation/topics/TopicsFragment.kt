@@ -1,4 +1,4 @@
-package com.n27.nutshell
+package com.n27.nutshell.presentation.topics
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,14 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.n27.nutshell.databinding.FragmentFirstBinding
+import com.n27.nutshell.R
+import com.n27.nutshell.databinding.FragmentTopicsBinding
+import com.n27.nutshell.presentation.topics.composables.TopicsScreen
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class TopicsFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentTopicsBinding? = null
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
@@ -23,16 +25,20 @@ class FirstFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentTopicsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        binding.composeviewTopics.setContent {
+            TopicsScreen()
         }
+    }
+
+    private fun onClickNext() {
+        findNavController().navigate(R.id.action_TopicsFragment_to_SecondFragment)
     }
 
     override fun onDestroyView() {

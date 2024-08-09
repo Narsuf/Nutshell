@@ -1,4 +1,4 @@
-package com.n27.nutshell
+package com.n27.nutshell.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
