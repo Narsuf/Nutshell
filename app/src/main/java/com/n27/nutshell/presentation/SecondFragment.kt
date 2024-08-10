@@ -5,41 +5,43 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.navigation.fragment.findNavController
 import com.n27.nutshell.R
-import com.n27.nutshell.databinding.FragmentSecondBinding
+import com.n27.nutshell.presentation.common.composables.NavItem
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class SecondFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
-        return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_TopicsFragment)
+    ): View = ComposeView(requireContext()).apply {
+        setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+        setContent {
+            BottomNavigation(backgroundColor = MaterialTheme.colors.background) {
+                listOf(
+                    NavItem(
+                        isSelected = false,
+                        onClick = {
+                            findNavController().navigate(R.id.action_SecondFragment_to_TopicsFragment)
+                        },
+                        imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                        label = "Topics"
+                    ),
+                    NavItem(
+                        isSelected = true,
+                        onClick = {},
+                        imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                        label = "Second"
+                    )
+                )
+            }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
