@@ -8,8 +8,7 @@
     <fragment
         android:id="@+id/TopicsFragment"
         android:name="com.n27.nutshell.presentation.topics.TopicsFragment"
-        android:label="@string/topics_fragment_label"
-        tools:layout="@layout/fragment_topics">
+        android:label="@string/topics_fragment_label">
 
         <action
             android:id="@+id/action_TopicsFragment_to_SecondFragment"
