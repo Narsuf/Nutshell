@@ -6,22 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.navigation.fragment.findNavController
 import com.n27.nutshell.R
-import com.n27.nutshell.databinding.FragmentTopicsBinding
+import com.n27.nutshell.extensions.observeOnLifecycle
 import com.n27.nutshell.presentation.MainActivity
 import com.n27.nutshell.presentation.topics.composables.TopicsScreen
+import com.n27.nutshell.presentation.topics.entities.TopicsEvent
+import com.n27.nutshell.presentation.topics.entities.TopicsEvent.GoToNextScreen
 import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class TopicsFragment : Fragment() {
-
-    private var _binding: FragmentTopicsBinding? = null
-
-    // This property is only valid between onCreateView and onDestroyView.
-    private val binding get() = _binding!!
 
     @Inject lateinit var viewModel: TopicsViewModel
 
@@ -34,25 +33,21 @@ class TopicsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentTopicsBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View = ComposeView(requireContext()).apply {
+        setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+        setContent { TopicsScreen(viewModel::handleAction) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.composeviewTopics.setContent {
-            TopicsScreen()
-        }
+        viewModel.viewEvent.observeOnLifecycle(viewLifecycleOwner, action = ::handleEvent)
     }
 
-    private fun onClickNext() {
+    private fun handleEvent(event: TopicsEvent) = when (event) {
+        GoToNextScreen -> goToNextScreen()
+    }
+
+    private fun goToNextScreen() {
         findNavController().navigate(R.id.action_TopicsFragment_to_SecondFragment)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

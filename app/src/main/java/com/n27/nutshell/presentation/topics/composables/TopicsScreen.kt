@@ -10,16 +10,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.n27.nutshell.R
 import com.n27.nutshell.presentation.common.composables.Toolbar
+import com.n27.nutshell.presentation.topics.entities.TopicsAction
+import com.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClicked
 
 @Composable
-fun TopicsScreen() {
+fun TopicsScreen(onAction: (action: TopicsAction) -> Unit) {
+
     Scaffold(
         topBar = {
             Toolbar(text = stringResource(R.string.topics_fragment_label))
         }
     ) { paddingValues ->
         Column(modifier = Modifier.padding(paddingValues)) {
-            Button(onClick = {}) { Text(stringResource(R.string.next)) }
+            Button(
+                onClick = { onAction(NextButtonClicked) }
+            ) {
+                Text(stringResource(R.string.next))
+            }
+
             Text(stringResource(R.string.lorem_ipsum))
         }
     }
