@@ -23,7 +23,7 @@ fun TopicsScreen(onAction: (action: TopicsAction) -> Unit) {
             Card(
                 onClick = { onAction(NextButtonClicked) },
                 text = "Taxes in the EU",
-                iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                endIconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
             )
         }
     }
