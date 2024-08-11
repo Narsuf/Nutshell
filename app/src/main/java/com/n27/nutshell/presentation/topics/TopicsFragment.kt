@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.navigation.fragment.findNavController
@@ -41,6 +42,7 @@ class TopicsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.viewEvent.observeOnLifecycle(viewLifecycleOwner, action = ::handleEvent)
+        requireActivity().onBackPressedDispatcher.addCallback { requireActivity().finish() }
     }
 
     private fun handleEvent(event: TopicsEvent) = when (event) {
