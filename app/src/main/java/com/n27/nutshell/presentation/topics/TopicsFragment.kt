@@ -43,42 +43,45 @@ class TopicsFragment : Fragment() {
                     listOf(
                         TopicsUiStates.Content.Card(
                             title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            key = "taxes"
                         ),
                         TopicsUiStates.Content.Card(
                             title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            key = "taxes"
                         ),
                         TopicsUiStates.Content.Card(
                             title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
-                        ),
-                        TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
-                        ),
-                        TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            key = "taxes"
                         ),TopicsUiStates.Content.Card(
                             title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            key = "taxes"
+                        ),TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            key = "taxes"
+                        ),TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            key = "taxes"
                         ),
                         TopicsUiStates.Content.Card(
                             title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            key = "taxes"
                         ),
                         TopicsUiStates.Content.Card(
                             title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            key = "taxes"
                         ),
                         TopicsUiStates.Content.Card(
                             title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
-                        ),
-                        TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            key = "taxes"
                         )
                     )
                 ),
@@ -94,10 +97,11 @@ class TopicsFragment : Fragment() {
     }
 
     private fun handleEvent(event: TopicsEvent) = when (event) {
-        GoToNextScreen -> goToNextScreen()
+        is GoToNextScreen -> goToNextScreen(event.key)
     }
 
-    private fun goToNextScreen() {
-        findNavController().navigate(R.id.action_TopicsFragment_to_DetailFragment)
+    private fun goToNextScreen(key: String) {
+        val action = TopicsFragmentDirections.actionTopicsFragmentToDetailFragment(key)
+        findNavController().navigate(action)
     }
 }

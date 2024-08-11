@@ -33,7 +33,7 @@ fun TopicsScreen(content: Content, onAction: (action: TopicsAction) -> Unit) {
                         )
                     },
                     endContent = { Icon(it.imageUrl) },
-                    onClick = { onAction(NextButtonClicked) },
+                    onClick = { onAction(NextButtonClicked(it.key)) },
                 )
             }
         }

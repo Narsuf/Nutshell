@@ -16,6 +16,6 @@ class TopicsViewModel @Inject constructor() : ViewModel() {
     val viewEvent = event.receiveAsFlow()
 
     fun handleAction(action: TopicsAction) = when (action) {
-        NextButtonClicked -> event.trySend(GoToNextScreen)
+        is NextButtonClicked -> event.trySend(GoToNextScreen(action.key))
     }
 }

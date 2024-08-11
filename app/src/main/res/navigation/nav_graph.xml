@@ -23,5 +23,9 @@
             app:destination="@id/TopicsFragment"
             app:popUpTo="@id/DetailFragment"
             app:popUpToInclusive="true" />
+
+        <argument
+            android:name="key"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -11,6 +11,7 @@ import androidx.activity.addCallback
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.n27.nutshell.R
 import com.n27.nutshell.presentation.detail.composables.DetailScreen
 import com.n27.nutshell.presentation.detail.entities.DetailUiState
@@ -21,6 +22,8 @@ import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content.NavIt
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class DetailFragment : Fragment() {
+
+    private val args: DetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -110,6 +113,9 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val key = args.key
+
         requireActivity().onBackPressedDispatcher.addCallback {
             findNavController().navigate(R.id.action_DetailFragment_to_TopicsFragment)
         }

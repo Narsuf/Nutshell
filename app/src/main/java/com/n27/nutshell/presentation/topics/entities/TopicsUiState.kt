@@ -6,7 +6,8 @@ sealed class TopicsUiStates {
 
         data class Card(
             val title: String,
-            val imageUrl: String
+            val imageUrl: String,
+            val key: String
         )
     }
 }
