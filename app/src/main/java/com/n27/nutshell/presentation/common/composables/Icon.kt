@@ -12,6 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
+import com.n27.nutshell.presentation.common.constants.Palette
 
 private val IconSize = 24.dp
 
@@ -30,7 +31,7 @@ fun Icon(
         contentDescription = null,
         colorFilter = ColorFilter.tint(
             if (isSelected)
-                MaterialTheme.colors.primarySurface
+                Palette.teal700
             else
                 Color.Gray
         ),

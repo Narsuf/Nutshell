@@ -11,4 +11,6 @@ object Typography {
         fontWeight = FontWeight.Medium,
         lineHeight = 24.sp
     )
+
+    val bold: TextStyle = TextStyle(fontWeight = FontWeight.Medium)
 }
