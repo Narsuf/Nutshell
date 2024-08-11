@@ -9,7 +9,7 @@ import com.n27.nutshell.R
 import com.n27.nutshell.presentation.common.composables.cards.Card
 import com.n27.nutshell.presentation.common.composables.cards.CardContainer
 import com.n27.nutshell.presentation.common.composables.Screen
-import com.n27.nutshell.presentation.common.composables.icons.Icon
+import com.n27.nutshell.presentation.common.composables.Icon
 import com.n27.nutshell.presentation.common.constants.Spacing
 import com.n27.nutshell.presentation.common.constants.Typography
 import com.n27.nutshell.presentation.topics.entities.TopicsAction

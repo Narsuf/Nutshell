@@ -1,4 +1,4 @@
-package com.n27.nutshell.presentation.common.composables.icons
+package com.n27.nutshell.presentation.common.composables
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable

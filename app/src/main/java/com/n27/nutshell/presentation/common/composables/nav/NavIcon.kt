@@ -1,8 +1,9 @@
-package com.n27.nutshell.presentation.common.composables.icons
+package com.n27.nutshell.presentation.common.composables.nav
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import com.n27.nutshell.presentation.common.composables.Icon
 import com.n27.nutshell.presentation.common.constants.Palette
 
 @Composable

@@ -19,11 +19,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.n27.nutshell.R
 import com.n27.nutshell.presentation.common.composables.Info
-import com.n27.nutshell.presentation.common.composables.NavItem
+import com.n27.nutshell.presentation.common.composables.nav.NavItem
 import com.n27.nutshell.presentation.common.composables.Screen
 import com.n27.nutshell.presentation.common.composables.cards.Card
 import com.n27.nutshell.presentation.common.composables.cards.CardContainer
-import com.n27.nutshell.presentation.common.composables.icons.Icon
+import com.n27.nutshell.presentation.common.composables.Icon
 import com.n27.nutshell.presentation.common.constants.Spacing
 import com.n27.nutshell.presentation.detail.entities.DetailAction
 import com.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked

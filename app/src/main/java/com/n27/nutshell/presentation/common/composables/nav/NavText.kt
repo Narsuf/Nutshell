@@ -1,4 +1,4 @@
-package com.n27.nutshell.presentation.common.composables
+package com.n27.nutshell.presentation.common.composables.nav
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

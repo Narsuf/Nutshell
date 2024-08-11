@@ -1,9 +1,8 @@
-package com.n27.nutshell.presentation.common.composables
+package com.n27.nutshell.presentation.common.composables.nav
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.runtime.Composable
-import com.n27.nutshell.presentation.common.composables.icons.NavIcon
 
 @Composable
 fun RowScope.NavItem(
