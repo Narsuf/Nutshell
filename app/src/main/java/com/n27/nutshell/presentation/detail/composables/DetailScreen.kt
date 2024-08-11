@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -21,7 +22,6 @@ import com.n27.nutshell.presentation.common.composables.Screen
 import com.n27.nutshell.presentation.common.composables.cards.Card
 import com.n27.nutshell.presentation.common.composables.cards.CardContainer
 import com.n27.nutshell.presentation.common.composables.icons.Icon
-import com.n27.nutshell.presentation.common.composables.text.Text
 import com.n27.nutshell.presentation.common.constants.Spacing
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content.NavItem
@@ -42,7 +42,7 @@ fun DetailScreen(content: Content) {
             startDestination = navItems[0].label,
             modifier = Modifier
                 .weight(1f)
-                .padding(horizontal =  Spacing.default)
+                .padding(horizontal = Spacing.default)
         ) {
             navItems.forEach { item ->
                 composable(item.label) {

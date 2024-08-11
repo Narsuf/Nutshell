@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 
 @Composable
-fun Text(
+fun CoreText(
     text: String,
     color: Color = Color.Unspecified,
     style: TextStyle = LocalTextStyle.current

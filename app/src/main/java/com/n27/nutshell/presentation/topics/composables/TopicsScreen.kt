@@ -1,6 +1,7 @@
 package com.n27.nutshell.presentation.topics.composables
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -9,7 +10,6 @@ import com.n27.nutshell.presentation.common.composables.cards.Card
 import com.n27.nutshell.presentation.common.composables.cards.CardContainer
 import com.n27.nutshell.presentation.common.composables.Screen
 import com.n27.nutshell.presentation.common.composables.icons.Icon
-import com.n27.nutshell.presentation.common.composables.text.Text
 import com.n27.nutshell.presentation.common.constants.Spacing
 import com.n27.nutshell.presentation.common.constants.Typography
 import com.n27.nutshell.presentation.topics.entities.TopicsAction
