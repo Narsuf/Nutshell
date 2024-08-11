@@ -2,7 +2,7 @@ package com.n27.nutshell.data.di
 
 import android.app.Application
 import com.google.firebase.database.FirebaseDatabase
-import com.n27.nutshell.data.DataUtils
+import com.n27.nutshell.data.common.DataUtils
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

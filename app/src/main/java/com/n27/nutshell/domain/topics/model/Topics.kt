@@ -1,7 +1,3 @@
 package com.n27.nutshell.domain.topics.model
 
-data class Topics(
-    val key: String,
-    val title: String,
-    val imageUrl: String
-)
+data class Topics(val items: List<Topic>)
