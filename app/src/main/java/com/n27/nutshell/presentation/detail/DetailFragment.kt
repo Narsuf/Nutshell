@@ -80,6 +80,7 @@ class DetailFragment : Fragment() {
                             value = "47.5"
                         )
                     ),
+                    sourceUrl = "",
                     navItems = listOf(
                         NavItem(
                             iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",

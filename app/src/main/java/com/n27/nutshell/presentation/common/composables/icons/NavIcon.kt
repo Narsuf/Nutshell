@@ -12,7 +12,7 @@ fun NavIcon(url: String, isSelected: Boolean) {
         url = url,
         colorFilter = ColorFilter.tint(
             if (isSelected)
-                Palette.Teal
+                Palette.Teal500
             else
                 Color.Black
         )

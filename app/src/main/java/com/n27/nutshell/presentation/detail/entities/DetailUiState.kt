@@ -4,6 +4,7 @@ sealed class DetailUiState {
 
     data class Content(
         val infoList: List<Info>,
+        val sourceUrl: String,
         val navItems: List<NavItem>
     ) : DetailUiState() {
 

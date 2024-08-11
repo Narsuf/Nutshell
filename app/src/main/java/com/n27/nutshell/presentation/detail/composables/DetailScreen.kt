@@ -1,6 +1,7 @@
 package com.n27.nutshell.presentation.detail.composables
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -17,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.n27.nutshell.R
+import com.n27.nutshell.presentation.common.composables.Info
 import com.n27.nutshell.presentation.common.composables.NavItem
 import com.n27.nutshell.presentation.common.composables.Screen
 import com.n27.nutshell.presentation.common.composables.cards.Card
@@ -60,6 +62,15 @@ fun DetailScreen(content: Content) {
                     }
                 }
             }
+        }
+
+        Row(
+            Modifier.padding(
+                start = Spacing.default,
+                bottom = Spacing.default
+            )
+        ) {
+            Info(text = stringResource(R.string.source), onClick = {  })
         }
 
         BottomNav(navController, navItems)

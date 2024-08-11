@@ -12,7 +12,7 @@ fun NavText(text: String, isSelected: Boolean) {
     Text(
         text = text,
         color = if (isSelected)
-            Palette.Teal
+            Palette.Teal500
         else
             Color.Black,
         style = if (isSelected)

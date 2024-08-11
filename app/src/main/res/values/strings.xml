@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">In a Nutshell</string>
 
-    <!-- Strings used for fragments for navigation -->
     <string name="topics_fragment_label">Topics</string>
     <string name="detail_fragment_label">Detail</string>
-    <string name="previous">Previous</string>
+
+    <string name="source">Source</string>
 </resources>
