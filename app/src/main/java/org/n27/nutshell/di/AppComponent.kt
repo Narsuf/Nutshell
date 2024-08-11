@@ -4,10 +4,16 @@ import org.n27.nutshell.presentation.MainActivity
 import org.n27.nutshell.presentation.detail.DetailFragment
 import org.n27.nutshell.presentation.topics.TopicsFragment
 import dagger.Component
+import org.n27.nutshell.data.di.DataModule
 import javax.inject.Singleton
 
 @Singleton
-@Component
+@Component(
+    modules = [
+        AppModule::class,
+        DataModule::class
+    ]
+)
 interface AppComponent {
 
     fun inject(activity: MainActivity)

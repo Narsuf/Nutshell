@@ -15,10 +15,7 @@ class NutshellRepositoryImpl @Inject constructor(
 
     override suspend fun getTopics(): Result<Topics> = firebaseApi.get("topics")
         .first()
-        .mapCatching { dataSnapshot ->
-            dataSnapshot
-                .toTopics()
-                ?.let { Topics(it) }
-                ?: throw Throwable(EMPTY_RESPONSE_FROM_FIREBASE)
+        .mapCatching {
+            it.toTopics() ?: throw Throwable(EMPTY_RESPONSE_FROM_FIREBASE)
         }
 }

@@ -7,15 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import org.n27.nutshell.extensions.observeOnLifecycle
 import org.n27.nutshell.presentation.MainActivity
 import org.n27.nutshell.presentation.topics.composables.TopicsScreen
 import org.n27.nutshell.presentation.topics.entities.TopicsEvent
 import org.n27.nutshell.presentation.topics.entities.TopicsEvent.GoToNextScreen
-import org.n27.nutshell.presentation.topics.entities.TopicsUiStates
 import javax.inject.Inject
 
 /**
@@ -37,55 +38,8 @@ class TopicsFragment : Fragment() {
     ): View = ComposeView(requireContext()).apply {
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
         setContent {
-            TopicsScreen(
-                content = TopicsUiStates.Content(
-                    listOf(
-                        TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
-                            key = "taxes"
-                        ),
-                        TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
-                            key = "taxes"
-                        ),
-                        TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
-                            key = "taxes"
-                        ), TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
-                            key = "taxes"
-                        ), TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
-                            key = "taxes"
-                        ), TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
-                            key = "taxes"
-                        ),
-                        TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
-                            key = "taxes"
-                        ),
-                        TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
-                            key = "taxes"
-                        ),
-                        TopicsUiStates.Content.Card(
-                            title = "Taxes in the EU",
-                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
-                            key = "taxes"
-                        )
-                    )
-                ),
-                onAction = viewModel::handleAction
-            )
+            val uiState by viewModel.viewState.collectAsStateWithLifecycle()
+            TopicsScreen(uiState, onAction = viewModel::handleAction)
         }
     }
 

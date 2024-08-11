@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
     alias(libs.plugins.safe.args)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -61,12 +62,16 @@ dependencies {
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.database)
+    implementation(libs.firebase.analytics)
 
     // Dagger 2
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
     // Android Jetpack
+
+        // Lifecycle
+        implementation(libs.androidx.lifecycle.runtime.compose)
 
         // Navigation
         implementation(libs.androidx.navigation.fragment.ktx)

@@ -1,8 +1,13 @@
 package org.n27.nutshell.presentation.topics.entities
 
-sealed class TopicsUiStates {
+import org.n27.nutshell.domain.topics.model.Topic
 
-    data class Content(val cardList: List<Card>) : TopicsUiStates() {
+sealed class TopicsUiState {
+
+    data object Loading : TopicsUiState()
+    data object Error : TopicsUiState()
+
+    data class Content(val topics: List<Topic>) : TopicsUiState() {
 
         data class Card(
             val title: String,
