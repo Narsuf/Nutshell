@@ -36,7 +36,7 @@ fun Toolbar(text: String) {
                         text = value,
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1,
-                        style = Typography.title
+                        style = Typography.Title
                     )
                 }
             }

@@ -14,7 +14,7 @@ fun NavIcon(url: String, isSelected: Boolean) {
             if (isSelected)
                 Palette.Teal
             else
-                Color.Gray
+                Color.Black
         )
     )
 }

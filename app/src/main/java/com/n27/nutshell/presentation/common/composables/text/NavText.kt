@@ -14,10 +14,10 @@ fun NavText(text: String, isSelected: Boolean) {
         color = if (isSelected)
             Palette.Teal
         else
-            Color.Gray,
+            Color.Black,
         style = if (isSelected)
-            Typography.bold
+            Typography.SmallBold
         else
-            LocalTextStyle.current
+            Typography.Small
     )
 }

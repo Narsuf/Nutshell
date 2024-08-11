@@ -59,7 +59,7 @@ fun Card(
                 ) {
                     Text(
                         text = text,
-                        style = Typography.bold
+                        style = Typography.Bold
                     )
                 }
 
