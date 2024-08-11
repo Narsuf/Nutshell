@@ -1,5 +1,6 @@
 package com.n27.nutshell.presentation.detail
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,17 +14,29 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.n27.nutshell.R
+import com.n27.nutshell.extensions.observeOnLifecycle
+import com.n27.nutshell.presentation.MainActivity
 import com.n27.nutshell.presentation.detail.composables.DetailScreen
+import com.n27.nutshell.presentation.detail.entities.DetailEvent
+import com.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
 import com.n27.nutshell.presentation.detail.entities.DetailUiState
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content.Info
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content.NavItem
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class DetailFragment : Fragment() {
 
+    @Inject lateinit var viewModel: DetailViewModel
+
     private val args: DetailFragmentArgs by navArgs()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as MainActivity).appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,7 +99,7 @@ class DetailFragment : Fragment() {
                             value = "47.5"
                         )
                     ),
-                    sourceUrl = "",
+                    sourceUrl = "https://www.eleconomista.es/economia/noticias/12698991/02/24/espana-es-el-cuarto-pais-de-europa-con-el-irpf-maximo-mas-elevado-para-la-rentas-altas.html",
                     navItems = listOf(
                         NavItem(
                             iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
@@ -98,17 +111,9 @@ class DetailFragment : Fragment() {
                         )
                     )
                 ),
-                onClick = ::openUrl
+                onAction = viewModel::handleAction
             )
         }
-    }
-
-    private fun openUrl() {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse("https://www.eleconomista.es/economia/noticias/12698991/02/24/espana-es-el-cuarto-pais-de-europa-con-el-irpf-maximo-mas-elevado-para-la-rentas-altas.html")
-        }
-
-        startActivity(intent)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -116,8 +121,19 @@ class DetailFragment : Fragment() {
 
         val key = args.key
 
+        viewModel.viewEvent.observeOnLifecycle(viewLifecycleOwner, action = ::handleEvent)
+
         requireActivity().onBackPressedDispatcher.addCallback {
             findNavController().navigate(R.id.action_DetailFragment_to_TopicsFragment)
         }
+    }
+
+    private fun handleEvent(event: DetailEvent) = when (event) {
+        is OpenUrl -> openUrl(event.url)
+    }
+
+    private fun openUrl(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW).apply { data = Uri.parse(url) }
+        startActivity(intent)
     }
 }

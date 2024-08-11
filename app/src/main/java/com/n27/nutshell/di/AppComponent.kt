@@ -1,6 +1,7 @@
 package com.n27.nutshell.di
 
 import com.n27.nutshell.presentation.MainActivity
+import com.n27.nutshell.presentation.detail.DetailFragment
 import com.n27.nutshell.presentation.topics.TopicsFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -11,4 +12,5 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
     fun inject(topicsFragment: TopicsFragment)
+    fun inject(detailFragment: DetailFragment)
 }

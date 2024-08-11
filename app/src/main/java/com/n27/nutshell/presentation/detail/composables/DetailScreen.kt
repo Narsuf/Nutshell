@@ -25,11 +25,13 @@ import com.n27.nutshell.presentation.common.composables.cards.Card
 import com.n27.nutshell.presentation.common.composables.cards.CardContainer
 import com.n27.nutshell.presentation.common.composables.icons.Icon
 import com.n27.nutshell.presentation.common.constants.Spacing
+import com.n27.nutshell.presentation.detail.entities.DetailAction
+import com.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content.NavItem
 
 @Composable
-fun DetailScreen(content: Content, onClick: () -> Unit) {
+fun DetailScreen(content: Content, onAction: (action: DetailAction) -> Unit) {
 
     val navController = rememberNavController()
     val navItems = content.navItems
@@ -70,7 +72,10 @@ fun DetailScreen(content: Content, onClick: () -> Unit) {
                 bottom = Spacing.default
             )
         ) {
-            Info(text = stringResource(R.string.source), onClick = onClick)
+            Info(
+                text = stringResource(R.string.source),
+                onClick = { onAction(InfoClicked(content.sourceUrl)) }
+            )
         }
 
         BottomNav(navController, navItems)
