@@ -58,6 +58,10 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
 
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.database)
+
     // Dagger 2
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
