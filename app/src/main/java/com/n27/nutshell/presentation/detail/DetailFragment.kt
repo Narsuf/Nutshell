@@ -1,5 +1,7 @@
 package com.n27.nutshell.presentation.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,7 +33,7 @@ class DetailFragment : Fragment() {
                     title = "Taxes",
                     infoList = listOf(
                         Info(
-                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/197/197593.png",
                             text = "España",
                             value = "54"
                         ),
@@ -92,9 +94,17 @@ class DetailFragment : Fragment() {
                             label = "IVA"
                         )
                     )
-                )
+                ), ::openUrl
             )
         }
+    }
+
+    private fun openUrl() {
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse("https://www.eleconomista.es/economia/noticias/12698991/02/24/espana-es-el-cuarto-pais-de-europa-con-el-irpf-maximo-mas-elevado-para-la-rentas-altas.html")
+        }
+
+        startActivity(intent)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

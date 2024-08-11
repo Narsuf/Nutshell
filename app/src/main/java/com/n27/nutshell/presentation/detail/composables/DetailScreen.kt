@@ -29,7 +29,7 @@ import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content.NavItem
 
 @Composable
-fun DetailScreen(content: Content) {
+fun DetailScreen(content: Content, onClick: () -> Unit) {
 
     val navController = rememberNavController()
     val navItems = content.navItems
@@ -70,7 +70,7 @@ fun DetailScreen(content: Content) {
                 bottom = Spacing.default
             )
         ) {
-            Info(text = stringResource(R.string.source), onClick = {  })
+            Info(text = stringResource(R.string.source), onClick = onClick)
         }
 
         BottomNav(navController, navItems)
