@@ -3,6 +3,7 @@ package com.n27.nutshell.presentation.detail.entities
 sealed class DetailUiState {
 
     data class Content(
+        val title: String,
         val infoList: List<Info>,
         val sourceUrl: String,
         val navItems: List<NavItem>

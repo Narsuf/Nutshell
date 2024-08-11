@@ -35,7 +35,7 @@ fun DetailScreen(content: Content) {
     val navItems = content.navItems
 
     Screen(
-        title = stringResource(R.string.detail_fragment_label),
+        title = content.title,
         isScrollEnabled = false,
         verticalArrangement = Arrangement.SpaceBetween
     ) {

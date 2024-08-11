@@ -16,8 +16,7 @@
 
     <fragment
         android:id="@+id/DetailFragment"
-        android:name="com.n27.nutshell.presentation.detail.DetailFragment"
-        android:label="@string/detail_fragment_label">
+        android:name="com.n27.nutshell.presentation.detail.DetailFragment">
 
         <action
             android:id="@+id/action_DetailFragment_to_TopicsFragment"

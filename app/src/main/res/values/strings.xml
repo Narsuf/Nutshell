@@ -2,7 +2,6 @@
     <string name="app_name">In a Nutshell</string>
 
     <string name="topics_fragment_label">Topics</string>
-    <string name="detail_fragment_label">Detail</string>
 
     <string name="source">Source</string>
 </resources>

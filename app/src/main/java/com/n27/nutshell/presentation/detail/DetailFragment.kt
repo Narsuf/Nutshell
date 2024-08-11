@@ -28,6 +28,7 @@ class DetailFragment : Fragment() {
         setContent {
             DetailScreen(
                 DetailUiState.Content(
+                    title = "Taxes",
                     infoList = listOf(
                         Info(
                             iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
