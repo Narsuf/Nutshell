@@ -94,7 +94,8 @@ class DetailFragment : Fragment() {
                             label = "IVA"
                         )
                     )
-                ), ::openUrl
+                ),
+                onClick = ::openUrl
             )
         }
     }

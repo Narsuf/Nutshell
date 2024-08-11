@@ -14,139 +14,28 @@ import com.n27.nutshell.presentation.common.constants.Spacing
 import com.n27.nutshell.presentation.common.constants.Typography
 import com.n27.nutshell.presentation.topics.entities.TopicsAction
 import com.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClicked
+import com.n27.nutshell.presentation.topics.entities.TopicsUiStates.Content
 
 @Composable
-fun TopicsScreen(onAction: (action: TopicsAction) -> Unit) {
+fun TopicsScreen(content: Content, onAction: (action: TopicsAction) -> Unit) {
 
     Screen(
         title = stringResource(R.string.topics_fragment_label),
         modifier = Modifier.padding(horizontal = Spacing.default)
     ) {
-        CardContainer {
-            Card(
-                mainContent = {
-                    Text(
-                        text = "Taxes in the EU",
-                        style = Typography.Bold
-                    )
-                },
-                endContent = {
-                    Icon("http://cdn-icons-png.flaticon.com/128/6049/6049398.png")
-                },
-                onClick = { onAction(NextButtonClicked) },
-            )
-        }
-        CardContainer {
-            Card(
-                mainContent = {
-                    Text(
-                        text = "Taxes in the EU",
-                        style = Typography.Bold
-                    )
-                },
-                endContent = {
-                    Icon("http://cdn-icons-png.flaticon.com/128/6049/6049398.png")
-                },
-                onClick = { onAction(NextButtonClicked) },
-            )
-        }
-        CardContainer {
-            Card(
-                mainContent = {
-                    Text(
-                        text = "Taxes in the EU",
-                        style = Typography.Bold
-                    )
-                },
-                endContent = {
-                    Icon("http://cdn-icons-png.flaticon.com/128/6049/6049398.png")
-                },
-                onClick = { onAction(NextButtonClicked) },
-            )
-        }
-        CardContainer {
-            Card(
-                mainContent = {
-                    Text(
-                        text = "Taxes in the EU",
-                        style = Typography.Bold
-                    )
-                },
-                endContent = {
-                    Icon("http://cdn-icons-png.flaticon.com/128/6049/6049398.png")
-                },
-                onClick = { onAction(NextButtonClicked) },
-            )
-        }
-        CardContainer {
-            Card(
-                mainContent = {
-                    Text(
-                        text = "Taxes in the EU",
-                        style = Typography.Bold
-                    )
-                },
-                endContent = {
-                    Icon("http://cdn-icons-png.flaticon.com/128/6049/6049398.png")
-                },
-                onClick = { onAction(NextButtonClicked) },
-            )
-        }
-        CardContainer {
-            Card(
-                mainContent = {
-                    Text(
-                        text = "Taxes in the EU",
-                        style = Typography.Bold
-                    )
-                },
-                endContent = {
-                    Icon("http://cdn-icons-png.flaticon.com/128/6049/6049398.png")
-                },
-                onClick = { onAction(NextButtonClicked) },
-            )
-        }
-        CardContainer {
-            Card(
-                mainContent = {
-                    Text(
-                        text = "Taxes in the EU",
-                        style = Typography.Bold
-                    )
-                },
-                endContent = {
-                    Icon("http://cdn-icons-png.flaticon.com/128/6049/6049398.png")
-                },
-                onClick = { onAction(NextButtonClicked) },
-            )
-        }
-        CardContainer {
-            Card(
-                mainContent = {
-                    Text(
-                        text = "Taxes in the EU",
-                        style = Typography.Bold
-                    )
-                },
-                endContent = {
-                    Icon("http://cdn-icons-png.flaticon.com/128/6049/6049398.png")
-                },
-                onClick = { onAction(NextButtonClicked) },
-            )
-        }
-        CardContainer {
-            Card(
-                mainContent = {
-                    Text(
-                        text = "Taxes in the EU",
-                        style = Typography.Bold
-                    )
-                },
-                endContent = {
-                    Icon("http://cdn-icons-png.flaticon.com/128/6049/6049398.png")
-                },
-                onClick = { onAction(NextButtonClicked) },
-            )
+        content.cardList.forEach {
+            CardContainer {
+                Card(
+                    mainContent = {
+                        Text(
+                            text = it.title,
+                            style = Typography.Bold
+                        )
+                    },
+                    endContent = { Icon(it.imageUrl) },
+                    onClick = { onAction(NextButtonClicked) },
+                )
+            }
         }
     }
 }

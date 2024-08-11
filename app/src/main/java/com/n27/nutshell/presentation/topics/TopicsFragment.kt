@@ -16,6 +16,7 @@ import com.n27.nutshell.presentation.MainActivity
 import com.n27.nutshell.presentation.topics.composables.TopicsScreen
 import com.n27.nutshell.presentation.topics.entities.TopicsEvent
 import com.n27.nutshell.presentation.topics.entities.TopicsEvent.GoToNextScreen
+import com.n27.nutshell.presentation.topics.entities.TopicsUiStates
 import javax.inject.Inject
 
 /**
@@ -36,7 +37,54 @@ class TopicsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View = ComposeView(requireContext()).apply {
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-        setContent { TopicsScreen(viewModel::handleAction) }
+        setContent {
+            TopicsScreen(
+                content = TopicsUiStates.Content(
+                    listOf(
+                        TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                        ),
+                        TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                        ),
+                        TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                        ),
+                        TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                        ),
+                        TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                        ),TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                        ),
+                        TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                        ),
+                        TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                        ),
+                        TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                        ),
+                        TopicsUiStates.Content.Card(
+                            title = "Taxes in the EU",
+                            imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png"
+                        )
+                    )
+                ),
+                onAction = viewModel::handleAction
+            )
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
