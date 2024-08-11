@@ -1,4 +1,4 @@
-package com.n27.nutshell.presentation.common.composables
+package com.n27.nutshell.presentation.common.composables.text
 
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
@@ -7,14 +7,14 @@ import com.n27.nutshell.presentation.common.constants.Palette
 import com.n27.nutshell.presentation.common.constants.Typography
 
 @Composable
-fun Text(text: String, isSelected: Boolean = false) {
+fun NavText(text: String, isSelected: Boolean) {
 
-    androidx.compose.material3.Text(
+    Text(
         text = text,
         color = if (isSelected)
-            Palette.teal700
+            Palette.Teal
         else
-            Color.Black,
+            Color.Gray,
         style = if (isSelected)
             Typography.bold
         else

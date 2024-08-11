@@ -3,6 +3,8 @@ package com.n27.nutshell.presentation.common.composables
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.runtime.Composable
+import com.n27.nutshell.presentation.common.composables.icons.NavIcon
+import com.n27.nutshell.presentation.common.composables.text.NavText
 
 @Composable
 fun RowScope.NavItem(
@@ -15,8 +17,8 @@ fun RowScope.NavItem(
     BottomNavigationItem(
         selected = isSelected,
         onClick = onClick,
-        icon = { Icon(imageUrl, isSelected) },
-        label = { Text(label, isSelected) }
+        icon = { NavIcon(imageUrl, isSelected) },
+        label = { NavText(label, isSelected) }
     )
 }
 

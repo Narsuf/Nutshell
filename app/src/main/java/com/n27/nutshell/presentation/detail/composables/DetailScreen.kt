@@ -14,7 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.n27.nutshell.R
 import com.n27.nutshell.presentation.common.composables.NavItem
 import com.n27.nutshell.presentation.common.composables.Screen
-import com.n27.nutshell.presentation.common.composables.Text
+import com.n27.nutshell.presentation.common.composables.text.Text
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content.NavItem
 

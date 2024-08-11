@@ -4,5 +4,6 @@ import androidx.compose.ui.graphics.Color
 
 object Palette {
 
-    val teal700 = Color(0xFF36A18B)
+    val Gray = Color(0xFFD9D9D9)
+    val Teal = Color(0xFF36A18B)
 }
