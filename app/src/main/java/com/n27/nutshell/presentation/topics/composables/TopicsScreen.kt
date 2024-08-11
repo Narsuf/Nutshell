@@ -2,6 +2,8 @@ package com.n27.nutshell.presentation.topics.composables
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -21,7 +23,11 @@ fun TopicsScreen(onAction: (action: TopicsAction) -> Unit) {
             Toolbar(text = stringResource(R.string.topics_fragment_label))
         }
     ) { paddingValues ->
-        Column(modifier = Modifier.padding(paddingValues)) {
+        Column(
+            modifier = Modifier
+                .padding(paddingValues)
+                .verticalScroll(rememberScrollState())
+        ) {
             Button(
                 onClick = { onAction(NextButtonClicked) }
             ) {
