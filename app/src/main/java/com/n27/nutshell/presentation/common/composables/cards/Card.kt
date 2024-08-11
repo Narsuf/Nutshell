@@ -1,4 +1,4 @@
-package com.n27.nutshell.presentation.common.composables
+package com.n27.nutshell.presentation.common.composables.cards
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource

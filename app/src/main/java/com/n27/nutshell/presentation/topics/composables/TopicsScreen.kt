@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.n27.nutshell.R
-import com.n27.nutshell.presentation.common.composables.Card
-import com.n27.nutshell.presentation.common.composables.CardContainer
+import com.n27.nutshell.presentation.common.composables.cards.Card
+import com.n27.nutshell.presentation.common.composables.cards.CardContainer
 import com.n27.nutshell.presentation.common.composables.Screen
 import com.n27.nutshell.presentation.common.constants.Spacing
 import com.n27.nutshell.presentation.topics.entities.TopicsAction

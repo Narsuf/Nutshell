@@ -1,4 +1,4 @@
-package com.n27.nutshell.presentation.common.composables
+package com.n27.nutshell.presentation.common.composables.cards
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
