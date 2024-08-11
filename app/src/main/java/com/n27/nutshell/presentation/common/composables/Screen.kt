@@ -16,9 +16,15 @@ import com.n27.nutshell.presentation.common.constants.Spacing
 fun Screen(
     title: String,
     modifier: Modifier = Modifier,
+    isScrollEnabled: Boolean = true,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     content: @Composable ColumnScope.() -> Unit
 ) {
+
+    val scroll = if (isScrollEnabled)
+        Modifier.verticalScroll(rememberScrollState())
+    else
+        Modifier
 
     Scaffold(
         topBar = { Toolbar(title) }
@@ -28,7 +34,7 @@ fun Screen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(top = Spacing.default)
-                .verticalScroll(rememberScrollState()),
+                .then(scroll),
             verticalArrangement = verticalArrangement,
             content = content
         )

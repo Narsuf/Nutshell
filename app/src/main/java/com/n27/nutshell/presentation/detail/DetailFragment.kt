@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.n27.nutshell.R
 import com.n27.nutshell.presentation.detail.composables.DetailScreen
 import com.n27.nutshell.presentation.detail.entities.DetailUiState
+import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content.Info
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content.NavItem
 
 /**
@@ -27,14 +28,64 @@ class DetailFragment : Fragment() {
         setContent {
             DetailScreen(
                 DetailUiState.Content(
+                    infoList = listOf(
+                        Info(
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            text = "España",
+                            value = "54"
+                        ),
+                        Info(
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            text = "Alemania",
+                            value = "47.5"
+                        ),
+                        Info(
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            text = "Alemania1",
+                            value = "47.5"
+                        ),
+                        Info(
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            text = "Alemania2",
+                            value = "47.5"
+                        ),
+                        Info(
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            text = "Alemania3",
+                            value = "47.5"
+                        ),
+                        Info(
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            text = "Alemania4",
+                            value = "47.5"
+                        ),
+                        Info(
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            text = "Alemania5",
+                            value = "47.5"
+                        ),
+                        Info(
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            text = "Alemania6",
+                            value = "47.5"
+                        ),
+                        Info(
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            text = "Alemania7",
+                            value = "47.5"
+                        ),
+                        Info(
+                            iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
+                            text = "Alemania8",
+                            value = "47.5"
+                        )
+                    ),
                     navItems = listOf(
                         NavItem(
-                            content = "Informacion sobre IRPF",
                             iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
                             label = "IRPF"
                         ),
                         NavItem(
-                            content = "Informacion sobre IVA",
                             iconUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
                             label = "IVA"
                         )

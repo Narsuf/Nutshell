@@ -12,36 +12,34 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Surface
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
-import com.n27.nutshell.presentation.common.composables.icons.Icon
 import com.n27.nutshell.presentation.common.constants.Spacing
-import com.n27.nutshell.presentation.common.constants.Typography
 
 private val StartImageSize = 48.dp
 private val CardMinHeight = 72.dp
 
 @Composable
 fun Card(
-    onClick: () -> Unit,
-    text: String,
-    startIconUrl: String? = null,
-    endIconUrl: String,
+    mainContent: @Composable () -> Unit,
+    endContent: @Composable () -> Unit,
+    startContent: (@Composable () -> Unit)? = null,
+    onClick: (() -> Unit)? = null,
     includeDivider: Boolean = false
 ) {
 
     Surface(
         color = MaterialTheme.colorScheme.background,
-        modifier = Modifier.clickable(
-            onClick = { onClick() },
-            interactionSource = remember { MutableInteractionSource() },
-            indication = rememberRipple()
-        )
+        modifier = onClick?.let {
+            Modifier.clickable(
+                onClick = it,
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple()
+            )
+        } ?: Modifier
     ) {
         Box(
             modifier = Modifier
@@ -57,32 +55,27 @@ fun Card(
                     .align(Alignment.Center)
             ) {
 
-                startIconUrl?.let {
+                startContent?.let {
                     Box(
                         Modifier
                             .align(Alignment.CenterVertically)
                             .padding(end = Spacing.default)
                             .size(StartImageSize),
                         contentAlignment = Alignment.Center
-                    ) { Icon(it) }
+                    ) { it() }
                 }
 
                 Box(
                     modifier = Modifier
                         .weight(1f)
                         .align(Alignment.CenterVertically)
-                ) {
-                    Text(
-                        text = text,
-                        style = Typography.Bold
-                    )
-                }
+                ) { mainContent() }
 
                 Box(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .padding(start = Spacing.default)
-                ) { Icon(endIconUrl) }
+                ) { endContent() }
             }
         }
     }

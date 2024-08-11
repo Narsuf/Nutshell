@@ -1,10 +1,14 @@
 package com.n27.nutshell.presentation.detail.composables
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -14,7 +18,11 @@ import androidx.navigation.compose.rememberNavController
 import com.n27.nutshell.R
 import com.n27.nutshell.presentation.common.composables.NavItem
 import com.n27.nutshell.presentation.common.composables.Screen
+import com.n27.nutshell.presentation.common.composables.cards.Card
+import com.n27.nutshell.presentation.common.composables.cards.CardContainer
+import com.n27.nutshell.presentation.common.composables.icons.Icon
 import com.n27.nutshell.presentation.common.composables.text.Text
+import com.n27.nutshell.presentation.common.constants.Spacing
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content
 import com.n27.nutshell.presentation.detail.entities.DetailUiState.Content.NavItem
 
@@ -26,12 +34,30 @@ fun DetailScreen(content: Content) {
 
     Screen(
         title = stringResource(R.string.detail_fragment_label),
+        isScrollEnabled = false,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        NavHost(navController, startDestination = navItems[0].label) {
+        NavHost(
+            navController = navController,
+            startDestination = navItems[0].label,
+            modifier = Modifier
+                .weight(1f)
+                .padding(horizontal =  Spacing.default)
+        ) {
             navItems.forEach { item ->
                 composable(item.label) {
-                    Text(item.content)
+                    CardContainer {
+                        LazyColumn {
+                            items(content.infoList, key = { it.text }) { item ->
+                                Card(
+                                    mainContent = { Text(item.text) } ,
+                                    endContent = { Text(item.value) },
+                                    startContent = { Icon(item.iconUrl) },
+                                    includeDivider = true
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }
