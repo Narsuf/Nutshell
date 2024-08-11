@@ -48,6 +48,6 @@ class TopicsFragment : Fragment() {
     }
 
     private fun goToNextScreen() {
-        findNavController().navigate(R.id.action_TopicsFragment_to_SecondFragment)
+        findNavController().navigate(R.id.action_TopicsFragment_to_DetailFragment)
     }
 }

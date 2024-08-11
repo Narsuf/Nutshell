@@ -3,7 +3,7 @@
 
     <!-- Strings used for fragments for navigation -->
     <string name="topics_fragment_label">Topics</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="detail_fragment_label">Detail</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

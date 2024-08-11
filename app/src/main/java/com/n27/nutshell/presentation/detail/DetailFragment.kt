@@ -1,4 +1,4 @@
-package com.n27.nutshell.presentation
+package com.n27.nutshell.presentation.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,7 +16,7 @@ import com.n27.nutshell.presentation.common.composables.NavItem
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class DetailFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +29,7 @@ class SecondFragment : Fragment() {
                     NavItem(
                         isSelected = false,
                         onClick = {
-                            findNavController().navigate(R.id.action_SecondFragment_to_TopicsFragment)
+                            findNavController().navigate(R.id.action_DetailFragment_to_TopicsFragment)
                         },
                         imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
                         label = "Topics"
@@ -38,7 +38,7 @@ class SecondFragment : Fragment() {
                         isSelected = true,
                         onClick = {},
                         imageUrl = "http://cdn-icons-png.flaticon.com/128/6049/6049398.png",
-                        label = "Second"
+                        label = "Detail"
                     )
                 )
             }
