@@ -13,12 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InANutshell"
-        android:name=".NutshellApplication"
+        android:name="org.n27.nutshell.NutshellApplication"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
         <activity
-            android:name=".presentation.MainActivity"
+            android:name="org.n27.nutshell.presentation.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.InANutshell">
             <intent-filter>

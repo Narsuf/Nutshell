@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.n27.nutshell"
+    namespace = "org.n27.nutshell"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.n27.nutshell"
+        applicationId = "org.n27.nutshell"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
