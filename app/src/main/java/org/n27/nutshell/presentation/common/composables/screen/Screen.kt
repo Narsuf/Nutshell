@@ -12,11 +12,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import org.n27.nutshell.presentation.common.composables.Toolbar
-import org.n27.nutshell.presentation.common.constants.Spacing
 
 @Composable
 fun Screen(
     title: String,
+    modifier: Modifier = Modifier,
     onBackClick: (() -> Unit)? = null,
     horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     content: @Composable ColumnScope.() -> Unit
@@ -26,11 +26,10 @@ fun Screen(
         topBar = { Toolbar(title, onBackClick) }
     ) { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .background(Color.White)
                 .fillMaxSize()
-                .padding(paddingValues)
-                .padding(top = Spacing.default),
+                .padding(paddingValues),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = horizontalAlignment,
             content = content

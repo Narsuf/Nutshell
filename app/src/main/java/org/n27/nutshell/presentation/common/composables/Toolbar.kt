@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import org.n27.nutshell.presentation.common.constants.Spacing
 import org.n27.nutshell.presentation.common.constants.Typography
 import androidx.compose.material3.Icon as MaterialIcon
@@ -34,7 +35,12 @@ fun Toolbar(text: String, onBackClick: (() -> Unit)? = null) {
                 ),
             verticalAlignment = Alignment.CenterVertically
         ) {
+
+            var topPadding = Spacing.tight
+
             onBackClick?.let {
+                topPadding = 0.dp
+
                 IconButton(onClick = it) {
                     MaterialIcon(
                         imageVector = Icons.AutoMirrored.Default.ArrowBack,
@@ -47,7 +53,10 @@ fun Toolbar(text: String, onBackClick: (() -> Unit)? = null) {
             Column(
                 Modifier
                     .weight(1f)
-                    .padding(start = Spacing.tight)
+                    .padding(
+                        start = Spacing.tight,
+                        top = topPadding
+                    )
             ) {
                 AnimatedContent(
                     targetState = text,

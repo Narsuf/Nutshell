@@ -2,7 +2,11 @@ package org.n27.nutshell.presentation.detail.composables
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.BottomNavigation
@@ -47,32 +51,37 @@ fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAc
         ) {
             navItems.forEach { item ->
 
-                val infoList = uiState.tab.infoList
+                val tab = uiState.tab
+                val infoList = tab.infoList
 
                 composable(item.label) {
-                    CardContainer {
-                        LazyColumn {
-                            itemsIndexed(
-                                items = infoList,
-                                key = { _, item -> item.text }
-                            ) { index, item ->
-                                Card(
-                                    mainContent = { Text(item.text) },
-                                    endContent = { Text(item.value) },
-                                    startContent = { Icon(item.iconUrl) },
-                                    includeDivider = index < infoList.size - 1
-                                )
+                    Column(Modifier.fillMaxHeight()) {
+                        CardContainer(Modifier.weight(1f, fill = false)) {
+                            LazyColumn(Modifier.wrapContentHeight()) {
+                                itemsIndexed(
+                                    items = infoList,
+                                    key = { _, item -> item.text }
+                                ) { index, item ->
+                                    Card(
+                                        mainContent = { Text(item.text) },
+                                        endContent = { Text(item.value) },
+                                        startContent = { Icon(item.iconUrl) },
+                                        includeDivider = index < infoList.size - 1
+                                    )
+                                }
                             }
                         }
+
+                        Info(
+                            text = stringResource(R.string.source),
+                            onClick = { onAction(InfoClicked(tab.sourceUrl)) }
+                        )
+
+                        Spacer(Modifier.height(Spacing.default))
                     }
                 }
             }
         }
-
-        Info(
-            text = stringResource(R.string.source),
-            onClick = { onAction(InfoClicked(uiState.tab.sourceUrl)) }
-        )
     }
 
     BottomNav(navController, navItems, onAction)
