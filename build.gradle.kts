@@ -5,4 +5,5 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.kapt) apply false
     alias(libs.plugins.safe.args) apply false
     alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.crashlytics) apply false
 }
