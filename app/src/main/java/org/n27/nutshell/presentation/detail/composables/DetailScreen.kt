@@ -2,7 +2,7 @@ package org.n27.nutshell.presentation.detail.composables
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
-import org.n27.nutshell.presentation.common.composables.Screen
+import org.n27.nutshell.presentation.common.composables.screen.Screen
 import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailUiState
 

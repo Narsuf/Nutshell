@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.n27.nutshell.data.NutshellRepositoryImpl
+import org.n27.nutshell.presentation.common.mapping.toError
 import org.n27.nutshell.presentation.topics.entities.TopicsAction
 import org.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClicked
 import org.n27.nutshell.presentation.topics.entities.TopicsEvent
@@ -31,7 +32,7 @@ class TopicsViewModel @Inject constructor(repository: NutshellRepositoryImpl) : 
         viewModelScope.launch {
             repository.getTopics()
                 .onSuccess { state.emit(Content(it.items)) }
-                .onFailure { state.emit(Error) }
+                .onFailure { state.emit(Error(it.toError())) }
         }
     }
 

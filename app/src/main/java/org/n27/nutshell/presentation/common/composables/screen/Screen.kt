@@ -1,5 +1,6 @@
-package org.n27.nutshell.presentation.common.composables
+package org.n27.nutshell.presentation.common.composables.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -10,12 +11,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import org.n27.nutshell.presentation.common.composables.Toolbar
 import org.n27.nutshell.presentation.common.constants.Spacing
 
 @Composable
 fun Screen(
     title: String,
-    modifier: Modifier = Modifier,
     isScrollEnabled: Boolean = true,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     content: @Composable ColumnScope.() -> Unit
@@ -30,7 +32,8 @@ fun Screen(
         topBar = { Toolbar(title) }
     ) { paddingValues ->
         Column(
-            modifier = modifier
+            modifier = Modifier
+                .background(Color.White)
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(top = Spacing.default)

@@ -4,4 +4,13 @@
     <string name="topics_fragment_label">Topics</string>
 
     <string name="source">Source</string>
+
+    <string name="retry">Retry</string>
+
+    <!-- Errors -->
+    <string name="generic_error_title">Oops!</string>
+    <string name="generic_error_description">Something went wrong</string>
+
+    <string name="no_internet_error_title">You are offline</string>
+    <string name="no_internet_error_description">Please check your internet connection and try again</string>
 </resources>

@@ -81,6 +81,9 @@ dependencies {
     // Coil
     implementation(libs.coil.compose)
 
+    // Lottie
+    implementation(libs.lottie)
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
