@@ -11,7 +11,6 @@ fun DetailScreen(title: String, state: DetailUiState, onAction: (action: DetailA
 
     Screen(
         title = title,
-        isScrollEnabled = false,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         when (state) {
