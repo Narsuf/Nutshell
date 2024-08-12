@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -50,12 +50,15 @@ fun ColumnScope.DetailNavScreen(state: HasNavItems, onAction: (action: DetailAct
                     state.content?.let {
                         CardContainer {
                             LazyColumn {
-                                items(it.info, key = { it.text }) { item ->
+                                itemsIndexed(
+                                    items = it.info,
+                                    key = { _, item -> item.text }
+                                ) { index, item ->
                                     Card(
                                         mainContent = { Text(item.text) },
                                         endContent = { Text(item.value) },
                                         startContent = { Icon(item.iconUrl) },
-                                        includeDivider = true
+                                        includeDivider = index < it.info.size - 1
                                     )
                                 }
                             }
