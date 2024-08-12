@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.n27.nutshell.Constants.EMPTY_NAV_ICONS_LIST
 import org.n27.nutshell.data.NutshellRepositoryImpl
+import org.n27.nutshell.presentation.common.mapping.toError
 import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.GetNavIcons
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
@@ -44,7 +45,7 @@ class DetailViewModel @AssistedInject constructor(
 
     fun handleAction(action: DetailAction) {
         when (action) {
-            is GetNavIcons -> getNavIcons()
+            GetNavIcons -> getNavIcons()
             is InfoClicked -> event.trySend(OpenUrl(action.url))
             is NavItemClicked -> getDetail(action.id)
         }
@@ -84,11 +85,11 @@ class DetailViewModel @AssistedInject constructor(
         }
     }
 
-    private fun handleFailure(error: Throwable) {
+    private fun handleFailure(throwable: Throwable) {
         viewModelState.update {
             it.copy(
                 isLoading = false,
-                error = error.message
+                error = throwable.toError()
             )
         }
     }
