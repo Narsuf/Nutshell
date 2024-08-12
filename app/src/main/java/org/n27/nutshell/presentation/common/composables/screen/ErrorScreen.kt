@@ -1,5 +1,6 @@
 package org.n27.nutshell.presentation.common.composables.screen
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -9,6 +10,9 @@ import androidx.compose.ui.unit.dp
 import org.n27.nutshell.R
 import org.n27.nutshell.presentation.common.composables.Button
 import org.n27.nutshell.presentation.common.composables.Lottie
+import org.n27.nutshell.presentation.common.constants.Palette
+import org.n27.nutshell.presentation.common.constants.Spacing
+import org.n27.nutshell.presentation.common.constants.Typography
 import org.n27.nutshell.presentation.common.model.Error
 
 private val AnimationSize = 80.dp
@@ -17,7 +21,18 @@ private val AnimationSize = 80.dp
 fun ErrorScreen(error: Error) {
 
     Lottie(R.raw.error, Modifier.size(AnimationSize), isError = true)
-    Text(stringResource(error.title))
-    Text(stringResource(error.description))
+
+    Text(
+        text = stringResource(error.title),
+        modifier = Modifier.padding(bottom = Spacing.default),
+        style = Typography.SmallTitle
+    )
+
+    Text(
+        text = stringResource(error.description),
+        modifier = Modifier.padding(bottom = Spacing.tight),
+        color = Palette.Gray600
+    )
+
     Button(stringResource(R.string.retry))
 }

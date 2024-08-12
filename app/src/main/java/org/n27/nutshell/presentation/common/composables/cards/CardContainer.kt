@@ -30,7 +30,7 @@ fun CardContainer(
             .background(Color.Transparent, roundedCornerShape)
             .padding(bottom = Spacing.default)
             .border(
-                BorderStroke(1.dp, Palette.Gray),
+                BorderStroke(1.dp, Palette.Gray300),
                 roundedCornerShape
             ),
         content = content

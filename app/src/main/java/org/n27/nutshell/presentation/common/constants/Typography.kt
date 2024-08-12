@@ -12,6 +12,12 @@ object Typography {
         lineHeight = 24.sp
     )
 
+    val SmallTitle: TextStyle = TextStyle(
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 20.sp
+    )
+
     val Bold: TextStyle = TextStyle(fontWeight = FontWeight.Medium)
 
     val Small: TextStyle = TextStyle(

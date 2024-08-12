@@ -10,6 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import org.n27.nutshell.presentation.common.composables.Toolbar
@@ -20,6 +21,7 @@ fun Screen(
     title: String,
     isScrollEnabled: Boolean = true,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
+    horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     content: @Composable ColumnScope.() -> Unit
 ) {
 
@@ -39,6 +41,7 @@ fun Screen(
                 .padding(top = Spacing.default)
                 .then(scroll),
             verticalArrangement = verticalArrangement,
+            horizontalAlignment = horizontalAlignment,
             content = content
         )
     }
