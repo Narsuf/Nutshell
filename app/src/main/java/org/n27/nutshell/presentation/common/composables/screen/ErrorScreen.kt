@@ -18,7 +18,7 @@ import org.n27.nutshell.presentation.common.model.Error
 private val AnimationSize = 80.dp
 
 @Composable
-fun ErrorScreen(error: Error) {
+fun ErrorScreen(error: Error, onButtonClick: () -> Unit) {
 
     Lottie(R.raw.error, Modifier.size(AnimationSize), isError = true)
 
@@ -34,5 +34,8 @@ fun ErrorScreen(error: Error) {
         color = Palette.Gray600
     )
 
-    Button(stringResource(R.string.retry))
+    Button(
+        onClick = onButtonClick,
+        text = stringResource(R.string.retry),
+    )
 }

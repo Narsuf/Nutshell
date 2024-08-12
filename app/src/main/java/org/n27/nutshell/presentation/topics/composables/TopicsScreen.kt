@@ -10,6 +10,7 @@ import org.n27.nutshell.presentation.common.composables.Lottie
 import org.n27.nutshell.presentation.common.composables.screen.ErrorScreen
 import org.n27.nutshell.presentation.common.composables.screen.Screen
 import org.n27.nutshell.presentation.topics.entities.TopicsAction
+import org.n27.nutshell.presentation.topics.entities.TopicsAction.RetryButtonClicked
 import org.n27.nutshell.presentation.topics.entities.TopicsUiState
 import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Content
 import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Error
@@ -24,8 +25,11 @@ fun TopicsScreen(uiState: TopicsUiState, onAction: (action: TopicsAction) -> Uni
     ) {
         when (uiState) {
             Loading -> Lottie(R.raw.loading, Modifier.fillMaxSize())
-            is Error -> ErrorScreen(uiState.error)
             is Content -> TopicsContent(uiState, onAction)
+            is Error -> ErrorScreen(
+                error = uiState.error,
+                onButtonClick = { onAction(RetryButtonClicked) }
+            )
         }
     }
 }

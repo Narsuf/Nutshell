@@ -15,10 +15,10 @@ import org.n27.nutshell.presentation.common.constants.Spacing
 private val ButtonHeight = 40.dp
 
 @Composable
-fun Button(text: String) {
+fun Button(onClick: () -> Unit, text: String) {
 
     androidx.compose.material3.Button(
-        onClick = {  },
+        onClick = onClick,
         modifier = Modifier.height(ButtonHeight),
         shape = RoundedCornerShape(8.dp),
         colors = ButtonDefaults.buttonColors().copy(
