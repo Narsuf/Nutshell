@@ -5,6 +5,7 @@ import androidx.compose.ui.unit.dp
 
 object Spacing {
 
+    val tightest: Dp = 4.dp
     val tighter: Dp = 8.dp
     val tight: Dp = 12.dp
     val default: Dp = 16.dp
