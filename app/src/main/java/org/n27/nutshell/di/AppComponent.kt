@@ -1,10 +1,10 @@
 package org.n27.nutshell.di
 
+import dagger.Component
+import org.n27.nutshell.data.di.DataModule
 import org.n27.nutshell.presentation.MainActivity
 import org.n27.nutshell.presentation.detail.DetailFragment
 import org.n27.nutshell.presentation.topics.TopicsFragment
-import dagger.Component
-import org.n27.nutshell.data.di.DataModule
 import javax.inject.Singleton
 
 @Singleton

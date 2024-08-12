@@ -2,9 +2,6 @@ package org.n27.nutshell.presentation.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import org.n27.nutshell.presentation.detail.entities.DetailAction
-import org.n27.nutshell.presentation.detail.entities.DetailEvent
-import org.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,8 +13,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.n27.nutshell.Constants.EMPTY_NAV_ICONS_LIST
 import org.n27.nutshell.data.NutshellRepositoryImpl
+import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.GetNavIcons
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
+import org.n27.nutshell.presentation.detail.entities.DetailEvent
+import org.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
 import org.n27.nutshell.presentation.detail.entities.DetailViewModelState
 import org.n27.nutshell.presentation.detail.mapping.toUiState
 import javax.inject.Inject
