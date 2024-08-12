@@ -48,6 +48,7 @@ class DetailViewModel @Inject constructor(
     private fun getNavIcons(key: String) {
         viewModelScope.launch {
             repository.getDetailNavItems(key)
+                .onFailure(::handleFailure)
                 .onSuccess { navItems ->
                     navItems.items.takeIf { it.isNotEmpty() }
                         ?.let { items ->
@@ -58,13 +59,27 @@ class DetailViewModel @Inject constructor(
                                     error = null
                                 )
                             }
-                        } ?: getNavIconsFailure(Throwable(EMPTY_NAV_ICONS_LIST))
+
+                            getContent(key, items[0].id)
+                        } ?: handleFailure(Throwable(EMPTY_NAV_ICONS_LIST))
                 }
-                .onFailure(::getNavIconsFailure)
         }
     }
 
-    private fun getNavIconsFailure(error: Throwable) {
+    private fun getContent(key: String, id: String) {
+        viewModelScope.launch {
+
+            viewModelState.update { it.copy(isLoading = true) }
+            
+            repository.getDetail(key, id)
+                .onFailure(::handleFailure)
+                .onSuccess { detail ->
+                    viewModelState.update { it.copy(content = detail) }
+                }
+        }
+    }
+
+    private fun handleFailure(error: Throwable) {
         viewModelState.update {
             it.copy(
                 isLoading = false,
