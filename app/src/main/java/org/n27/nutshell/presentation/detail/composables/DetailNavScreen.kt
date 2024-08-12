@@ -1,7 +1,7 @@
 package org.n27.nutshell.presentation.detail.composables
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -35,40 +35,36 @@ fun ColumnScope.DetailNavScreen(state: HasNavItems, onAction: (action: DetailAct
     val navController = rememberNavController()
     val navItems = state.navItems
 
-    NavHost(
-        navController = navController,
-        startDestination = navItems[0].label,
-        modifier = Modifier
+    Column(
+        Modifier
             .weight(1f)
             .padding(horizontal = Spacing.default)
     ) {
-        navItems.forEach { item ->
-            composable(item.label) {
-                state.content?.let {
-                    CardContainer {
-                        LazyColumn {
-                            items(it.info, key = { it.text }) { item ->
-                                Card(
-                                    mainContent = { Text(item.text) },
-                                    endContent = { Text(item.value) },
-                                    startContent = { Icon(item.iconUrl) },
-                                    includeDivider = true
-                                )
+        NavHost(
+            navController = navController,
+            startDestination = navItems[0].label
+        ) {
+            navItems.forEach { item ->
+                composable(item.label) {
+                    state.content?.let {
+                        CardContainer {
+                            LazyColumn {
+                                items(it.info, key = { it.text }) { item ->
+                                    Card(
+                                        mainContent = { Text(item.text) },
+                                        endContent = { Text(item.value) },
+                                        startContent = { Icon(item.iconUrl) },
+                                        includeDivider = true
+                                    )
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
 
-    state.content?.let {
-        Row(
-            Modifier.padding(
-                start = Spacing.default,
-                bottom = Spacing.default
-            )
-        ) {
+        state.content?.let {
             Info(
                 text = stringResource(R.string.source),
                 onClick = { onAction(InfoClicked(it.sourceUrl)) }

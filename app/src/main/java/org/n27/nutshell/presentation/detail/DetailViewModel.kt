@@ -60,17 +60,17 @@ class DetailViewModel @Inject constructor(
                                 )
                             }
 
-                            getContent(key, items[0].id)
+                            getDetail(key, items[0].id)
                         } ?: handleFailure(Throwable(EMPTY_NAV_ICONS_LIST))
                 }
         }
     }
 
-    private fun getContent(key: String, id: String) {
+    private fun getDetail(key: String, id: String) {
         viewModelScope.launch {
 
             viewModelState.update { it.copy(isLoading = true) }
-            
+
             repository.getDetail(key, id)
                 .onFailure(::handleFailure)
                 .onSuccess { detail ->
