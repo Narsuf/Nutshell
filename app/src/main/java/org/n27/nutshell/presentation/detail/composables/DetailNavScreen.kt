@@ -18,7 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.n27.nutshell.R
-import org.n27.nutshell.domain.detail.model.DetailNavItem
+import org.n27.nutshell.domain.detail.model.Detail.DetailNavItem
 import org.n27.nutshell.presentation.common.composables.Icon
 import org.n27.nutshell.presentation.common.composables.Info
 import org.n27.nutshell.presentation.common.composables.cards.Card
@@ -28,13 +28,13 @@ import org.n27.nutshell.presentation.common.constants.Spacing
 import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
 import org.n27.nutshell.presentation.detail.entities.DetailAction.NavItemClicked
-import org.n27.nutshell.presentation.detail.entities.DetailUiState.HasNavItems
+import org.n27.nutshell.presentation.detail.entities.DetailUiState.HasContent
 
 @Composable
-fun ColumnScope.DetailNavScreen(state: HasNavItems, onAction: (action: DetailAction) -> Unit) {
+fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAction) -> Unit) {
 
     val navController = rememberNavController()
-    val navItems = state.navItems
+    val navItems = uiState.nav
 
     Column(
         Modifier
@@ -46,21 +46,22 @@ fun ColumnScope.DetailNavScreen(state: HasNavItems, onAction: (action: DetailAct
             startDestination = navItems[0].label
         ) {
             navItems.forEach { item ->
+
+                val infoList = uiState.tab.infoList
+
                 composable(item.label) {
-                    state.content?.let {
-                        CardContainer {
-                            LazyColumn {
-                                itemsIndexed(
-                                    items = it.info,
-                                    key = { _, item -> item.text }
-                                ) { index, item ->
-                                    Card(
-                                        mainContent = { Text(item.text) },
-                                        endContent = { Text(item.value) },
-                                        startContent = { Icon(item.iconUrl) },
-                                        includeDivider = index < it.info.size - 1
-                                    )
-                                }
+                    CardContainer {
+                        LazyColumn {
+                            itemsIndexed(
+                                items = infoList,
+                                key = { _, item -> item.text }
+                            ) { index, item ->
+                                Card(
+                                    mainContent = { Text(item.text) },
+                                    endContent = { Text(item.value) },
+                                    startContent = { Icon(item.iconUrl) },
+                                    includeDivider = index < infoList.size - 1
+                                )
                             }
                         }
                     }
@@ -68,12 +69,10 @@ fun ColumnScope.DetailNavScreen(state: HasNavItems, onAction: (action: DetailAct
             }
         }
 
-        state.content?.let {
-            Info(
-                text = stringResource(R.string.source),
-                onClick = { onAction(InfoClicked(it.sourceUrl)) }
-            )
-        }
+        Info(
+            text = stringResource(R.string.source),
+            onClick = { onAction(InfoClicked(uiState.tab.sourceUrl)) }
+        )
     }
 
     BottomNav(navController, navItems, onAction)

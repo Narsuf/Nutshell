@@ -20,7 +20,7 @@ import org.n27.nutshell.R
 import org.n27.nutshell.extensions.observeOnLifecycle
 import org.n27.nutshell.presentation.MainActivity
 import org.n27.nutshell.presentation.detail.composables.DetailScreen
-import org.n27.nutshell.presentation.detail.entities.DetailAction.GetNavIcons
+import org.n27.nutshell.presentation.detail.entities.DetailAction.GetDetail
 import org.n27.nutshell.presentation.detail.entities.DetailEvent
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.GoBack
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
@@ -60,7 +60,7 @@ class DetailFragment : Fragment() {
 
         viewModel.apply {
             viewEvent.observeOnLifecycle(viewLifecycleOwner, action = ::handleEvent)
-            handleAction(GetNavIcons)
+            handleAction(GetDetail)
         }
 
         requireActivity().onBackPressedDispatcher.addCallback { goBack() }
