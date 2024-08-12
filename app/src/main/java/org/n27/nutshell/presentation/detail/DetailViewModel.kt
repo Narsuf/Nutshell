@@ -2,6 +2,9 @@ package org.n27.nutshell.presentation.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,13 +19,14 @@ import org.n27.nutshell.data.NutshellRepositoryImpl
 import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.GetNavIcons
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
+import org.n27.nutshell.presentation.detail.entities.DetailAction.NavItemClicked
 import org.n27.nutshell.presentation.detail.entities.DetailEvent
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
 import org.n27.nutshell.presentation.detail.entities.DetailViewModelState
 import org.n27.nutshell.presentation.detail.mapping.toUiState
-import javax.inject.Inject
 
-class DetailViewModel @Inject constructor(
+class DetailViewModel @AssistedInject constructor(
+    @Assisted private val key: String,
     private val repository: NutshellRepositoryImpl
 ) : ViewModel() {
 
@@ -40,12 +44,13 @@ class DetailViewModel @Inject constructor(
 
     fun handleAction(action: DetailAction) {
         when (action) {
-            is GetNavIcons -> getNavIcons(action.key)
+            is GetNavIcons -> getNavIcons()
             is InfoClicked -> event.trySend(OpenUrl(action.url))
+            is NavItemClicked -> getDetail(action.id)
         }
     }
 
-    private fun getNavIcons(key: String) {
+    private fun getNavIcons() {
         viewModelScope.launch {
             repository.getDetailNavItems(key)
                 .onFailure(::handleFailure)
@@ -60,13 +65,13 @@ class DetailViewModel @Inject constructor(
                                 )
                             }
 
-                            getDetail(key, items[0].id)
+                            getDetail(items[0].id)
                         } ?: handleFailure(Throwable(EMPTY_NAV_ICONS_LIST))
                 }
         }
     }
 
-    private fun getDetail(key: String, id: String) {
+    private fun getDetail(id: String) {
         viewModelScope.launch {
 
             viewModelState.update { it.copy(isLoading = true) }
@@ -86,5 +91,10 @@ class DetailViewModel @Inject constructor(
                 error = error.message
             )
         }
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(key: String): DetailViewModel
     }
 }

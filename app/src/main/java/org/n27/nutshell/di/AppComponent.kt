@@ -4,6 +4,7 @@ import dagger.Component
 import org.n27.nutshell.data.di.DataModule
 import org.n27.nutshell.presentation.MainActivity
 import org.n27.nutshell.presentation.detail.DetailFragment
+import org.n27.nutshell.presentation.di.ViewModelModule
 import org.n27.nutshell.presentation.topics.TopicsFragment
 import javax.inject.Singleton
 
@@ -11,7 +12,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AppModule::class,
-        DataModule::class
+        DataModule::class,
+        ViewModelModule::class
     ]
 )
 interface AppComponent {

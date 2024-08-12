@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -29,9 +30,13 @@ import javax.inject.Inject
  */
 class DetailFragment : Fragment() {
 
-    @Inject lateinit var viewModel: DetailViewModel
-
     private val args: DetailFragmentArgs by navArgs()
+
+    @Inject lateinit var assistedFactory: DetailViewModel.Factory
+
+    private val viewModel: DetailViewModel by viewModels {
+        DetailViewModelFactory(assistedFactory, args.key)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -52,8 +57,10 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.viewEvent.observeOnLifecycle(viewLifecycleOwner, action = ::handleEvent)
-        viewModel.handleAction(GetNavIcons(args.key))
+        viewModel.apply {
+            viewEvent.observeOnLifecycle(viewLifecycleOwner, action = ::handleEvent)
+            handleAction(GetNavIcons)
+        }
 
         requireActivity().onBackPressedDispatcher.addCallback {
             findNavController().navigate(R.id.action_DetailFragment_to_TopicsFragment)

@@ -27,6 +27,7 @@ import org.n27.nutshell.presentation.common.composables.nav.NavItem
 import org.n27.nutshell.presentation.common.constants.Spacing
 import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
+import org.n27.nutshell.presentation.detail.entities.DetailAction.NavItemClicked
 import org.n27.nutshell.presentation.detail.entities.DetailUiState.HasNavItems
 
 @Composable
@@ -72,11 +73,15 @@ fun ColumnScope.DetailNavScreen(state: HasNavItems, onAction: (action: DetailAct
         }
     }
 
-    BottomNav(navController, navItems)
+    BottomNav(navController, navItems, onAction)
 }
 
 @Composable
-private fun BottomNav(navController: NavController, navItems: List<DetailNavItem>) {
+private fun BottomNav(
+    navController: NavController,
+    navItems: List<DetailNavItem>,
+    onAction: (action: DetailAction) -> Unit
+) {
 
     BottomNavigation(backgroundColor = MaterialTheme.colorScheme.background) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -98,6 +103,8 @@ private fun BottomNav(navController: NavController, navItems: List<DetailNavItem
                             launchSingleTop = true
                             restoreState = false
                         }
+
+                        onAction(NavItemClicked(it.id))
                     }
                 },
                 imageUrl = it.iconUrl,

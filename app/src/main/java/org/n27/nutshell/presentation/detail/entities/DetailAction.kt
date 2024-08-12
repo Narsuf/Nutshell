@@ -2,6 +2,7 @@ package org.n27.nutshell.presentation.detail.entities
 
 sealed class DetailAction {
 
-    data class GetNavIcons(val key: String) : DetailAction()
+    data object GetNavIcons : DetailAction()
     data class InfoClicked(val url: String) : DetailAction()
+    data class NavItemClicked(val id: String) : DetailAction()
 }
