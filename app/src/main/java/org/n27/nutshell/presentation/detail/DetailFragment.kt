@@ -22,6 +22,7 @@ import org.n27.nutshell.presentation.MainActivity
 import org.n27.nutshell.presentation.detail.composables.DetailScreen
 import org.n27.nutshell.presentation.detail.entities.DetailAction.GetNavIcons
 import org.n27.nutshell.presentation.detail.entities.DetailEvent
+import org.n27.nutshell.presentation.detail.entities.DetailEvent.GoBack
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
 import javax.inject.Inject
 
@@ -62,13 +63,16 @@ class DetailFragment : Fragment() {
             handleAction(GetNavIcons)
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback {
-            findNavController().navigate(R.id.action_DetailFragment_to_TopicsFragment)
-        }
+        requireActivity().onBackPressedDispatcher.addCallback { goBack() }
     }
 
     private fun handleEvent(event: DetailEvent) = when (event) {
+        GoBack -> goBack()
         is OpenUrl -> openUrl(event.url)
+    }
+
+    private fun goBack() {
+        findNavController().navigate(R.id.action_DetailFragment_to_TopicsFragment)
     }
 
     private fun openUrl(url: String) {

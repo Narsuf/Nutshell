@@ -17,12 +17,13 @@ import org.n27.nutshell.presentation.common.constants.Spacing
 @Composable
 fun Screen(
     title: String,
+    onBackClick: (() -> Unit)? = null,
     horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     content: @Composable ColumnScope.() -> Unit
 ) {
 
     Scaffold(
-        topBar = { Toolbar(title) }
+        topBar = { Toolbar(title, onBackClick) }
     ) { paddingValues ->
         Column(
             modifier = Modifier

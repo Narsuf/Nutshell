@@ -6,9 +6,15 @@ import androidx.compose.ui.unit.sp
 
 object Typography {
 
-    val Title: TextStyle = TextStyle(
+    val BoldTitle: TextStyle = TextStyle(
         fontSize = 18.sp,
         fontWeight = FontWeight.Medium,
+        lineHeight = 24.sp
+    )
+
+    val Title: TextStyle = TextStyle(
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Normal,
         lineHeight = 24.sp
     )
 

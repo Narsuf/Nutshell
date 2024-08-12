@@ -18,10 +18,12 @@ import org.n27.nutshell.Constants.EMPTY_NAV_ICONS_LIST
 import org.n27.nutshell.data.NutshellRepositoryImpl
 import org.n27.nutshell.presentation.common.mapping.toError
 import org.n27.nutshell.presentation.detail.entities.DetailAction
+import org.n27.nutshell.presentation.detail.entities.DetailAction.BackClicked
 import org.n27.nutshell.presentation.detail.entities.DetailAction.GetNavIcons
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
 import org.n27.nutshell.presentation.detail.entities.DetailAction.NavItemClicked
 import org.n27.nutshell.presentation.detail.entities.DetailEvent
+import org.n27.nutshell.presentation.detail.entities.DetailEvent.GoBack
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
 import org.n27.nutshell.presentation.detail.entities.DetailViewModelState
 import org.n27.nutshell.presentation.detail.mapping.toUiState
@@ -46,6 +48,7 @@ class DetailViewModel @AssistedInject constructor(
     fun handleAction(action: DetailAction) {
         when (action) {
             GetNavIcons -> getNavIcons()
+            BackClicked -> event.trySend(GoBack)
             is InfoClicked -> event.trySend(OpenUrl(action.url))
             is NavItemClicked -> getDetail(action.id)
         }
