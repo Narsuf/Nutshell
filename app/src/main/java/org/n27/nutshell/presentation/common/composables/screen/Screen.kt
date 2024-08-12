@@ -17,7 +17,6 @@ import org.n27.nutshell.presentation.common.constants.Spacing
 @Composable
 fun Screen(
     title: String,
-    verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     content: @Composable ColumnScope.() -> Unit
 ) {
@@ -31,7 +30,7 @@ fun Screen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(top = Spacing.default),
-            verticalArrangement = verticalArrangement,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = horizontalAlignment,
             content = content
         )

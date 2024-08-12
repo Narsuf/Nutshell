@@ -1,6 +1,5 @@
 package org.n27.nutshell.presentation.detail.composables
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,10 +16,7 @@ import org.n27.nutshell.presentation.detail.entities.DetailUiState.NoNavItems
 @Composable
 fun DetailScreen(title: String, uiState: DetailUiState, onAction: (action: DetailAction) -> Unit) {
 
-    Screen(
-        title = title,
-        verticalArrangement = Arrangement.SpaceBetween
-    ) {
+    Screen(title = title) {
         when (uiState) {
             is HasNavItems -> DetailNavScreen(uiState, onAction)
             is NoNavItems -> if (uiState.isLoading)

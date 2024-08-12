@@ -1,6 +1,5 @@
 package org.n27.nutshell.presentation.topics.composables
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,10 +18,7 @@ import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Loading
 @Composable
 fun TopicsScreen(uiState: TopicsUiState, onAction: (action: TopicsAction) -> Unit) {
 
-    Screen(
-        title = stringResource(R.string.topics_fragment_label),
-        verticalArrangement = Arrangement.Center
-    ) {
+    Screen(title = stringResource(R.string.topics_fragment_label)) {
         when (uiState) {
             Loading -> Lottie(R.raw.loading, Modifier.fillMaxSize())
             is Content -> TopicsContent(uiState, onAction)
