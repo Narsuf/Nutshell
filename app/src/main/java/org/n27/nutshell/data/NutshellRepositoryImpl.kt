@@ -24,7 +24,7 @@ class NutshellRepositoryImpl @Inject constructor(
         }
 
     override suspend fun getDetailNavItems(key: String): Result<DetailNavItems> = firebaseApi
-        .get(key)
+        .get("${key}_nav")
         .first()
         .mapCatching {
             it.toDetailNavItems() ?: throw Throwable(EMPTY_RESPONSE_FROM_FIREBASE)

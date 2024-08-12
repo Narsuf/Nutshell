@@ -23,7 +23,7 @@ fun TopicsContent(content: Content, onAction: (action: TopicsAction) -> Unit) {
                     )
                 },
                 endContent = { Icon(it.imageUrl) },
-                onClick = { onAction(NextButtonClicked(it.key)) },
+                onClick = { onAction(NextButtonClicked(it.key, it.title)) },
             )
         }
     }

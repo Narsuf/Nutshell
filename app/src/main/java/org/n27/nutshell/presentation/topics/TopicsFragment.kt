@@ -38,7 +38,7 @@ class TopicsFragment : Fragment() {
     ): View = ComposeView(requireContext()).apply {
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
         setContent {
-            val uiState by viewModel.viewState.collectAsStateWithLifecycle()
+            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             TopicsScreen(uiState, onAction = viewModel::handleAction)
         }
     }
@@ -50,11 +50,11 @@ class TopicsFragment : Fragment() {
     }
 
     private fun handleEvent(event: TopicsEvent) = when (event) {
-        is GoToNextScreen -> goToNextScreen(event.key)
+        is GoToNextScreen -> goToNextScreen(event.key, event.title)
     }
 
-    private fun goToNextScreen(key: String) {
-        val action = TopicsFragmentDirections.actionTopicsFragmentToDetailFragment(key)
+    private fun goToNextScreen(key: String, title: String) {
+        val action = TopicsFragmentDirections.actionTopicsFragmentToDetailFragment(key, title)
         findNavController().navigate(action)
     }
 }

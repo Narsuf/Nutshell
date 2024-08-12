@@ -27,5 +27,9 @@
         <argument
             android:name="key"
             app:argType="string" />
+
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
 </navigation>

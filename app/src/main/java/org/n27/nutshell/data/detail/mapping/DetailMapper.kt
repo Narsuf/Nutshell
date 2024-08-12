@@ -12,7 +12,6 @@ fun DataSnapshot.toDetail() = getValue(
 )?.toDetail()
 
 private fun DetailRaw.toDetail() = Detail(
-    title = title,
     info = info.map { it.toInfo() },
     sourceUrl = sourceUrl
 )

@@ -11,11 +11,13 @@ fun DataSnapshot.toDetailNavItems() = getValue(
 )?.toNavItems()
 
 private fun List<DetailNavItemRaw>.toNavItems() = DetailNavItems(
-    items = map { it.toNavItem() }
+    items = mapIndexed { index, rawItem ->
+        rawItem.toNavItem(index.toString())
+    }
 )
 
-private fun DetailNavItemRaw.toNavItem() = DetailNavItem(
-    id = id,
+private fun DetailNavItemRaw.toNavItem(index: String) = DetailNavItem(
+    id = index,
     iconUrl = iconUrl,
     label = label
 )

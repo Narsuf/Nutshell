@@ -22,7 +22,7 @@ import javax.inject.Inject
 class TopicsViewModel @Inject constructor(repository: NutshellRepositoryImpl) : ViewModel() {
 
     private val state = MutableStateFlow<TopicsUiState>(Loading)
-    internal val viewState = state.asStateFlow()
+    internal val uiState = state.asStateFlow()
 
     private val event = Channel<TopicsEvent>(capacity = 1, BufferOverflow.DROP_OLDEST)
     val viewEvent = event.receiveAsFlow()
@@ -36,6 +36,6 @@ class TopicsViewModel @Inject constructor(repository: NutshellRepositoryImpl) : 
     }
 
     fun handleAction(action: TopicsAction) = when (action) {
-        is NextButtonClicked -> event.trySend(GoToNextScreen(action.key))
+        is NextButtonClicked -> event.trySend(GoToNextScreen(action.key, action.title))
     }
 }

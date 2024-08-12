@@ -1,23 +1,22 @@
 package org.n27.nutshell.presentation.detail.entities
 
-sealed class DetailUiState {
+import org.n27.nutshell.domain.detail.model.Detail
+import org.n27.nutshell.domain.detail.model.DetailNavItem
 
-    data class Content(
-        val title: String,
-        val infoList: List<Info>,
-        val sourceUrl: String,
-        val navItems: List<NavItem>
-    ) : DetailUiState() {
+sealed interface DetailUiState {
 
-        data class Info(
-            val iconUrl: String,
-            val text: String,
-            val value: String
-        )
+    val isLoading: Boolean
+    val error: String?
 
-        data class NavItem(
-            val iconUrl: String,
-            val label: String
-        )
-    }
+    data class NoNavItems(
+        override val isLoading: Boolean,
+        override val error: String?
+    ) : DetailUiState
+
+    data class HasNavItems(
+        val content: Detail?,
+        val navItems: List<DetailNavItem>,
+        override val isLoading: Boolean,
+        override val error: String?
+    ) : DetailUiState
 }

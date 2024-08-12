@@ -1,7 +1,6 @@
 package org.n27.nutshell.domain.detail.model
 
 data class Detail(
-    val title: String,
     val info: List<Info>,
     val sourceUrl: String
 ) {

@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.n27.nutshell.R
+import org.n27.nutshell.domain.detail.model.DetailNavItem
 import org.n27.nutshell.presentation.common.composables.Info
 import org.n27.nutshell.presentation.common.composables.nav.NavItem
 import org.n27.nutshell.presentation.common.composables.Screen
@@ -27,63 +28,68 @@ import org.n27.nutshell.presentation.common.composables.Icon
 import org.n27.nutshell.presentation.common.constants.Spacing
 import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
-import org.n27.nutshell.presentation.detail.entities.DetailUiState.Content
-import org.n27.nutshell.presentation.detail.entities.DetailUiState.Content.NavItem
+import org.n27.nutshell.presentation.detail.entities.DetailUiState
 
 @Composable
-fun DetailScreen(content: Content, onAction: (action: DetailAction) -> Unit) {
+fun DetailScreen(title: String, state: DetailUiState, onAction: (action: DetailAction) -> Unit) {
 
-    val navController = rememberNavController()
-    val navItems = content.navItems
+    if (state is DetailUiState.HasNavItems) {
+        val navController = rememberNavController()
+        val navItems = state.navItems
 
-    Screen(
-        title = content.title,
-        isScrollEnabled = false,
-        verticalArrangement = Arrangement.SpaceBetween
-    ) {
-        NavHost(
-            navController = navController,
-            startDestination = navItems[0].label,
-            modifier = Modifier
-                .weight(1f)
-                .padding(horizontal = Spacing.default)
+        Screen(
+            title = title,
+            isScrollEnabled = false,
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
-            navItems.forEach { item ->
-                composable(item.label) {
-                    CardContainer {
-                        LazyColumn {
-                            items(content.infoList, key = { it.text }) { item ->
-                                Card(
-                                    mainContent = { Text(item.text) } ,
-                                    endContent = { Text(item.value) },
-                                    startContent = { Icon(item.iconUrl) },
-                                    includeDivider = true
-                                )
+            NavHost(
+                navController = navController,
+                startDestination = navItems[0].label,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(horizontal = Spacing.default)
+            ) {
+                navItems.forEach { item ->
+                    composable(item.label) {
+                        state.content?.let {
+                            CardContainer {
+                                LazyColumn {
+                                    items(it.info, key = { it.text }) { item ->
+                                        Card(
+                                            mainContent = { Text(item.text) },
+                                            endContent = { Text(item.value) },
+                                            startContent = { Icon(item.iconUrl) },
+                                            includeDivider = true
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
-        Row(
-            Modifier.padding(
-                start = Spacing.default,
-                bottom = Spacing.default
-            )
-        ) {
-            Info(
-                text = stringResource(R.string.source),
-                onClick = { onAction(InfoClicked(content.sourceUrl)) }
-            )
-        }
+            state.content?.let {
+                Row(
+                    Modifier.padding(
+                        start = Spacing.default,
+                        bottom = Spacing.default
+                    )
+                ) {
+                    Info(
+                        text = stringResource(R.string.source),
+                        onClick = { onAction(InfoClicked(it.sourceUrl)) }
+                    )
+                }
+            }
 
-        BottomNav(navController, navItems)
+            BottomNav(navController, navItems)
+        }
     }
 }
 
 @Composable
-private fun BottomNav(navController: NavController, navItems: List<NavItem>) {
+private fun BottomNav(navController: NavController, navItems: List<DetailNavItem>) {
 
     BottomNavigation(backgroundColor = MaterialTheme.colorScheme.background) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
