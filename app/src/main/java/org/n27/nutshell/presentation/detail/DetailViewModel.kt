@@ -2,6 +2,8 @@ package org.n27.nutshell.presentation.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -91,6 +93,8 @@ class DetailViewModel @AssistedInject constructor(
     }
 
     private fun handleFailure(throwable: Throwable) {
+        Firebase.crashlytics.recordException(throwable)
+
         viewModelState.update {
             it.copy(isLoading = false, error = throwable.toError())
         }

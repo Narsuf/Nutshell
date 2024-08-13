@@ -2,6 +2,8 @@ package org.n27.nutshell.presentation.topics
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -46,7 +48,10 @@ class TopicsViewModel @Inject constructor(
 
             repository.getTopics()
                 .onSuccess { state.emit(Content(it.items)) }
-                .onFailure { state.emit(Error(it.toError())) }
+                .onFailure {
+                    Firebase.crashlytics.recordException(it)
+                    state.emit(Error(it.toError()))
+                }
         }
     }
 }
