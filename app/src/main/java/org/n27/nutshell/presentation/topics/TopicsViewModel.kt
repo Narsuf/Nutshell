@@ -2,8 +2,6 @@ package org.n27.nutshell.presentation.topics
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.crashlytics.ktx.crashlytics
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +22,8 @@ import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Loading
 import javax.inject.Inject
 
 class TopicsViewModel @Inject constructor(
-    private val repository: NutshellRepositoryImpl
+    private val repository: NutshellRepositoryImpl,
+    private val tracker: TopicsTracker
 ) : ViewModel() {
 
     private val state = MutableStateFlow<TopicsUiState>(Loading)
@@ -37,9 +36,19 @@ class TopicsViewModel @Inject constructor(
 
     fun handleAction(action: TopicsAction) {
         when (action) {
-            RetryButtonClicked -> getTopics()
-            is NextButtonClicked -> event.trySend(GoToNextScreen(action.key, action.title))
+            RetryButtonClicked -> onRetryButtonClicked()
+            is NextButtonClicked -> onNextButtonClicked(action)
         }
+    }
+
+    private fun onRetryButtonClicked() {
+        getTopics()
+        tracker.trackRetryButton()
+    }
+
+    private fun onNextButtonClicked(action: NextButtonClicked) {
+        event.trySend(GoToNextScreen(action.key, action.title))
+        tracker.trackItem(action.id, action.key)
     }
 
     private fun getTopics() {
@@ -47,10 +56,13 @@ class TopicsViewModel @Inject constructor(
             state.emit(Loading)
 
             repository.getTopics()
-                .onSuccess { state.emit(Content(it.items)) }
+                .onSuccess {
+                    state.emit(Content(it.items))
+                    tracker.trackScreenView()
+                }
                 .onFailure {
-                    Firebase.crashlytics.recordException(it)
                     state.emit(Error(it.toError()))
+                    tracker.trackError(it)
                 }
         }
     }
