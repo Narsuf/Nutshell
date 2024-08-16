@@ -28,10 +28,16 @@ class DetailTracker @Inject constructor(
         analytics.trackItem("${SCREEN_NAME}_${key}_$RETRY_BUTTON_CLICK")
     }
 
-    fun trackSourceButton(key: String, navScreen: String) {
-        analytics.trackItem(
-            name = "${SCREEN_NAME}_${key}_${navScreen.lowercase()}_$SOURCE_BUTTON_CLICK"
-        )
+    fun trackSourceButton(key: String, navScreen: String?) {
+        navScreen?.let {
+            analytics.trackItem(
+                name = "${SCREEN_NAME}_${key}_${it.lowercase()}_$SOURCE_BUTTON_CLICK"
+            )
+        } ?: trackSourceButton(key)
+    }
+
+    private fun trackSourceButton(key: String) {
+        analytics.trackItem("${SCREEN_NAME}_${key}_$SOURCE_BUTTON_CLICK")
     }
 
     fun trackNavClick(key: String, id: Int, navItem: String) {

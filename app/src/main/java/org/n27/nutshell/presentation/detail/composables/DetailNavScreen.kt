@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -37,6 +38,15 @@ import org.n27.nutshell.presentation.detail.entities.DetailUiState.HasContent
 @Composable
 fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAction) -> Unit) {
 
+    if (uiState.nav.isNotEmpty())
+        NavView(uiState, onAction)
+    else
+        Container(uiState, onAction)
+}
+
+@Composable
+private fun ColumnScope.NavView(uiState: HasContent, onAction: (action: DetailAction) -> Unit) {
+
     val navController = rememberNavController()
     val navItems = uiState.nav
 
@@ -50,41 +60,60 @@ fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAc
             startDestination = navItems[0].label
         ) {
             navItems.forEach { item ->
-
-                val tab = uiState.tab
-                val infoList = tab.infoList
-
                 composable(item.label) {
-                    Column(Modifier.fillMaxHeight()) {
-                        CardContainer(Modifier.weight(1f, fill = false)) {
-                            LazyColumn(Modifier.wrapContentHeight()) {
-                                itemsIndexed(
-                                    items = infoList,
-                                    key = { _, item -> item.text }
-                                ) { index, item ->
-                                    Card(
-                                        mainContent = { Text(item.text) },
-                                        endContent = { Text(item.value) },
-                                        startContent = { Icon(item.iconUrl) },
-                                        includeDivider = index < infoList.size - 1
-                                    )
-                                }
-                            }
-                        }
-
-                        Info(
-                            text = stringResource(R.string.source),
-                            onClick = { onAction(InfoClicked(tab.sourceUrl, item.label)) }
-                        )
-
-                        Spacer(Modifier.height(Spacing.default))
-                    }
+                    Container(uiState, onAction, item.label)
                 }
             }
         }
     }
 
     BottomNav(navController, navItems, onAction)
+}
+
+
+@Composable
+private fun Container(
+    uiState: HasContent,
+    onAction: (action: DetailAction) -> Unit,
+    navLabel: String? = null
+) {
+
+    val tab = uiState.tab
+    val infoList = tab.infoList
+
+    Column(
+        Modifier
+            .fillMaxHeight()
+            .padding(
+                horizontal = if (navLabel == null)
+                    Spacing.default
+                else
+                    0.dp
+            )
+    ) {
+        CardContainer(Modifier.weight(1f, fill = false)) {
+            LazyColumn(Modifier.wrapContentHeight()) {
+                itemsIndexed(
+                    items = infoList,
+                    key = { _, item -> item.text }
+                ) { index, item ->
+                    Card(
+                        mainContent = { Text(item.text) },
+                        endContent = { Text(item.value) },
+                        startContent = { Icon(item.iconUrl) },
+                        includeDivider = index < infoList.size - 1
+                    )
+                }
+            }
+        }
+
+        Info(
+            text = stringResource(R.string.source),
+            onClick = { onAction(InfoClicked(tab.sourceUrl, navLabel)) }
+        )
+
+        Spacer(Modifier.height(Spacing.default))
+    }
 }
 
 @Composable

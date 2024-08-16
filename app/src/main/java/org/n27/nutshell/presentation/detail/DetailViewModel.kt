@@ -100,7 +100,7 @@ class DetailViewModel @AssistedInject constructor(
     }
 
     private fun handleSuccess(it: Detail) {
-        if (it.nav.isEmpty() || it.tabs.isEmpty()) {
+        if (it.tabs.isEmpty()) {
             handleFailure(Throwable(EMPTY_LIST))
         } else {
             detail = it
