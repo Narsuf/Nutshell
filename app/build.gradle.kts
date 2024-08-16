@@ -15,8 +15,8 @@ android {
         applicationId = "org.n27.nutshell"
         minSdk = 26
         targetSdk = 34
-        versionCode = 5
-        versionName = "1.0.0"
+        versionCode = 6
+        versionName = "1.0.1-debug"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
