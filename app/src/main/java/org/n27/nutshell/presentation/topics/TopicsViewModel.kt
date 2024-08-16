@@ -2,6 +2,7 @@ package org.n27.nutshell.presentation.topics
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -57,7 +58,7 @@ class TopicsViewModel @Inject constructor(
 
             repository.getTopics()
                 .onSuccess {
-                    state.emit(Content(it.items))
+                    state.emit(Content(it.items.toPersistentList()))
                     tracker.trackScreenView()
                 }
                 .onFailure {

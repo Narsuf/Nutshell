@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.kotlinx.collections.immutable)
 
     // Compose
     val composeBom = platform("androidx.compose:compose-bom:2024.06.00")
