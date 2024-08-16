@@ -9,9 +9,8 @@ fun FirebaseAnalytics.trackScreen(name: String) {
     }
 }
 
-fun FirebaseAnalytics.trackItem(name: String, id: Int? = null) {
+fun FirebaseAnalytics.trackItem(name: String) {
     logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
-        id?.let { param(FirebaseAnalytics.Param.ITEM_ID, it.toString()) }
         param(FirebaseAnalytics.Param.ITEM_NAME, name)
     }
 }

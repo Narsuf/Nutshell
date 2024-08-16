@@ -40,10 +40,9 @@ class DetailTracker @Inject constructor(
         analytics.trackItem("${SCREEN_NAME}_${key}_$SOURCE_BUTTON_CLICK")
     }
 
-    fun trackNavClick(key: String, id: Int, navItem: String) {
+    fun trackNavClick(key: String, navItem: String) {
         analytics.trackItem(
-            name = "${SCREEN_NAME}_${key}_${navItem.lowercase()}_button.click",
-            id = id
+            name = "${SCREEN_NAME}_${key}_${navItem.lowercase()}_button.click"
         )
     }
 

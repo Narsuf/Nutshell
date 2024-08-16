@@ -3,7 +3,7 @@ package org.n27.nutshell.presentation.topics.composables
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,7 +24,7 @@ fun TopicsContent(content: Content, onAction: (action: TopicsAction) -> Unit) {
             .fillMaxSize()
             .padding(horizontal = Spacing.default)
     ) {
-        itemsIndexed(content.topics, key = { _, topic -> topic.key }) { index, topic ->
+        items(content.topics, key = { it.key }) { topic ->
             CardContainer {
                 Card(
                     mainContent = {
@@ -34,7 +34,7 @@ fun TopicsContent(content: Content, onAction: (action: TopicsAction) -> Unit) {
                         )
                     },
                     endContent = { Icon(topic.imageUrl) },
-                    onClick = { onAction(NextButtonClicked(index, topic.key, topic.title)) },
+                    onClick = { onAction(NextButtonClicked(topic.key, topic.title)) },
                 )
             }
         }

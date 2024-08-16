@@ -79,7 +79,7 @@ class DetailViewModel @AssistedInject constructor(
 
     private fun onNavItemClicked(action: NavItemClicked) {
         getTab(action.id)
-        tracker.trackNavClick(key, action.id, action.label)
+        tracker.trackNavClick(key, action.label)
     }
 
     private fun getTab(id: Int) {

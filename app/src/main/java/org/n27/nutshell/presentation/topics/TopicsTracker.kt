@@ -19,8 +19,8 @@ class TopicsTracker @Inject constructor(
 
     fun trackRetryButton() { analytics.trackItem(RETRY_BUTTON_CLICK) }
 
-    fun trackItem(id: Int, name: String) {
-        analytics.trackItem("${SCREEN_NAME}_${name}_item.click", id)
+    fun trackItem(name: String) {
+        analytics.trackItem("${SCREEN_NAME}_${name}_item.click")
     }
 
     private object Action {

@@ -49,7 +49,7 @@ class TopicsViewModel @Inject constructor(
 
     private fun onNextButtonClicked(action: NextButtonClicked) {
         event.trySend(GoToNextScreen(action.key, action.title))
-        tracker.trackItem(action.id, action.key)
+        tracker.trackItem(action.key)
     }
 
     private fun getTopics() {
