@@ -74,7 +74,7 @@ fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAc
 
                         Info(
                             text = stringResource(R.string.source),
-                            onClick = { onAction(InfoClicked(tab.sourceUrl)) }
+                            onClick = { onAction(InfoClicked(tab.sourceUrl, item.label)) }
                         )
 
                         Spacer(Modifier.height(Spacing.default))
@@ -115,7 +115,7 @@ private fun BottomNav(
                             restoreState = false
                         }
 
-                        onAction(NavItemClicked(it.id))
+                        onAction(NavItemClicked(it.id, it.label))
                     }
                 },
                 imageUrl = it.iconUrl,

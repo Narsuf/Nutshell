@@ -9,7 +9,7 @@ import org.n27.nutshell.presentation.common.composables.screen.ErrorScreen
 import org.n27.nutshell.presentation.common.composables.screen.Screen
 import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.BackClicked
-import org.n27.nutshell.presentation.detail.entities.DetailAction.GetDetail
+import org.n27.nutshell.presentation.detail.entities.DetailAction.RetryClicked
 import org.n27.nutshell.presentation.detail.entities.DetailUiState
 import org.n27.nutshell.presentation.detail.entities.DetailUiState.HasContent
 import org.n27.nutshell.presentation.detail.entities.DetailUiState.NoContent
@@ -26,7 +26,7 @@ fun DetailScreen(title: String, uiState: DetailUiState, onAction: (action: Detai
                 uiState.error?.let {
                     ErrorScreen(
                         error = it,
-                        onButtonClick = { onAction(GetDetail) }
+                        onButtonClick = { onAction(RetryClicked) }
                     )
                 }
         }

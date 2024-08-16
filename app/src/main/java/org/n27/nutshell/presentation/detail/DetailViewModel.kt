@@ -25,6 +25,7 @@ import org.n27.nutshell.presentation.detail.entities.DetailAction.BackClicked
 import org.n27.nutshell.presentation.detail.entities.DetailAction.GetDetail
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
 import org.n27.nutshell.presentation.detail.entities.DetailAction.NavItemClicked
+import org.n27.nutshell.presentation.detail.entities.DetailAction.RetryClicked
 import org.n27.nutshell.presentation.detail.entities.DetailEvent
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.GoBack
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
@@ -33,7 +34,8 @@ import org.n27.nutshell.presentation.detail.mapping.toUiState
 
 class DetailViewModel @AssistedInject constructor(
     @Assisted private val key: String,
-    private val repository: NutshellRepositoryImpl
+    private val repository: NutshellRepositoryImpl,
+    private val tracker: DetailTracker
 ) : ViewModel() {
 
     private val viewModelState = MutableStateFlow(DetailViewModelState())
@@ -53,10 +55,31 @@ class DetailViewModel @AssistedInject constructor(
     fun handleAction(action: DetailAction) {
         when (action) {
             GetDetail -> getDetail()
-            BackClicked -> event.trySend(GoBack)
-            is InfoClicked -> event.trySend(OpenUrl(action.url))
-            is NavItemClicked -> getTab(action.id)
+            BackClicked -> onBackClicked()
+            RetryClicked -> onRetryClicked()
+            is InfoClicked -> onInfoClicked(action)
+            is NavItemClicked -> onNavItemClicked(action)
         }
+    }
+
+    private fun onBackClicked() {
+        event.trySend(GoBack)
+        tracker.trackBackClick(key)
+    }
+
+    private fun onRetryClicked() {
+        getDetail()
+        tracker.trackRetryButton(key)
+    }
+
+    private fun onInfoClicked(action: InfoClicked) {
+        event.trySend(OpenUrl(action.url))
+        tracker.trackSourceButton(key, action.navScreen)
+    }
+
+    private fun onNavItemClicked(action: NavItemClicked) {
+        getTab(action.id)
+        tracker.trackNavClick(key, action.id, action.label)
     }
 
     private fun getTab(id: Int) {
@@ -89,15 +112,17 @@ class DetailViewModel @AssistedInject constructor(
                     error = null
                 )
             }
+
+            tracker.trackScreenView(key)
         }
     }
 
     private fun handleFailure(throwable: Throwable) {
-        Firebase.crashlytics.recordException(throwable)
-
         viewModelState.update {
             it.copy(isLoading = false, error = throwable.toError())
         }
+
+        tracker.trackError(throwable)
     }
 
     @AssistedFactory

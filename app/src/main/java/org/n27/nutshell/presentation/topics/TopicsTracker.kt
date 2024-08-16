@@ -26,6 +26,6 @@ class TopicsTracker @Inject constructor(
     private object Action {
         const val SCREEN_NAME = "topics_screen"
         const val SCREEN_VIEW = "$SCREEN_NAME.view"
-        const val RETRY_BUTTON_CLICK = "retry_button.click"
+        const val RETRY_BUTTON_CLICK = "${SCREEN_NAME}_retry_button.click"
     }
 }
