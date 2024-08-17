@@ -5,7 +5,61 @@ plugins {
     alias(libs.plugins.safe.args)
     alias(libs.plugins.google.services)
     alias(libs.plugins.crashlytics)
+    jacoco
 }
+
+//region Jacoco
+jacoco { toolVersion = "0.8.12" }
+
+val fileFilter = listOf(
+    "**/R.class",
+    "**/R$*.class",
+    "**/BuildConfig.*",
+    "**/Manifest*.*",
+    "**/*Test*.*",
+    "android/**/*.*",
+    "**/*Binding*.*",
+    "**/injection/**"
+)
+
+tasks.withType(Test::class) {
+    configure<JacocoTaskExtension> {
+        isIncludeNoLocationClasses = true
+        excludes = listOf("jdk.internal.*")
+    }
+}
+
+tasks.register<JacocoReport>("jacocoTestReport") {
+    dependsOn("testDebugUnitTest", "createDebugCoverageReport")
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    val debugTree = fileTree(mapOf(
+        "dir" to "${layout.buildDirectory}/intermediates/javac/debug/classes",
+        "excludes" to fileFilter
+    ))
+
+    val kotlinDebugTree = fileTree(mapOf(
+        "dir" to "${layout.buildDirectory}/tmp/kotlin-classes/debug",
+        "excludes" to fileFilter
+    ))
+
+    val mainSrc = "$projectDir/src/main/java"
+
+    sourceDirectories.setFrom(files(mainSrc))
+    classDirectories.setFrom(files(debugTree, kotlinDebugTree))
+    executionData.setFrom(fileTree(mapOf(
+        "dir" to "${layout.buildDirectory}/outputs",
+        "includes" to listOf(
+            "unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec",
+            "code_coverage/debugAndroidTest/connected/*/coverage.ec"
+        )
+    )))
+}
+//endregion
 
 android {
     namespace = "org.n27.nutshell"
@@ -29,6 +83,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+
+        debug {
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
     }
 
