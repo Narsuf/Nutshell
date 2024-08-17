@@ -115,11 +115,11 @@ android {
 }
 
 dependencies {
+    api(libs.kotlinx.collections.immutable)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.kotlinx.collections.immutable)
 
     // Compose
     val composeBom = platform("androidx.compose:compose-bom:2024.06.00")
@@ -128,6 +128,7 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 
     // Firebase
     implementation(platform(libs.firebase.bom))
@@ -160,5 +161,6 @@ dependencies {
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
     androidTestImplementation(project(":test_data"))
 }
