@@ -24,4 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "In a Nutshell"
 include(":app")
- 
+include(":test_data")

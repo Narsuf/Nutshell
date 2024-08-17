@@ -2,7 +2,7 @@ package org.n27.nutshell.domain.detail.model
 
 data class Detail(
     val tabs: List<Tab>,
-    val nav: List<DetailNavItem>
+    val nav: List<NavItem>
 ) {
 
     data class Tab(
@@ -17,7 +17,7 @@ data class Detail(
         )
     }
 
-    data class DetailNavItem(
+    data class NavItem(
         val id: Int,
         val iconUrl: String,
         val label: String

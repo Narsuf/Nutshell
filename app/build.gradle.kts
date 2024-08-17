@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -61,14 +63,20 @@ tasks.register<JacocoReport>("jacocoTestReport") {
 }
 //endregion
 
+val properties = Properties().apply {
+    load(rootProject.file("constants.properties").inputStream())
+}
+
 android {
+    val sdkV = properties.getProperty("sdkV").toInt()
+
     namespace = "org.n27.nutshell"
-    compileSdk = 34
+    compileSdk = sdkV
 
     defaultConfig {
         applicationId = "org.n27.nutshell"
-        minSdk = 26
-        targetSdk = 34
+        minSdk = properties.getProperty("minSdkV").toInt()
+        targetSdk = sdkV
         versionCode = 6
         versionName = "1.0.1-debug"
 
@@ -148,7 +156,9 @@ dependencies {
     implementation(libs.lottie)
 
     testImplementation(libs.junit)
+    testImplementation(project(":test_data"))
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(project(":test_data"))
 }

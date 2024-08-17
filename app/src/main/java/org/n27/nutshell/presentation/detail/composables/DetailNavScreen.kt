@@ -23,7 +23,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.n27.nutshell.R
-import org.n27.nutshell.domain.detail.model.Detail.DetailNavItem
+import org.n27.nutshell.domain.detail.model.Detail.NavItem
 import org.n27.nutshell.presentation.common.composables.Icon
 import org.n27.nutshell.presentation.common.composables.Info
 import org.n27.nutshell.presentation.common.composables.cards.Card
@@ -119,7 +119,7 @@ private fun Container(
 @Composable
 private fun BottomNav(
     navController: NavController,
-    navItems: List<DetailNavItem>,
+    navItems: List<NavItem>,
     onAction: (action: DetailAction) -> Unit
 ) {
 

@@ -2,7 +2,7 @@ package org.n27.nutshell.data.detail.model
 
 data class DetailRaw(
     val tabs: List<TabRaw> = listOf(),
-    val nav: List<DetailNavItemRaw> = listOf()
+    val nav: List<NavItemRaw> = listOf()
 ) {
 
     data class TabRaw(
@@ -17,7 +17,7 @@ data class DetailRaw(
         )
     }
 
-    data class DetailNavItemRaw(
+    data class NavItemRaw(
         val iconUrl: String = "",
         val label: String = ""
     )
