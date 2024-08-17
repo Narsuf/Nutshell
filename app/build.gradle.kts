@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -5,16 +7,76 @@ plugins {
     alias(libs.plugins.safe.args)
     alias(libs.plugins.google.services)
     alias(libs.plugins.crashlytics)
+    jacoco
+}
+
+//region Jacoco
+jacoco { toolVersion = "0.8.12" }
+
+val fileFilter = listOf(
+    "**/R.class",
+    "**/R$*.class",
+    "**/BuildConfig.*",
+    "**/Manifest*.*",
+    "**/*Test*.*",
+    "android/**/*.*",
+    "**/*Binding*.*",
+    "**/injection/**"
+)
+
+tasks.withType(Test::class) {
+    configure<JacocoTaskExtension> {
+        isIncludeNoLocationClasses = true
+        excludes = listOf("jdk.internal.*")
+    }
+}
+
+tasks.register<JacocoReport>("jacocoTestReport") {
+    dependsOn("testDebugUnitTest", "createDebugCoverageReport")
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    val debugTree = fileTree(mapOf(
+        "dir" to "${buildDir}/intermediates/javac/debug/classes",
+        "excludes" to fileFilter
+    ))
+
+    val kotlinDebugTree = fileTree(mapOf(
+        "dir" to "${buildDir}/tmp/kotlin-classes/debug",
+        "excludes" to fileFilter
+    ))
+
+    val mainSrc = "$projectDir/src/main/java"
+
+    sourceDirectories.setFrom(files(mainSrc))
+    classDirectories.setFrom(files(debugTree, kotlinDebugTree))
+    executionData.setFrom(fileTree(mapOf(
+        "dir" to "${buildDir}/outputs",
+        "includes" to listOf(
+            "unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec",
+            "code_coverage/debugAndroidTest/connected/*/coverage.ec"
+        )
+    )))
+}
+//endregion
+
+val properties = Properties().apply {
+    load(rootProject.file("constants.properties").inputStream())
 }
 
 android {
+    val sdkV = properties.getProperty("sdkV").toInt()
+
     namespace = "org.n27.nutshell"
-    compileSdk = 34
+    compileSdk = sdkV
 
     defaultConfig {
         applicationId = "org.n27.nutshell"
-        minSdk = 26
-        targetSdk = 34
+        minSdk = properties.getProperty("minSdkV").toInt()
+        targetSdk = sdkV
         versionCode = 6
         versionName = "1.0.1-debug"
 
@@ -29,6 +91,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+
+        debug {
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
     }
 
@@ -89,7 +156,9 @@ dependencies {
     implementation(libs.lottie)
 
     testImplementation(libs.junit)
+    testImplementation(project(":test_data"))
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(project(":test_data"))
 }

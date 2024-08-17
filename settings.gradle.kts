@@ -7,12 +7,15 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
+
         mavenCentral()
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
     repositories {
         google()
         mavenCentral()
@@ -21,4 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "In a Nutshell"
 include(":app")
- 
+include(":test_data")
