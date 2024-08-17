@@ -1,5 +1,7 @@
 # In a Nutshell
 
+[![CI](https://github.com/Narsuf/Nutshell/actions/workflows/android.yml/badge.svg)](https://github.com/Narsuf/Nutshell/actions/workflows/android.yml)
+[![codecov](https://codecov.io/gh/Narsuf/Nutshell/branch/main/graph/badge.svg)](https://codecov.io/gh/Narsuf/Nutshell)
 [![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 
 In a Nutshell is an Android application that shows random facts and bits of summarized information in a practical and beautiful way.
