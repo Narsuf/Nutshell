@@ -5,18 +5,20 @@ import org.n27.nutshell.domain.detail.model.Detail.NavItem
 import org.n27.nutshell.domain.detail.model.Detail.Tab
 import org.n27.nutshell.domain.detail.model.Detail.Tab.Info
 
-fun getDetail() = Detail(
-    tabs = listOf(
-        getTab(),
-        getTab(
-            info = getInfo(
-                iconUrl = "http://fake.spain.flag.icon.url.com",
-                text = "Spain",
-                value = "54"
-            )
-        )
-    ),
+fun getDetail(tabs: List<Tab> = getTabs()) = Detail(
+    tabs = tabs,
     nav = getNavs()
+)
+
+fun getTabs() = listOf(
+    getTab(),
+    getTab(
+        info = getInfo(
+            iconUrl = "http://fake.spain.flag.icon.url.com",
+            text = "Spain",
+            value = "54"
+        )
+    )
 )
 
 fun getTab(info: Info = getInfo()) = Tab(

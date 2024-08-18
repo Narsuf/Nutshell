@@ -2,6 +2,7 @@ package org.n27.nutshell.presentation.detail
 
 import com.n27.nutshell.domain.getDetail
 import com.n27.nutshell.domain.getInfo
+import com.n27.nutshell.presentation.getError
 import com.n27.nutshell.presentation.getHasContent
 import com.n27.nutshell.presentation.getNoContent
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +27,7 @@ import org.n27.nutshell.presentation.detail.entities.DetailAction.RetryClicked
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.GoBack
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
 import org.n27.nutshell.presentation.test
+import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 
 @ExperimentalCoroutinesApi
@@ -112,6 +114,42 @@ internal class DetailViewModelTest {
         runCurrent()
 
         observer.assertValues(getNoContent(), getHasContent(), expected)
+        observer.close()
+    }
+
+    @Test
+    fun `should emit no content when get detail fails`() = runTest {
+        val viewModel = getViewModel()
+        val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
+        val expected = getNoContent(
+            isLoading = false,
+            error = getError()
+        )
+
+        `when`(repository.getDetail(anyString())).thenReturn(failure(Throwable()))
+
+        viewModel.handleAction(GetDetail)
+        runCurrent()
+
+        observer.assertValues(getNoContent(), expected)
+        observer.close()
+    }
+
+    @Test
+    fun `should emit no content when get detail returns empty tabs`() = runTest {
+        val viewModel = getViewModel()
+        val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
+        val expected = getNoContent(
+            isLoading = false,
+            error = getError()
+        )
+
+        `when`(repository.getDetail(anyString())).thenReturn(success(getDetail(tabs = listOf())))
+
+        viewModel.handleAction(GetDetail)
+        runCurrent()
+
+        observer.assertValues(getNoContent(), expected)
         observer.close()
     }
 
