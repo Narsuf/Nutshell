@@ -2,6 +2,7 @@ package org.n27.nutshell.presentation.topics
 
 import com.n27.nutshell.domain.getTopics
 import com.n27.nutshell.presentation.getTopicsContent
+import com.n27.nutshell.presentation.getTopicsError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.plus
@@ -20,6 +21,7 @@ import org.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClic
 import org.n27.nutshell.presentation.topics.entities.TopicsAction.RetryButtonClicked
 import org.n27.nutshell.presentation.topics.entities.TopicsEvent.GoToNextScreen
 import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Loading
+import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 
 @ExperimentalCoroutinesApi
@@ -29,17 +31,15 @@ internal class TopicsViewModelTest {
     private val tracker: TopicsTracker = mock()
 
     @Before
-    fun init() = runTest {
-        Dispatchers.setMain(StandardTestDispatcher())
-
-        `when`(repository.getTopics()).thenReturn(success(getTopics()))
-    }
+    fun init() { Dispatchers.setMain(StandardTestDispatcher()) }
 
     @Test
     fun `should emit loading and content state when init`() = runTest {
         val expected = getTopicsContent()
         val viewModel = getViewModel()
         val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
+
+        `when`(repository.getTopics()).thenReturn(success(getTopics()))
 
         runCurrent()
 
@@ -53,6 +53,8 @@ internal class TopicsViewModelTest {
         val viewModel = getViewModel()
         val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
 
+        `when`(repository.getTopics()).thenReturn(success(getTopics()))
+
         viewModel.handleAction(RetryButtonClicked)
         runCurrent()
 
@@ -65,10 +67,26 @@ internal class TopicsViewModelTest {
         val viewModel = getViewModel()
         val observer = viewModel.viewEvent.test(this + UnconfinedTestDispatcher(testScheduler))
 
+        `when`(repository.getTopics()).thenReturn(success(getTopics()))
+
         viewModel.handleAction(NextButtonClicked(KEY, TITLE))
         runCurrent()
 
         observer.assertValues(GoToNextScreen(KEY, TITLE))
+        observer.close()
+    }
+
+    @Test
+    fun `should emit error when failure`() = runTest {
+        val expected = getTopicsError()
+        val viewModel = getViewModel()
+        val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
+
+        `when`(repository.getTopics()).thenReturn(failure(Throwable()))
+
+        runCurrent()
+
+        observer.assertValues(Loading, expected)
         observer.close()
     }
 
