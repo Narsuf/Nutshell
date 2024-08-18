@@ -20,6 +20,7 @@ junit = "4.13.2"
 core-test = "1.6.1"
 mockito = "5.2.0"
 robolectric = "4.12.2"
+coroutines-test = "1.6.4"
 
 junit-android = "1.2.1"
 espresso = "3.6.1"
@@ -60,6 +61,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-core = { module = "androidx.test:core", version.ref = "core-test" }
 mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-test" }
 
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-android" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }

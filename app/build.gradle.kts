@@ -164,6 +164,7 @@ dependencies {
     testImplementation(libs.androidx.core)
     testImplementation(libs.mockito.inline)
     testImplementation(libs.robolectric)
+    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(project(":test_data"))
 
     androidTestImplementation(libs.androidx.junit)
