@@ -5,7 +5,11 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
+import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_DESCRIPTION
+import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_TITLE
+import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_VIEW
 import org.n27.nutshell.presentation.topics.composables.TEST_TAG_TOPICS_ITEM
+import org.n27.nutshell.presentation.topics.composables.TEST_TAG_TOPICS_LOADING_VIEW
 
 class TopicsRobot(composeTestRule: ComposeTestRule) : ComposeTestRule by composeTestRule {
 
@@ -15,10 +19,28 @@ class TopicsRobot(composeTestRule: ComposeTestRule) : ComposeTestRule by compose
             .assert(hasText(name))
     }
 
+    fun isTopicsLoaderDisplayed() {
+        onNodeWithTag(TEST_TAG_TOPICS_LOADING_VIEW)
+            .assertIsDisplayed()
+    }
+
+    fun isTopicsErrorDisplayed(title: String, description: String) {
+        onNodeWithTag(TEST_TAG_ERROR_VIEW)
+            .assertIsDisplayed()
+
+        onNodeWithTag(TEST_TAG_ERROR_TITLE)
+            .assertIsDisplayed()
+            .assert(hasText(title))
+
+        onNodeWithTag(TEST_TAG_ERROR_DESCRIPTION)
+            .assertIsDisplayed()
+            .assert(hasText(description))
+    }
+
     companion object {
         fun topics(
             composeTestRule: ComposeTestRule,
             builder: TopicsRobot.() -> Unit
-        ): TopicsRobot = TopicsRobot(composeTestRule).apply(builder)
+        ) = TopicsRobot(composeTestRule).apply(builder)
     }
 }

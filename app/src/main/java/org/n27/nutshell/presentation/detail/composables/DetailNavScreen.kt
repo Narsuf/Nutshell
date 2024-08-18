@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -34,6 +35,9 @@ import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
 import org.n27.nutshell.presentation.detail.entities.DetailAction.NavItemClicked
 import org.n27.nutshell.presentation.detail.entities.DetailUiState.HasContent
+
+internal const val TEST_TAG_DETAIL_MAIN_CONTENT_ITEM = "detail_main_content.item"
+internal const val TEST_TAG_DETAIL_END_CONTENT_ITEM = "detail_end_content.item"
 
 @Composable
 fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAction) -> Unit) {
@@ -98,8 +102,20 @@ private fun Container(
                     key = { _, item -> item.text }
                 ) { index, item ->
                     Card(
-                        mainContent = { Text(item.text) },
-                        endContent = { Text(item.value) },
+                        mainContent = {
+                            Text(
+                                text = item.text,
+                                modifier = Modifier
+                                    .testTag("${TEST_TAG_DETAIL_MAIN_CONTENT_ITEM}_$index")
+                            )
+                        },
+                        endContent = {
+                            Text(
+                                text = item.value,
+                                modifier = Modifier
+                                    .testTag("${TEST_TAG_DETAIL_END_CONTENT_ITEM}_$index")
+                            )
+                        },
                         startContent = { Icon(item.iconUrl) },
                         includeDivider = index < infoList.size - 1
                     )

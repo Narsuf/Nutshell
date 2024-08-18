@@ -8,7 +8,7 @@ import org.n27.nutshell.presentation.detail.entities.DetailUiState.NoContent
 import org.n27.nutshell.presentation.detail.entities.DetailViewModelState
 
 fun DetailViewModelState.toUiState(): DetailUiState = if (nav != null && tab != null)
-    HasContent(tab.toTabContent(), nav.toPersistentList(), isLoading, error)
+    HasContent(tab.toTabContent(), nav.toPersistentList())
 else
     NoContent(isLoading, error)
 
