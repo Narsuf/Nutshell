@@ -4,11 +4,14 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.n27.nutshell.presentation.getTopicsContent
 import com.n27.nutshell.presentation.getTopicsError
+import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
 import org.n27.nutshell.presentation.topics.composables.TopicsScreen
+import org.n27.nutshell.presentation.topics.entities.TopicsAction
+import org.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClicked
 import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Loading
 import org.n27.nutshell.topics.robots.TopicsRobot.Companion.topics
 
@@ -26,12 +29,17 @@ class TopicsFragmentUiTest {
 
     @Test
     fun checkTopicsContentScreenElements() {
+        val expected = NextButtonClicked(key = "taxes", title = "Taxes in Europe")
+        var actual: TopicsAction? = null
+
         composeTestRule.setContent {
-            TopicsScreen(uiState = getTopicsContent(), onAction = { })
+            TopicsScreen(uiState = getTopicsContent(), onAction = { actual = it })
         }
 
         topics(composeTestRule) {
             isTopicsItemDisplayed(0, "Taxes in Europe")
+            clickTopicsItem(0)
+            assertEquals(expected, actual)
         }
     }
 

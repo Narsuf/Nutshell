@@ -5,6 +5,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performClick
 import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_DESCRIPTION
 import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_TITLE
 import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_VIEW
@@ -17,6 +18,11 @@ class TopicsRobot(composeTestRule: ComposeTestRule) : ComposeTestRule by compose
         onNodeWithTag("${TEST_TAG_TOPICS_ITEM}_$index", useUnmergedTree = true)
             .assertIsDisplayed()
             .assert(hasText(name))
+    }
+
+    fun clickTopicsItem(index: Int) {
+        onNodeWithTag("${TEST_TAG_TOPICS_ITEM}_$index", useUnmergedTree = true)
+            .performClick()
     }
 
     fun isTopicsLoaderDisplayed() {
