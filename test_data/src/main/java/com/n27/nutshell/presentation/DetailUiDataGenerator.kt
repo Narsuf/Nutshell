@@ -10,13 +10,15 @@ import org.n27.nutshell.presentation.detail.entities.DetailUiState.NoContent
 
 fun getHasContent() = HasContent(
     tab = getTabContent(),
-    nav = listOf(getNav()).toPersistentList()
+    nav = getNavContent()
 )
 
 fun getTabContent() = TabContent(
     infoList = listOf(getInfo()).toPersistentList(),
     sourceUrl = "http://fake.source.url.com"
 )
+
+fun getNavContent() = listOf(getNav()).toPersistentList()
 
 fun getNoContent(
     isLoading: Boolean = true,
