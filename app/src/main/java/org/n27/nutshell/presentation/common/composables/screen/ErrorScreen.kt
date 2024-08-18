@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.n27.nutshell.R
@@ -17,20 +18,34 @@ import org.n27.nutshell.presentation.common.model.Error
 
 private val AnimationSize = 80.dp
 
+internal const val TEST_TAG_ERROR_VIEW = "error.view"
+internal const val TEST_TAG_ERROR_TITLE = "error.title"
+internal const val TEST_TAG_ERROR_DESCRIPTION = "error.description"
+
 @Composable
 fun ErrorScreen(error: Error, onButtonClick: () -> Unit) {
 
-    Lottie(R.raw.error, Modifier.size(AnimationSize), isError = true)
+    Lottie(
+        res = R.raw.error,
+        modifier = Modifier
+            .testTag(TEST_TAG_ERROR_VIEW)
+            .size(AnimationSize),
+        isError = true
+    )
 
     Text(
         text = stringResource(error.title),
-        modifier = Modifier.padding(bottom = Spacing.default),
+        modifier = Modifier
+            .testTag(TEST_TAG_ERROR_TITLE)
+            .padding(bottom = Spacing.default),
         style = Typography.SmallTitle
     )
 
     Text(
         text = stringResource(error.description),
-        modifier = Modifier.padding(bottom = Spacing.tight),
+        modifier = Modifier
+            .testTag(TEST_TAG_ERROR_DESCRIPTION)
+            .padding(bottom = Spacing.tight),
         color = Palette.Gray600
     )
 

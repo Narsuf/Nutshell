@@ -5,22 +5,17 @@ import org.n27.nutshell.domain.detail.model.Detail.NavItem
 import org.n27.nutshell.domain.detail.model.Detail.Tab.Info
 import org.n27.nutshell.presentation.common.model.Error
 
-sealed interface DetailUiState {
-
-    val isLoading: Boolean
-    val error: Error?
+sealed class DetailUiState {
 
     data class NoContent(
-        override val isLoading: Boolean,
-        override val error: Error?
-    ) : DetailUiState
+        val isLoading: Boolean,
+        val error: Error?
+    ) : DetailUiState()
 
     data class HasContent(
         val tab: TabContent,
-        val nav: ImmutableList<NavItem>,
-        override val isLoading: Boolean,
-        override val error: Error?
-    ) : DetailUiState {
+        val nav: ImmutableList<NavItem>
+    ) : DetailUiState() {
 
         data class TabContent(
             val infoList: ImmutableList<Info>,
