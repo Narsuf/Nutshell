@@ -9,7 +9,7 @@ import org.n27.nutshell.domain.topics.model.Topics
 fun DataSnapshot.toTopics() = getValue(object : GenericTypeIndicator<List<TopicRaw>>() {})
     ?.toTopics()
 
-private fun List<TopicRaw>.toTopics() = Topics(
+internal fun List<TopicRaw>.toTopics() = Topics(
     items = map { it.toTopic() }
 )
 
