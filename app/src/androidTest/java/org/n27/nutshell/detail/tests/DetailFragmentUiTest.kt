@@ -5,6 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.n27.nutshell.presentation.getError
 import com.n27.nutshell.presentation.getHasContent
 import com.n27.nutshell.presentation.getNoContent
+import kotlinx.collections.immutable.persistentListOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.RuleChain
@@ -25,13 +26,30 @@ class DetailFragmentUiTest {
     }
 
     @Test
-    fun checkDetailContentScreenElements() {
+    fun checkDetailContentScreenWithNavBarElements() {
         composeTestRule.setContent {
             DetailScreen(title = "taxes", uiState = getHasContent(), onAction = { })
         }
 
         detail(composeTestRule) {
             isDetailItemDisplayed(0, "Germany", "19")
+            isDetailNavBarDisplayed()
+        }
+    }
+
+    @Test
+    fun checkDetailContentScreenElements() {
+        composeTestRule.setContent {
+            DetailScreen(
+                title = "taxes",
+                uiState = getHasContent(nav = persistentListOf()),
+                onAction = { }
+            )
+        }
+
+        detail(composeTestRule) {
+            isDetailItemDisplayed(0, "Germany", "19")
+            isDetailNavBarNotDisplayed()
         }
     }
 

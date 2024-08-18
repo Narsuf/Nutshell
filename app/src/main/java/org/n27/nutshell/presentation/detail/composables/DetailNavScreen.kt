@@ -38,6 +38,7 @@ import org.n27.nutshell.presentation.detail.entities.DetailUiState.HasContent
 
 internal const val TEST_TAG_DETAIL_MAIN_CONTENT_ITEM = "detail_main_content.item"
 internal const val TEST_TAG_DETAIL_END_CONTENT_ITEM = "detail_end_content.item"
+internal const val TEST_TAG_DETAIL_NAV_BAR = "detail_nav.bar"
 
 @Composable
 fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAction) -> Unit) {
@@ -54,19 +55,16 @@ private fun ColumnScope.NavView(uiState: HasContent, onAction: (action: DetailAc
     val navController = rememberNavController()
     val navItems = uiState.nav
 
-    Column(
-        Modifier
+    NavHost(
+        navController = navController,
+        startDestination = navItems[0].label,
+        modifier = Modifier
             .weight(1f)
             .padding(horizontal = Spacing.default)
     ) {
-        NavHost(
-            navController = navController,
-            startDestination = navItems[0].label
-        ) {
-            navItems.forEach { item ->
-                composable(item.label) {
-                    Container(uiState, onAction, item.label)
-                }
+        navItems.forEach { item ->
+            composable(item.label) {
+                Container(uiState, onAction, item.label)
             }
         }
     }
@@ -139,7 +137,10 @@ private fun BottomNav(
     onAction: (action: DetailAction) -> Unit
 ) {
 
-    BottomNavigation(backgroundColor = Color.White) {
+    BottomNavigation(
+        modifier = Modifier.testTag(TEST_TAG_DETAIL_NAV_BAR),
+        backgroundColor = Color.White
+    ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 

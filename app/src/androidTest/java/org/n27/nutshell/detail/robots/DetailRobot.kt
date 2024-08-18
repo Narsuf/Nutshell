@@ -2,6 +2,7 @@ package org.n27.nutshell.detail.robots
 
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -9,6 +10,7 @@ import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_VI
 import org.n27.nutshell.presentation.detail.composables.TEST_TAG_DETAIL_END_CONTENT_ITEM
 import org.n27.nutshell.presentation.detail.composables.TEST_TAG_DETAIL_LOADING_VIEW
 import org.n27.nutshell.presentation.detail.composables.TEST_TAG_DETAIL_MAIN_CONTENT_ITEM
+import org.n27.nutshell.presentation.detail.composables.TEST_TAG_DETAIL_NAV_BAR
 
 class DetailRobot(composeTestRule: ComposeTestRule) : ComposeTestRule by composeTestRule {
 
@@ -20,6 +22,16 @@ class DetailRobot(composeTestRule: ComposeTestRule) : ComposeTestRule by compose
         onNodeWithTag("${TEST_TAG_DETAIL_END_CONTENT_ITEM}_$index")
             .assertIsDisplayed()
             .assert(hasText(value))
+    }
+
+    fun isDetailNavBarDisplayed() {
+        onNodeWithTag(TEST_TAG_DETAIL_NAV_BAR)
+            .assertIsDisplayed()
+    }
+
+    fun isDetailNavBarNotDisplayed() {
+        onNodeWithTag(TEST_TAG_DETAIL_NAV_BAR)
+            .assertIsNotDisplayed()
     }
 
     fun isDetailLoaderDisplayed() {
