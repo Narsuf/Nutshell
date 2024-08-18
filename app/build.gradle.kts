@@ -157,6 +157,9 @@ dependencies {
     implementation(libs.lottie)
 
     testImplementation(libs.junit)
+    testImplementation(libs.androidx.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation("org.robolectric:robolectric:4.12.2")
     testImplementation(project(":test_data"))
 
     androidTestImplementation(libs.androidx.junit)
