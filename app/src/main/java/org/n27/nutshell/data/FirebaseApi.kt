@@ -22,7 +22,8 @@ class FirebaseApi @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase,
 ) {
 
-    fun get(key: String) = channelFlow<Result<DataSnapshot>> {
+    // Result has to be Any to make the Repository testable.
+    fun get(key: String) = channelFlow<Result<Any>> {
         if (!utils.isConnectedToInternet()) {
             send(failure(Throwable(NO_INTERNET_CONNECTION)))
         } else {
