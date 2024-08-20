@@ -36,7 +36,11 @@ class DetailFragmentUiTest {
         var actual: DetailAction? = null
 
         composeTestRule.setContent {
-            DetailScreen(title = "taxes", uiState = getHasContent(), onAction = { actual = it })
+            DetailScreen(
+                title = "taxes",
+                uiState = getHasContent(),
+                onAction = { actual = it }
+            )
         }
 
         detail(composeTestRule) {
@@ -46,29 +50,35 @@ class DetailFragmentUiTest {
             clickDetailNavBarItem(1)
             assertEquals(expected, actual)
 
-            clickSource()
             expected = InfoClicked("http://fake.source.url.com", "Income")
-            assertEquals(expected, actual)
-
-            clickBack()
-            expected = BackClicked
+            clickSource()
             assertEquals(expected, actual)
         }
     }
 
     @Test
     fun checkDetailContentScreenElements() {
+        var expected: DetailAction = InfoClicked("http://fake.source.url.com", null)
+        var actual: DetailAction? = null
+
         composeTestRule.setContent {
             DetailScreen(
                 title = "taxes",
                 uiState = getHasContent(nav = persistentListOf()),
-                onAction = { }
+                onAction = { actual = it }
             )
         }
 
         detail(composeTestRule) {
             isDetailItemDisplayed(0, "Germany", "19")
             isDetailNavBarNotDisplayed()
+
+            clickSource()
+            assertEquals(expected, actual)
+
+            clickBack()
+            expected = BackClicked
+            assertEquals(expected, actual)
         }
     }
 

@@ -1,4 +1,4 @@
-package org.n27.nutshell.presentation
+package org.n27.nutshell.presentation.common
 
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.CoroutineScope

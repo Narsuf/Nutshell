@@ -16,7 +16,7 @@ import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.data.NutshellRepositoryImpl
-import org.n27.nutshell.presentation.test
+import org.n27.nutshell.presentation.common.test
 import org.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClicked
 import org.n27.nutshell.presentation.topics.entities.TopicsAction.RetryButtonClicked
 import org.n27.nutshell.presentation.topics.entities.TopicsEvent.GoToNextScreen

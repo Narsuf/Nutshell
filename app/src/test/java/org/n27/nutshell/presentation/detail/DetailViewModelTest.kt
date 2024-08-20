@@ -26,7 +26,7 @@ import org.n27.nutshell.presentation.detail.entities.DetailAction.NavItemClicked
 import org.n27.nutshell.presentation.detail.entities.DetailAction.RetryClicked
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.GoBack
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
-import org.n27.nutshell.presentation.test
+import org.n27.nutshell.presentation.common.test
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 
