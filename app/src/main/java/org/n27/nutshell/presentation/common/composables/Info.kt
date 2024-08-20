@@ -8,6 +8,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import org.n27.nutshell.presentation.common.constants.Palette
@@ -16,9 +17,13 @@ import org.n27.nutshell.presentation.common.constants.Spacing
 private val IconSize = 16.dp
 
 @Composable
-fun Info(text: String, onClick: () -> Unit) {
+fun Info(text: String, testTag: String, onClick: () -> Unit) {
 
-    Row(Modifier.clickable { onClick() }) {
+    Row(
+        Modifier
+            .testTag(testTag)
+            .clickable { onClick() }
+    ) {
         Icon(
             painter = painterResource(android.R.drawable.ic_dialog_info),
             contentDescription = null,

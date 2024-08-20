@@ -40,6 +40,7 @@ internal const val TEST_TAG_DETAIL_MAIN_CONTENT_ITEM = "detail_main_content.item
 internal const val TEST_TAG_DETAIL_END_CONTENT_ITEM = "detail_end_content.item"
 internal const val TEST_TAG_DETAIL_NAV_BAR = "detail_nav.bar"
 internal const val TEST_TAG_DETAIL_NAV_ITEM = "detail_nav.item"
+internal const val TEST_TAG_DETAIL_INFO_ITEM = "detail_info.item"
 
 @Composable
 fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAction) -> Unit) {
@@ -124,6 +125,7 @@ private fun Container(
 
         Info(
             text = stringResource(R.string.source),
+            testTag = TEST_TAG_DETAIL_INFO_ITEM,
             onClick = { onAction(InfoClicked(tab.sourceUrl, navLabel)) }
         )
 

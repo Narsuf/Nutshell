@@ -15,11 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.n27.nutshell.presentation.common.constants.Spacing
 import org.n27.nutshell.presentation.common.constants.Typography
 import androidx.compose.material3.Icon as MaterialIcon
+
+internal const val TEST_TAG_TOOLBAR_BACK_BUTTON = "toolbar_back.button"
 
 @Composable
 fun Toolbar(text: String, onBackClick: (() -> Unit)? = null) {
@@ -41,7 +44,10 @@ fun Toolbar(text: String, onBackClick: (() -> Unit)? = null) {
             onBackClick?.let {
                 topPadding = 0.dp
 
-                IconButton(onClick = it) {
+                IconButton(
+                    onClick = it,
+                    modifier = Modifier.testTag(TEST_TAG_TOOLBAR_BACK_BUTTON)
+                ) {
                     MaterialIcon(
                         imageVector = Icons.AutoMirrored.Default.ArrowBack,
                         contentDescription = null,
