@@ -1,6 +1,5 @@
 package org.n27.nutshell.data
 
-import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

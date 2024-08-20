@@ -19,6 +19,7 @@ import org.mockito.Mockito.anyString
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.data.NutshellRepositoryImpl
+import org.n27.nutshell.presentation.common.test
 import org.n27.nutshell.presentation.detail.entities.DetailAction.BackClicked
 import org.n27.nutshell.presentation.detail.entities.DetailAction.GetDetail
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
@@ -26,7 +27,6 @@ import org.n27.nutshell.presentation.detail.entities.DetailAction.NavItemClicked
 import org.n27.nutshell.presentation.detail.entities.DetailAction.RetryClicked
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.GoBack
 import org.n27.nutshell.presentation.detail.entities.DetailEvent.OpenUrl
-import org.n27.nutshell.presentation.common.test
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 
