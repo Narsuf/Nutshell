@@ -26,6 +26,9 @@ jobs:
         env: 
           DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: echo $DATA > ./app/google-services.json
+
+      - name: Remove debug folder
+        run: rm -rf ./debug
         
       - name: Test with Android Emulator Runner
         uses: reactivecircus/android-emulator-runner@v2
