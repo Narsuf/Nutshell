@@ -39,6 +39,7 @@ import org.n27.nutshell.presentation.detail.entities.DetailUiState.HasContent
 internal const val TEST_TAG_DETAIL_MAIN_CONTENT_ITEM = "detail_main_content.item"
 internal const val TEST_TAG_DETAIL_END_CONTENT_ITEM = "detail_end_content.item"
 internal const val TEST_TAG_DETAIL_NAV_BAR = "detail_nav.bar"
+internal const val TEST_TAG_DETAIL_NAV_ITEM = "detail_nav.item"
 
 @Composable
 fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAction) -> Unit) {
@@ -144,14 +145,14 @@ private fun BottomNav(
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 
-        navItems.forEach {
-            val isSelected = currentRoute == it.label
+        navItems.forEachIndexed { index, item ->
+            val isSelected = currentRoute == item.label
 
             NavItem(
                 isSelected = isSelected,
                 onClick = {
                     if (!isSelected) {
-                        navController.navigate(it.label) {
+                        navController.navigate(item.label) {
                             popUpTo(
                                 navController.currentDestination?.id
                                     ?: navController.graph.startDestinationId
@@ -161,11 +162,12 @@ private fun BottomNav(
                             restoreState = false
                         }
 
-                        onAction(NavItemClicked(it.id, it.label))
+                        onAction(NavItemClicked(item.id, item.label))
                     }
                 },
-                imageUrl = it.iconUrl,
-                label = it.label
+                imageUrl = item.iconUrl,
+                label = item.label,
+                modifier = Modifier.testTag("${TEST_TAG_DETAIL_NAV_ITEM}_$index")
             )
         }
     }
