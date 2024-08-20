@@ -5,24 +5,40 @@ import org.n27.nutshell.domain.detail.model.Detail.NavItem
 import org.n27.nutshell.domain.detail.model.Detail.Tab
 import org.n27.nutshell.domain.detail.model.Detail.Tab.Info
 
-fun getDetail() = Detail(
-    tabs = listOf(getTab()),
-    nav = listOf(getNav())
+fun getDetail(tabs: List<Tab> = getTabs()) = Detail(
+    tabs = tabs,
+    nav = getNavs()
 )
 
-fun getTab() = Tab(
-    infoList = listOf(getInfo()),
+fun getTabs() = listOf(
+    getTab(),
+    getTab(
+        info = getInfo(
+            iconUrl = "http://fake.spain.flag.icon.url.com",
+            text = "Spain",
+            value = "54"
+        )
+    )
+)
+
+fun getTab(info: Info = getInfo()) = Tab(
+    infoList = listOf(info),
     sourceUrl = "http://fake.source.url.com"
 )
 
-fun getInfo() = Info(
-    iconUrl = "http://fake.flag.icon.url.com",
-    text = "Germany",
-    value = "19"
+fun getInfo(
+    iconUrl: String = "http://fake.flag.icon.url.com",
+    text: String = "Germany",
+    value: String = "19"
+) = Info(iconUrl, text, value)
+
+fun getNavs() = listOf(
+    getNav(),
+    getNav(id = 1, iconUrl = "http://fake.nav.another.icon.url.com", label = "Income")
 )
 
-fun getNav() = NavItem(
-    id = 0,
-    iconUrl = "http://fake.nav.icon.url.com",
-    label = "VAT"
-)
+fun getNav(
+    id: Int = 0,
+    iconUrl: String = "http://fake.nav.icon.url.com",
+    label: String = "VAT"
+) = NavItem(id, iconUrl, label)

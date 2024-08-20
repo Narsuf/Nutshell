@@ -38,6 +38,9 @@ import org.n27.nutshell.presentation.detail.entities.DetailUiState.HasContent
 
 internal const val TEST_TAG_DETAIL_MAIN_CONTENT_ITEM = "detail_main_content.item"
 internal const val TEST_TAG_DETAIL_END_CONTENT_ITEM = "detail_end_content.item"
+internal const val TEST_TAG_DETAIL_NAV_BAR = "detail_nav.bar"
+internal const val TEST_TAG_DETAIL_NAV_ITEM = "detail_nav.item"
+internal const val TEST_TAG_DETAIL_INFO_ITEM = "detail_info.item"
 
 @Composable
 fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAction) -> Unit) {
@@ -54,19 +57,16 @@ private fun ColumnScope.NavView(uiState: HasContent, onAction: (action: DetailAc
     val navController = rememberNavController()
     val navItems = uiState.nav
 
-    Column(
-        Modifier
+    NavHost(
+        navController = navController,
+        startDestination = navItems[0].label,
+        modifier = Modifier
             .weight(1f)
             .padding(horizontal = Spacing.default)
     ) {
-        NavHost(
-            navController = navController,
-            startDestination = navItems[0].label
-        ) {
-            navItems.forEach { item ->
-                composable(item.label) {
-                    Container(uiState, onAction, item.label)
-                }
+        navItems.forEach { item ->
+            composable(item.label) {
+                Container(uiState, onAction, item.label)
             }
         }
     }
@@ -125,6 +125,7 @@ private fun Container(
 
         Info(
             text = stringResource(R.string.source),
+            testTag = TEST_TAG_DETAIL_INFO_ITEM,
             onClick = { onAction(InfoClicked(tab.sourceUrl, navLabel)) }
         )
 
@@ -139,18 +140,21 @@ private fun BottomNav(
     onAction: (action: DetailAction) -> Unit
 ) {
 
-    BottomNavigation(backgroundColor = Color.White) {
+    BottomNavigation(
+        modifier = Modifier.testTag(TEST_TAG_DETAIL_NAV_BAR),
+        backgroundColor = Color.White
+    ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 
-        navItems.forEach {
-            val isSelected = currentRoute == it.label
+        navItems.forEachIndexed { index, item ->
+            val isSelected = currentRoute == item.label
 
             NavItem(
                 isSelected = isSelected,
                 onClick = {
                     if (!isSelected) {
-                        navController.navigate(it.label) {
+                        navController.navigate(item.label) {
                             popUpTo(
                                 navController.currentDestination?.id
                                     ?: navController.graph.startDestinationId
@@ -160,11 +164,12 @@ private fun BottomNav(
                             restoreState = false
                         }
 
-                        onAction(NavItemClicked(it.id, it.label))
+                        onAction(NavItemClicked(item.id, item.label))
                     }
                 },
-                imageUrl = it.iconUrl,
-                label = it.label
+                imageUrl = item.iconUrl,
+                label = item.label,
+                modifier = Modifier.testTag("${TEST_TAG_DETAIL_NAV_ITEM}_$index")
             )
         }
     }

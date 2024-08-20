@@ -112,6 +112,10 @@ android {
     }
 
     composeOptions { kotlinCompilerExtensionVersion = "1.5.3" }
+
+    testOptions {
+        unitTests { isIncludeAndroidResources = true }
+    }
 }
 
 dependencies {
@@ -157,6 +161,10 @@ dependencies {
     implementation(libs.lottie)
 
     testImplementation(libs.junit)
+    testImplementation(libs.androidx.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(project(":test_data"))
 
     androidTestImplementation(libs.androidx.junit)
