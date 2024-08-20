@@ -37,6 +37,9 @@ jobs:
             disable-animations: true
             script: ./gradlew clean connectedCheck jacocoTestReport
 
+      - name: Remove debug folder
+        run: rm -rf ./debug
+
       - name: Generate report
         uses: actions/upload-artifact@v4
         with:
