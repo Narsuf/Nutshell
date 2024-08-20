@@ -13,15 +13,19 @@ plugins {
 //region Jacoco
 jacoco { toolVersion = "0.8.12" }
 
-val fileFilter = listOf(
+val exclusions = listOf(
     "**/R.class",
     "**/R$*.class",
     "**/BuildConfig.*",
     "**/Manifest*.*",
     "**/*Test*.*",
+    "**/*Robot*.*",
+    "**/*Tracker*.*",
+    "**/*Fragment*.*",
+    "**/*Activity*.*",
     "android/**/*.*",
     "**/*Binding*.*",
-    "**/injection/**"
+    "**/di/**"
 )
 
 tasks.withType(Test::class) {
@@ -29,37 +33,6 @@ tasks.withType(Test::class) {
         isIncludeNoLocationClasses = true
         excludes = listOf("jdk.internal.*")
     }
-}
-
-tasks.register<JacocoReport>("jacocoTestReport") {
-    dependsOn("testDebugUnitTest", "createDebugCoverageReport")
-
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
-    }
-
-    val debugTree = fileTree(mapOf(
-        "dir" to "${buildDir}/intermediates/javac/debug/classes",
-        "excludes" to fileFilter
-    ))
-
-    val kotlinDebugTree = fileTree(mapOf(
-        "dir" to "${buildDir}/tmp/kotlin-classes/debug",
-        "excludes" to fileFilter
-    ))
-
-    val mainSrc = "$projectDir/src/main/java"
-
-    sourceDirectories.setFrom(files(mainSrc))
-    classDirectories.setFrom(files(debugTree, kotlinDebugTree))
-    executionData.setFrom(fileTree(mapOf(
-        "dir" to "${buildDir}/outputs",
-        "includes" to listOf(
-            "unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec",
-            "code_coverage/debugAndroidTest/connected/*/coverage.ec"
-        )
-    )))
 }
 //endregion
 
@@ -115,6 +88,37 @@ android {
 
     testOptions {
         unitTests { isIncludeAndroidResources = true }
+    }
+
+    tasks.register<JacocoReport>("jacocoTestReport") {
+        dependsOn(
+            "testDebugUnitTest",
+            "connectedDebugAndroidTest",
+            "createDebugCoverageReport"
+        )
+
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
+
+        val debugTree = fileTree(layout.buildDirectory.dir("intermediates/javac/")) {
+            exclude(exclusions)
+        }
+
+        val kotlinDebugTree = fileTree(layout.buildDirectory.dir("tmp/kotlin-classes/")) {
+            exclude(exclusions)
+        }
+
+        val mainSrc = layout.projectDirectory.dir("src/main")
+
+        sourceDirectories.setFrom(files(mainSrc))
+        classDirectories.setFrom(files(debugTree, kotlinDebugTree))
+        executionData.setFrom(files(
+            fileTree(layout.buildDirectory) {
+                include(listOf("**/*.exec", "**/*.ec"))
+            }
+        ))
     }
 }
 
