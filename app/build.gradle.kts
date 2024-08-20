@@ -24,6 +24,7 @@ val exclusions = listOf(
     "**/*Fragment*.*",
     "**/*Activity*.*",
     "android/**/*.*",
+    "debug/**/*.*",
     "**/*Binding*.*",
     "**/di/**"
 )
