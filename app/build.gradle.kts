@@ -21,8 +21,7 @@ val exclusions = listOf(
     "**/*Test*.*",
     "**/*Robot*.*",
     "**/*Tracker*.*",
-    "**/*Fragment*.*",
-    "**/*Activity*.*",
+    "**/*Factory*.*",
     "**/*Binding*.*",
     "**/di/**"
 )
@@ -90,10 +89,7 @@ android {
     }
 
     tasks.register<JacocoReport>("jacocoTestReport") {
-        dependsOn(
-            "testDebugUnitTest",
-            "createDebugCoverageReport"
-        )
+        dependsOn("testDebugUnitTest", "createDebugCoverageReport")
 
         reports {
             xml.required.set(true)
