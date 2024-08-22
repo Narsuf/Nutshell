@@ -23,7 +23,6 @@ val exclusions = listOf(
     "**/*Tracker*.*",
     "**/*Fragment*.*",
     "**/*Activity*.*",
-    "android/**/*.*",
     "**/*Binding*.*",
     "**/di/**"
 )
@@ -93,7 +92,6 @@ android {
     tasks.register<JacocoReport>("jacocoTestReport") {
         dependsOn(
             "testDebugUnitTest",
-            "connectedDebugAndroidTest",
             "createDebugCoverageReport"
         )
 
