@@ -11,11 +11,6 @@ fun Throwable.toError() = message?.let {
             description = R.string.no_internet_error_description
         )
 
-        else -> genericError()
+        else -> MyError()
     }
-} ?: genericError()
-
-private fun genericError() = MyError(
-    title = R.string.generic_error_title,
-    description = R.string.generic_error_description
-)
+} ?: MyError()
