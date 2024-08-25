@@ -10,4 +10,4 @@ In a Nutshell is an Android application that shows random facts and bits of summ
 
 | Topics | Detail |
 |:-:|:-:|
-| <img width="300" alt ="image" src="https://github.com/user-attachments/assets/819f2f5e-5681-4ca6-bd6d-1b1550ec9d16"> | <img width="300" alt ="image" src="https://github.com/user-attachments/assets/6b3520e2-21f1-402f-b5d1-25b9fb3976df">
+| <img width="300" alt ="image" src="https://github.com/user-attachments/assets/b07b93d4-8f8c-4308-b037-d232a587ef03"> | <img width="300" alt ="image" src="https://github.com/user-attachments/assets/6b3520e2-21f1-402f-b5d1-25b9fb3976df">
