@@ -28,11 +28,7 @@ jobs:
         run: ./gradlew recordPaparazziDebug
 
       - name: Commit changes
-        env: 
-          EMAIL: ${{ secrets.EMAIL }}
         run: |
-          git config --global user.name 'Narsuf'
-          git config --global user.email $EMAIL
           git add .
           git commit -m "Upload recorded screenshot tests"
           git push
