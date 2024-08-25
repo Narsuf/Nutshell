@@ -1,6 +1,10 @@
 package org.n27.nutshell.screenshot
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.ComposeView
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.setViewTreeViewModelStoreOwner
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
@@ -43,6 +47,16 @@ abstract class PaparazziScreenTest(config: TestConfig) {
     }
 
     fun screenshotTest(content: @Composable () -> Unit) {
-        paparazzi.snapshot { content.invoke() }
+        val view = ComposeView(paparazzi.context).apply {
+            setViewTreeViewModelStoreOwner(MyViewModelStore())
+            setContent { content.invoke() }
+        }
+
+        paparazzi.snapshot(view)
+    }
+
+    class MyViewModelStore : ViewModelStoreOwner {
+
+        override val viewModelStore = ViewModelStore()
     }
 }
