@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.safe.args)
     alias(libs.plugins.google.services)
     alias(libs.plugins.crashlytics)
+    alias(libs.plugins.paparazzi)
     jacoco
 }
 
@@ -20,6 +21,7 @@ val exclusions = listOf(
     "**/Manifest*.*",
     "**/*Test*.*",
     "**/*Robot*.*",
+    "**/*Preview*.*",
     "**/*Tracker*.*",
     "**/*Factory*.*",
     "**/*Binding*.*",

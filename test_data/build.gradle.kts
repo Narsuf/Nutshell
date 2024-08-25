@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         minSdk = properties.getProperty("minSdkV").toInt()
-        targetSdk = sdkV
+        lint.targetSdk = sdkV
     }
 
     compileOptions {
