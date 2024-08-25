@@ -45,7 +45,7 @@ internal const val TEST_TAG_DETAIL_INFO_ITEM = "detail_info.item"
 @Composable
 fun ColumnScope.DetailNavScreen(uiState: HasContent, onAction: (action: DetailAction) -> Unit) {
 
-    if (uiState.nav.isNotEmpty())
+    if (uiState.nav.size > 1)
         NavView(uiState, onAction)
     else
         Container(uiState, onAction)

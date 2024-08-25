@@ -36,7 +36,6 @@ fun DetailScreen(title: String, uiState: DetailUiState, onAction: (action: Detai
     }
 }
 
-
 @Composable
 private fun Loader() {
     Lottie(
@@ -46,4 +45,3 @@ private fun Loader() {
             .fillMaxSize()
     )
 }
-
