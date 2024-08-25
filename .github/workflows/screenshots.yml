@@ -1,4 +1,4 @@
-name: CI
+name: Record screenshots
 
 on:
   workflow_dispatch:
