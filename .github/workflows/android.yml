@@ -34,6 +34,9 @@ jobs:
             disable-animations: true
             script: ./gradlew jacocoTestReport
 
+      - name: Record screenshots
+        run: ./gradlew recordPaparazziDebug
+        
       - name: Screenshot tests
         run: ./gradlew verifyPaparazziDebug --continue
 
