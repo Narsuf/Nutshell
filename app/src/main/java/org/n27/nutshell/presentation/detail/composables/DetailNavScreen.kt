@@ -111,7 +111,7 @@ private fun Container(
                         },
                         endContent = {
                             Text(
-                                text = item.value,
+                                text = "${item.value}%",
                                 modifier = Modifier
                                     .testTag("${TEST_TAG_DETAIL_END_CONTENT_ITEM}_$index")
                             )
