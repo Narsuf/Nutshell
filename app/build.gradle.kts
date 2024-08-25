@@ -21,11 +21,7 @@ val exclusions = listOf(
     "**/Manifest*.*",
     "**/*Test*.*",
     "**/*Robot*.*",
-    "**/*Preview*.*",
-    "**/*Tracker*.*",
-    "**/*Factory*.*",
-    "**/*Binding*.*",
-    "**/di/**"
+    "**/*Binding*.*"
 )
 
 tasks.withType(Test::class) {
