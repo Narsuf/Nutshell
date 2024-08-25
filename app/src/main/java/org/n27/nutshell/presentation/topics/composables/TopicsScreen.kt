@@ -67,7 +67,7 @@ internal fun TopicsContentScreenPreview() = TopicsScreen(
             Topic(
                 key = "gini",
                 title = "Income equality in Europe",
-                imageUrl = "http://fake.second.icon.url.com"
+                imageUrl = "http://fake.icon.url.com"
             )
         )
     ),

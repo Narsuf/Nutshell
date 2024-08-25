@@ -16,11 +16,11 @@ import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.data.NutshellRepositoryImpl
-import org.n27.nutshell.test
 import org.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClicked
 import org.n27.nutshell.presentation.topics.entities.TopicsAction.RetryButtonClicked
 import org.n27.nutshell.presentation.topics.entities.TopicsEvent.GoToNextScreen
 import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Loading
+import org.n27.nutshell.test
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 
