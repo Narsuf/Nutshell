@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import org.n27.nutshell.extensions.clickable
 import org.n27.nutshell.presentation.common.composables.theme.Theme
 import org.n27.nutshell.presentation.common.fundamental.Typography
+import org.n27.nutshell.presentation.common.fundamental.dimens.CornerRadius
 import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 private val ButtonHeight = 40.dp
@@ -33,7 +34,7 @@ fun Button(onClick: () -> Unit, text: String) {
         modifier = Modifier
             .height(ButtonHeight)
             .semantics { role = Role.Button }
-            .clip(RoundedCornerShape(Theme.cornerRadius.smooth))
+            .clip(RoundedCornerShape(CornerRadius.smooth))
             .clickable(onClick = onClick),
         color = Color.Transparent,
         contentColor = Theme.colors.typography.teal

@@ -20,8 +20,6 @@ import org.n27.nutshell.presentation.common.fundamental.color.Palette
 import org.n27.nutshell.presentation.common.fundamental.color.Stroke
 import org.n27.nutshell.presentation.common.fundamental.color.Typography
 import org.n27.nutshell.presentation.common.fundamental.color.updateColorsFrom
-import org.n27.nutshell.presentation.common.fundamental.dimens.CornerRadius
-import org.n27.nutshell.presentation.common.fundamental.dimens.LocalCornerRadius
 
 @Composable
 fun Theme(
@@ -110,9 +108,4 @@ object Theme {
         @Composable
         @ReadOnlyComposable
         get() = LocalColor.current
-
-    val cornerRadius: CornerRadius
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalCornerRadius.current
 }

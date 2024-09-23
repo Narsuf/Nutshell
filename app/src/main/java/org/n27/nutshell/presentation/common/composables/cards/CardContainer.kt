@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import org.n27.nutshell.presentation.common.composables.theme.Theme
 import org.n27.nutshell.presentation.common.composables.theme.themeDefaultStroke
+import org.n27.nutshell.presentation.common.fundamental.dimens.CornerRadius
 import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 @Composable
@@ -22,7 +22,7 @@ fun CardContainer(
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    val roundedCornerShape = RoundedCornerShape(Theme.cornerRadius.smooth)
+    val roundedCornerShape = RoundedCornerShape(CornerRadius.smooth)
 
     Column(
         modifier = modifier

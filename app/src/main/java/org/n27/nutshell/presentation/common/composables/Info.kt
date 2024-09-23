@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import org.n27.nutshell.extensions.clickable
 import org.n27.nutshell.presentation.common.composables.theme.Theme
+import org.n27.nutshell.presentation.common.fundamental.dimens.CornerRadius
 import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 private val IconSize = 16.dp
@@ -26,7 +27,7 @@ fun Info(text: String, testTag: String, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .testTag(testTag)
-            .clip(RoundedCornerShape(Theme.cornerRadius.soft))
+            .clip(RoundedCornerShape(CornerRadius.soft))
             .clickable(onClick),
         verticalAlignment = Alignment.CenterVertically
     ) {
