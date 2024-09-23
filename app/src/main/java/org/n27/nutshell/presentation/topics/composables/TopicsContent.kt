@@ -13,8 +13,8 @@ import org.n27.nutshell.presentation.common.composables.Icon
 import org.n27.nutshell.presentation.common.composables.cards.Card
 import org.n27.nutshell.presentation.common.composables.cards.CardContainer
 import org.n27.nutshell.presentation.common.composables.theme.themeDefaultTypography
-import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 import org.n27.nutshell.presentation.common.fundamental.Typography
+import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 import org.n27.nutshell.presentation.topics.entities.TopicsAction
 import org.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClicked
 import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Content

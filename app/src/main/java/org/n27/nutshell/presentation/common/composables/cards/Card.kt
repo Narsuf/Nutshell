@@ -17,12 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import org.n27.nutshell.presentation.common.composables.theme.Theme
-import org.n27.nutshell.presentation.common.composables.theme.themeDefaultBackground
 import org.n27.nutshell.presentation.common.composables.theme.themeDefaultRipple
-import org.n27.nutshell.presentation.common.fundamental.dimens.CornerRadius
 import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 private val StartImageSize = 48.dp

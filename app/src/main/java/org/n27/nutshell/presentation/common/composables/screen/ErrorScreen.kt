@@ -9,11 +9,11 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.n27.nutshell.R
-import org.n27.nutshell.presentation.common.composables.buttons.Button
 import org.n27.nutshell.presentation.common.composables.Lottie
+import org.n27.nutshell.presentation.common.composables.buttons.Button
+import org.n27.nutshell.presentation.common.fundamental.Typography
 import org.n27.nutshell.presentation.common.fundamental.color.Palette
 import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
-import org.n27.nutshell.presentation.common.fundamental.Typography
 import org.n27.nutshell.presentation.common.model.Error
 
 private val AnimationSize = 80.dp

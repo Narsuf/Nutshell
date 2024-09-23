@@ -10,7 +10,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import org.n27.nutshell.presentation.common.composables.Toolbar
 import org.n27.nutshell.presentation.common.composables.theme.Theme
 import org.n27.nutshell.presentation.common.composables.theme.themeDefaultBackground

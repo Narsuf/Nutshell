@@ -3,13 +3,11 @@ package org.n27.nutshell.presentation.common.composables.nav
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import org.n27.nutshell.presentation.common.composables.Icon
 import org.n27.nutshell.presentation.common.composables.theme.Theme
 import org.n27.nutshell.presentation.common.composables.theme.themeDefaultTypography
-import org.n27.nutshell.presentation.common.fundamental.color.Palette
 import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 private val NavIconSize = 16.dp

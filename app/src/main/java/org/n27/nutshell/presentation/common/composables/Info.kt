@@ -18,7 +18,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import org.n27.nutshell.presentation.common.composables.theme.Theme
 import org.n27.nutshell.presentation.common.composables.theme.themeDefaultRipple
-import org.n27.nutshell.presentation.common.fundamental.color.Palette
 import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 private val IconSize = 16.dp
