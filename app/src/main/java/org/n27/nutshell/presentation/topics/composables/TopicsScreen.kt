@@ -10,7 +10,7 @@ import org.n27.nutshell.R
 import org.n27.nutshell.presentation.common.composables.Lottie
 import org.n27.nutshell.presentation.common.composables.screen.ErrorScreen
 import org.n27.nutshell.presentation.common.composables.screen.Screen
-import org.n27.nutshell.presentation.common.constants.Spacing
+import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 import org.n27.nutshell.presentation.topics.entities.TopicsAction
 import org.n27.nutshell.presentation.topics.entities.TopicsAction.RetryButtonClicked
 import org.n27.nutshell.presentation.topics.entities.TopicsUiState

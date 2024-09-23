@@ -14,6 +14,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import org.n27.nutshell.extensions.observeOnLifecycle
 import org.n27.nutshell.presentation.MainActivity
+import org.n27.nutshell.presentation.common.composables.theme.Theme
 import org.n27.nutshell.presentation.topics.composables.TopicsScreen
 import org.n27.nutshell.presentation.topics.entities.TopicsEvent
 import org.n27.nutshell.presentation.topics.entities.TopicsEvent.GoToNextScreen
@@ -39,7 +40,9 @@ class TopicsFragment : Fragment() {
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
         setContent {
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-            TopicsScreen(uiState, onAction = viewModel::handleAction)
+            Theme {
+                TopicsScreen(uiState, onAction = viewModel::handleAction)
+            }
         }
     }
 

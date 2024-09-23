@@ -19,6 +19,7 @@ import androidx.navigation.fragment.navArgs
 import org.n27.nutshell.R
 import org.n27.nutshell.extensions.observeOnLifecycle
 import org.n27.nutshell.presentation.MainActivity
+import org.n27.nutshell.presentation.common.composables.theme.Theme
 import org.n27.nutshell.presentation.detail.composables.DetailScreen
 import org.n27.nutshell.presentation.detail.entities.DetailAction.GetDetail
 import org.n27.nutshell.presentation.detail.entities.DetailEvent
@@ -51,7 +52,9 @@ class DetailFragment : Fragment() {
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
         setContent {
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-            DetailScreen(args.title, uiState, onAction = viewModel::handleAction)
+            Theme {
+                DetailScreen(args.title, uiState, onAction = viewModel::handleAction)
+            }
         }
     }
 

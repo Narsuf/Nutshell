@@ -12,6 +12,7 @@ import org.junit.Test
 import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
 import org.n27.nutshell.detail.robots.DetailRobot.Companion.detail
+import org.n27.nutshell.presentation.common.composables.theme.Theme
 import org.n27.nutshell.presentation.detail.composables.DetailScreen
 import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.BackClicked
@@ -36,11 +37,13 @@ class DetailFragmentUiTest {
         var actual: DetailAction? = null
 
         composeTestRule.setContent {
-            DetailScreen(
-                title = "taxes",
-                uiState = getHasContent(),
-                onAction = { actual = it }
-            )
+            Theme {
+                DetailScreen(
+                    title = "taxes",
+                    uiState = getHasContent(),
+                    onAction = { actual = it }
+                )
+            }
         }
 
         detail(composeTestRule) {
@@ -62,11 +65,13 @@ class DetailFragmentUiTest {
         var actual: DetailAction? = null
 
         composeTestRule.setContent {
-            DetailScreen(
-                title = "taxes",
-                uiState = getHasContent(nav = persistentListOf()),
-                onAction = { actual = it }
-            )
+            Theme {
+                DetailScreen(
+                    title = "taxes",
+                    uiState = getHasContent(nav = persistentListOf()),
+                    onAction = { actual = it }
+                )
+            }
         }
 
         detail(composeTestRule) {
@@ -85,7 +90,9 @@ class DetailFragmentUiTest {
     @Test
     fun checkDetailLoadingScreenElements() {
         composeTestRule.setContent {
-            DetailScreen(title = "taxes", uiState = getNoContent(), onAction = { })
+            Theme {
+                DetailScreen(title = "taxes", uiState = getNoContent(), onAction = { })
+            }
         }
 
         detail(composeTestRule) {
@@ -96,14 +103,16 @@ class DetailFragmentUiTest {
     @Test
     fun checkDetailErrorScreenElements() {
         composeTestRule.setContent {
-            DetailScreen(
-                title = "taxes",
-                uiState = getNoContent(
-                    isLoading = false,
-                    error = getError()
-                ),
-                onAction = { }
-            )
+            Theme {
+                DetailScreen(
+                    title = "taxes",
+                    uiState = getNoContent(
+                        isLoading = false,
+                        error = getError()
+                    ),
+                    onAction = { }
+                )
+            }
         }
 
         detail(composeTestRule) {
