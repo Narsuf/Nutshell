@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -13,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -28,6 +30,7 @@ fun Info(text: String, testTag: String, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .testTag(testTag)
+            .clip(RoundedCornerShape(Theme.cornerRadius.soft))
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(color = themeDefaultRipple()),
@@ -35,8 +38,8 @@ fun Info(text: String, testTag: String, onClick: () -> Unit) {
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Spacer(Modifier.padding(vertical = Spacing.default))
-        Spacer(Modifier.padding(horizontal = Spacing.tightest))
+        Spacer(Modifier.padding(vertical = Spacing.tight))
+        Spacer(Modifier.padding(start = Spacing.tightest))
 
         Icon(
             painter = painterResource(android.R.drawable.ic_dialog_info),
@@ -50,6 +53,6 @@ fun Info(text: String, testTag: String, onClick: () -> Unit) {
             color = Theme.colors.typography.teal
         )
 
-        Spacer(Modifier.padding(horizontal = Spacing.tightest))
+        Spacer(Modifier.padding(end = Spacing.tightest))
     }
 }
