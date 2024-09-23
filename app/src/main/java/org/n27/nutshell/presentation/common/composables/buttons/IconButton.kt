@@ -20,8 +20,6 @@ import org.n27.nutshell.presentation.common.composables.theme.themeDefaultRipple
 fun IconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable () -> Unit
 ) {
 
@@ -32,9 +30,8 @@ fun IconButton(
             .background(color = themeDefaultBackground())
             .clickable(
                 onClick = onClick,
-                enabled = enabled,
                 role = Role.Button,
-                interactionSource = interactionSource,
+                interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(
                     bounded = false,
                     radius = IconButtonTokens.StateLayerSize / 2,
