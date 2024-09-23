@@ -31,12 +31,12 @@ fun Theme(
     val colorPalette = remember { colors }.apply { updateColorsFrom(colors) }
 
     CompositionLocalProvider(LocalColor provides colorPalette) {
-        val context = LocalContext.current
-        val activity = context as Activity
-        val window = activity.window
+        val activity = LocalContext.current as? Activity
 
-        window.statusBarColor = themeDefaultBackground().toArgb()
-        window.navigationBarColor = Theme.colors.background.neutralAlternative.toArgb()
+        activity?.window?.apply {
+            statusBarColor = themeDefaultBackground().toArgb()
+            navigationBarColor = Theme.colors.background.neutralAlternative.toArgb()
+        }
 
         MaterialTheme(colors = materialToThemeMappedColors()) { content() }
     }
