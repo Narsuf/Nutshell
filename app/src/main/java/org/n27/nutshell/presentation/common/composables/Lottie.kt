@@ -10,7 +10,11 @@ import com.airbnb.lottie.LottieDrawable
 import org.n27.nutshell.extensions.playErrorAnimation
 
 @Composable
-fun Lottie(@RawRes res: Int, modifier: Modifier = Modifier, isError: Boolean = false) {
+fun Lottie(
+    @RawRes res: Int,
+    modifier: Modifier = Modifier,
+    isError: Boolean = false
+) {
     AndroidView(
         modifier = modifier.aspectRatio(1f),
         factory = { context ->

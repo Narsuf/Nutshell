@@ -30,9 +30,13 @@ class Stroke(
 @Stable
 class Typography(
     neutral: Color,
+    neutralAlternate: Color,
     teal: Color
 ) {
     var neutral: Color by mutableStateOf(neutral)
+        internal set
+
+    var neutralAlternate: Color by mutableStateOf(neutralAlternate)
         internal set
 
     var teal: Color by mutableStateOf(teal)

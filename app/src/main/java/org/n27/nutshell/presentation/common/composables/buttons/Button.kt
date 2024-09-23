@@ -1,15 +1,27 @@
 package org.n27.nutshell.presentation.common.composables.buttons
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import org.n27.nutshell.presentation.common.fundamental.color.Palette
+import org.n27.nutshell.extensions.clickable
+import org.n27.nutshell.presentation.common.composables.theme.Theme
+import org.n27.nutshell.presentation.common.fundamental.Typography
 import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 private val ButtonHeight = 40.dp
@@ -17,17 +29,30 @@ private val ButtonHeight = 40.dp
 @Composable
 fun Button(onClick: () -> Unit, text: String) {
 
-    androidx.compose.material3.Button(
-        onClick = onClick,
-        modifier = Modifier.height(ButtonHeight),
-        shape = RoundedCornerShape(8.dp),
-        colors = ButtonDefaults.buttonColors().copy(
-            containerColor = Color.Transparent,
-            contentColor = Palette.Teal500,
-        ),
-        elevation = null,
-        contentPadding = PaddingValues(horizontal = Spacing.loose)
+    Surface(
+        modifier = Modifier
+            .height(ButtonHeight)
+            .semantics { role = Role.Button }
+            .clip(RoundedCornerShape(Theme.cornerRadius.smooth))
+            .clickable(onClick = onClick),
+        color = Color.Transparent,
+        contentColor = Theme.colors.typography.teal
     ) {
-        Text(text)
+        Row(
+            Modifier
+                .defaultMinSize(
+                    minWidth = ButtonDefaults.MinWidth,
+                    minHeight = ButtonDefaults.MinHeight
+                )
+                .padding(PaddingValues(horizontal = Spacing.loose)),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+            content = {
+                Text(
+                    text = text,
+                    style = Typography.Bold
+                )
+            }
+        )
     }
 }

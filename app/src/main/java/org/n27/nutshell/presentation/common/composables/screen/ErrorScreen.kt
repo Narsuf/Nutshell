@@ -11,8 +11,9 @@ import androidx.compose.ui.unit.dp
 import org.n27.nutshell.R
 import org.n27.nutshell.presentation.common.composables.Lottie
 import org.n27.nutshell.presentation.common.composables.buttons.Button
+import org.n27.nutshell.presentation.common.composables.theme.Theme
+import org.n27.nutshell.presentation.common.composables.theme.themeDefaultTypography
 import org.n27.nutshell.presentation.common.fundamental.Typography
-import org.n27.nutshell.presentation.common.fundamental.color.Palette
 import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 import org.n27.nutshell.presentation.common.model.Error
 
@@ -38,6 +39,7 @@ fun ErrorScreen(error: Error, onButtonClick: () -> Unit) {
         modifier = Modifier
             .testTag(TEST_TAG_ERROR_TITLE)
             .padding(bottom = Spacing.default),
+        color = themeDefaultTypography(),
         style = Typography.SmallTitle
     )
 
@@ -46,7 +48,7 @@ fun ErrorScreen(error: Error, onButtonClick: () -> Unit) {
         modifier = Modifier
             .testTag(TEST_TAG_ERROR_DESCRIPTION)
             .padding(bottom = Spacing.tight),
-        color = Palette.Gray600
+        color = Theme.colors.typography.neutralAlternate
     )
 
     Button(
