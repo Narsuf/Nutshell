@@ -28,7 +28,7 @@ internal const val TEST_TAG_TOOLBAR_BACK_BUTTON = "toolbar_back.button"
 @Composable
 fun Toolbar(text: String, onBackClick: (() -> Unit)? = null) {
 
-    Surface {
+    Surface(contentColor = themeDefaultTypography()) {
         Row(
             Modifier
                 .background(themeDefaultBackground())
@@ -51,8 +51,7 @@ fun Toolbar(text: String, onBackClick: (() -> Unit)? = null) {
                 ) {
                     MaterialIcon(
                         imageVector = Icons.AutoMirrored.Default.ArrowBack,
-                        contentDescription = null,
-                        tint = themeDefaultTypography()
+                        contentDescription = null
                     )
                 }
             }
@@ -71,7 +70,6 @@ fun Toolbar(text: String, onBackClick: (() -> Unit)? = null) {
                 ) { value ->
                     Text(
                         text = value,
-                        color = themeDefaultTypography(),
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1,
                         style = if (onBackClick != null)

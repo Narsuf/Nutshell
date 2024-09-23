@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import org.n27.nutshell.presentation.common.composables.theme.themeDefaultBackground
 import org.n27.nutshell.presentation.common.composables.theme.themeDefaultRipple
 
+private val StateLayerSize = 40.0.dp
+
 @Composable
 fun IconButton(
     onClick: () -> Unit,
@@ -26,7 +28,7 @@ fun IconButton(
     Box(
         modifier = modifier
             .minimumInteractiveComponentSize()
-            .size(IconButtonTokens.StateLayerSize)
+            .size(StateLayerSize)
             .background(color = themeDefaultBackground())
             .clickable(
                 onClick = onClick,
@@ -34,14 +36,10 @@ fun IconButton(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(
                     bounded = false,
-                    radius = IconButtonTokens.StateLayerSize / 2,
+                    radius = StateLayerSize / 2,
                     color = themeDefaultRipple()
                 )
             ),
         contentAlignment = Alignment.Center
     ) { content() }
-}
-
-internal object IconButtonTokens {
-    val StateLayerSize = 40.0.dp
 }

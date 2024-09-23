@@ -36,7 +36,7 @@ fun Theme(
         val window = activity.window
 
         window.statusBarColor = themeDefaultBackground().toArgb()
-        window.navigationBarColor = Theme.colors.background.neutralAlternate.toArgb()
+        window.navigationBarColor = Theme.colors.background.neutralAlternative.toArgb()
 
         MaterialTheme(colors = materialToThemeMappedColors()) { content() }
     }
@@ -45,14 +45,14 @@ fun Theme(
 private val LightThemeColors = ContextualColors(
     background = Background(
         neutral = Color.White,
-        neutralAlternate = Color.White
+        neutralAlternative = Color.White
     ),
     stroke = Stroke(
         neutral = Palette.Gray200
     ),
     typography = Typography(
         neutral = Color.Black,
-        neutralAlternate = Palette.Gray600,
+        neutralAlternative = Palette.Gray600,
         teal = Palette.Teal500,
     ),
     backgroundInternal = BackgroundInternal(
@@ -63,14 +63,14 @@ private val LightThemeColors = ContextualColors(
 private val DarkThemeColors = ContextualColors(
     background = Background(
         neutral = Palette.Dark,
-        neutralAlternate = Palette.SofterDark
+        neutralAlternative = Palette.SofterDark
     ),
     stroke = Stroke(
         neutral = Palette.Gray815
     ),
     typography = Typography(
         neutral = Color.White,
-        neutralAlternate = Palette.Gray500,
+        neutralAlternative = Palette.Gray500,
         teal = Palette.Teal500
     ),
     backgroundInternal = BackgroundInternal(

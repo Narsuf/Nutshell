@@ -145,7 +145,7 @@ private fun BottomNav(
 
     BottomNavigation(
         modifier = Modifier.testTag(TEST_TAG_DETAIL_NAV_BAR),
-        backgroundColor = Theme.colors.background.neutralAlternate
+        backgroundColor = Theme.colors.background.neutralAlternative
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route

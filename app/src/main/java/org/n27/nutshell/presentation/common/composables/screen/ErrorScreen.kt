@@ -48,7 +48,7 @@ fun ErrorScreen(error: Error, onButtonClick: () -> Unit) {
         modifier = Modifier
             .testTag(TEST_TAG_ERROR_DESCRIPTION)
             .padding(bottom = Spacing.tight),
-        color = Theme.colors.typography.neutralAlternate
+        color = Theme.colors.typography.neutralAlternative
     )
 
     Button(
