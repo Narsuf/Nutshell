@@ -10,7 +10,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
@@ -40,23 +39,23 @@ fun Theme(
         val window = activity.window
 
         window.statusBarColor = themeDefaultBackground().toArgb()
-        window.navigationBarColor = themeDefaultBackground().toArgb()
+        window.navigationBarColor = Theme.colors.background.neutralAlternate.toArgb()
 
-        MaterialTheme(
-            colors = materialToThemeMappedColors()
-        ) { content() }
+        MaterialTheme(colors = materialToThemeMappedColors()) { content() }
     }
 }
 
 private val LightThemeColors = ContextualColors(
     background = Background(
-        neutral = Color.White
+        neutral = Color.White,
+        neutralAlternate = Color.White
     ),
     stroke = Stroke(
         neutral = Palette.Gray200
     ),
     typography = Typography(
-        neutral = Color.Black
+        neutral = Color.Black,
+        teal = Palette.Teal500,
     ),
     backgroundInternal = BackgroundInternal(
         overlay = Color(0x29121212)
@@ -65,13 +64,15 @@ private val LightThemeColors = ContextualColors(
 
 private val DarkThemeColors = ContextualColors(
     background = Background(
-        neutral = Palette.Dark
+        neutral = Palette.Dark,
+        neutralAlternate = Palette.SofterDark
     ),
     stroke = Stroke(
         neutral = Palette.Gray815
     ),
     typography = Typography(
-        neutral = Color.White
+        neutral = Color.White,
+        teal = Palette.Teal500
     ),
     backgroundInternal = BackgroundInternal(
         overlay = Color(0x14F9F9F9)

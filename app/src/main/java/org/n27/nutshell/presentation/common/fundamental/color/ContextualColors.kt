@@ -9,9 +9,13 @@ import androidx.compose.ui.graphics.Color
 
 @Stable
 class Background(
-    neutral: Color
+    neutral: Color,
+    neutralAlternate: Color
 ) {
     var neutral: Color by mutableStateOf(neutral)
+        internal set
+
+    var neutralAlternate: Color by mutableStateOf(neutralAlternate)
         internal set
 }
 
@@ -25,9 +29,13 @@ class Stroke(
 
 @Stable
 class Typography(
-    neutral: Color
+    neutral: Color,
+    teal: Color
 ) {
     var neutral: Color by mutableStateOf(neutral)
+        internal set
+
+    var teal: Color by mutableStateOf(teal)
         internal set
 }
 

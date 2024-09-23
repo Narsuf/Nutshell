@@ -30,6 +30,8 @@ import org.n27.nutshell.presentation.common.composables.Info
 import org.n27.nutshell.presentation.common.composables.cards.Card
 import org.n27.nutshell.presentation.common.composables.cards.CardContainer
 import org.n27.nutshell.presentation.common.composables.nav.NavItem
+import org.n27.nutshell.presentation.common.composables.theme.Theme
+import org.n27.nutshell.presentation.common.composables.theme.themeDefaultTypography
 import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
@@ -106,14 +108,16 @@ private fun Container(
                             Text(
                                 text = item.text,
                                 modifier = Modifier
-                                    .testTag("${TEST_TAG_DETAIL_MAIN_CONTENT_ITEM}_$index")
+                                    .testTag("${TEST_TAG_DETAIL_MAIN_CONTENT_ITEM}_$index"),
+                                color = themeDefaultTypography()
                             )
                         },
                         endContent = {
                             Text(
                                 text = item.value,
                                 modifier = Modifier
-                                    .testTag("${TEST_TAG_DETAIL_END_CONTENT_ITEM}_$index")
+                                    .testTag("${TEST_TAG_DETAIL_END_CONTENT_ITEM}_$index"),
+                                color = themeDefaultTypography()
                             )
                         },
                         startContent = { Icon(item.iconUrl) },
@@ -142,7 +146,7 @@ private fun BottomNav(
 
     BottomNavigation(
         modifier = Modifier.testTag(TEST_TAG_DETAIL_NAV_BAR),
-        backgroundColor = Color.White
+        backgroundColor = Theme.colors.background.neutralAlternate
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route

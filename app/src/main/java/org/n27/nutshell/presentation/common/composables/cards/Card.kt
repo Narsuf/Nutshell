@@ -42,10 +42,10 @@ fun Card(
             Modifier
                 .clip(RoundedCornerShape(Theme.cornerRadius.smooth))
                 .clickable(
-                interactionSource = remember { MutableInteractionSource() },
-                indication = rememberRipple(color = themeDefaultRipple()),
-                onClick = it,
-            )
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple(color = themeDefaultRipple()),
+                    onClick = it,
+                )
         } ?: Modifier
     ) {
         Box(

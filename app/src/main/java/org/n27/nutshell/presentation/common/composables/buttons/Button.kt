@@ -1,4 +1,4 @@
-package org.n27.nutshell.presentation.common.composables
+package org.n27.nutshell.presentation.common.composables.buttons
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
