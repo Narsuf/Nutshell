@@ -9,6 +9,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
+import org.n27.nutshell.presentation.common.composables.theme.Theme
 import org.n27.nutshell.presentation.topics.composables.TopicsScreen
 import org.n27.nutshell.presentation.topics.entities.TopicsAction
 import org.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClicked
@@ -33,7 +34,9 @@ class TopicsFragmentUiTest {
         var actual: TopicsAction? = null
 
         composeTestRule.setContent {
-            TopicsScreen(uiState = getTopicsContent(), onAction = { actual = it })
+            Theme {
+                TopicsScreen(uiState = getTopicsContent(), onAction = { actual = it })
+            }
         }
 
         topics(composeTestRule) {
@@ -46,7 +49,9 @@ class TopicsFragmentUiTest {
     @Test
     fun checkTopicsLoadingScreenElements() {
         composeTestRule.setContent {
-            TopicsScreen(uiState = Loading, onAction = { })
+            Theme {
+                TopicsScreen(uiState = Loading, onAction = { })
+            }
         }
 
         topics(composeTestRule) {
@@ -57,7 +62,9 @@ class TopicsFragmentUiTest {
     @Test
     fun checkTopicsErrorScreenElements() {
         composeTestRule.setContent {
-            TopicsScreen(uiState = getTopicsError(), onAction = { })
+            Theme {
+                TopicsScreen(uiState = getTopicsError(), onAction = { })
+            }
         }
 
         topics(composeTestRule) {

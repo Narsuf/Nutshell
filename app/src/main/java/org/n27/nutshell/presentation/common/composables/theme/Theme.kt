@@ -23,11 +23,11 @@ import org.n27.nutshell.presentation.common.fundamental.color.updateColorsFrom
 
 @Composable
 fun Theme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    isDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
 
-    val colors = if (darkTheme) DarkThemeColors else LightThemeColors
+    val colors = if (isDarkTheme) DarkThemeColors else LightThemeColors
     val colorPalette = remember { colors }.apply { updateColorsFrom(colors) }
 
     CompositionLocalProvider(LocalColor provides colorPalette) {
