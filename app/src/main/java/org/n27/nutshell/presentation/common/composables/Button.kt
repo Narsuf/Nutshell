@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import org.n27.nutshell.presentation.common.constants.Palette
-import org.n27.nutshell.presentation.common.constants.Spacing
+import org.n27.nutshell.presentation.common.fundamental.color.Palette
+import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 private val ButtonHeight = 40.dp
 

@@ -30,7 +30,7 @@ import org.n27.nutshell.presentation.common.composables.Info
 import org.n27.nutshell.presentation.common.composables.cards.Card
 import org.n27.nutshell.presentation.common.composables.cards.CardContainer
 import org.n27.nutshell.presentation.common.composables.nav.NavItem
-import org.n27.nutshell.presentation.common.constants.Spacing
+import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 import org.n27.nutshell.presentation.detail.entities.DetailAction
 import org.n27.nutshell.presentation.detail.entities.DetailAction.InfoClicked
 import org.n27.nutshell.presentation.detail.entities.DetailAction.NavItemClicked

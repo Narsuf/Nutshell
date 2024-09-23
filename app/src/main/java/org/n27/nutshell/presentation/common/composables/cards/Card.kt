@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Surface
 import androidx.compose.material.ripple.rememberRipple
@@ -15,9 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import org.n27.nutshell.presentation.common.constants.Spacing
+import org.n27.nutshell.presentation.common.composables.theme.Theme
+import org.n27.nutshell.presentation.common.composables.theme.themeDefaultBackground
+import org.n27.nutshell.presentation.common.composables.theme.themeDefaultRipple
+import org.n27.nutshell.presentation.common.fundamental.dimens.CornerRadius
+import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 private val StartImageSize = 48.dp
 private val CardMinHeight = 72.dp
@@ -32,12 +38,13 @@ fun Card(
 ) {
 
     Surface(
-        color = Color.White,
         modifier = onClick?.let {
-            Modifier.clickable(
-                onClick = it,
+            Modifier
+                .clip(RoundedCornerShape(Theme.cornerRadius.smooth))
+                .clickable(
                 interactionSource = remember { MutableInteractionSource() },
-                indication = rememberRipple()
+                indication = rememberRipple(color = themeDefaultRipple()),
+                onClick = it,
             )
         } ?: Modifier
     ) {

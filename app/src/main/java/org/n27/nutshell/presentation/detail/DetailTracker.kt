@@ -4,7 +4,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import org.n27.nutshell.extensions.trackItem
 import org.n27.nutshell.extensions.trackScreen
-import org.n27.nutshell.presentation.common.Tracker
+import org.n27.nutshell.presentation.common.tracking.Tracker
 import org.n27.nutshell.presentation.detail.DetailTracker.Action.BACK_BUTTON_CLICK
 import org.n27.nutshell.presentation.detail.DetailTracker.Action.RETRY_BUTTON_CLICK
 import org.n27.nutshell.presentation.detail.DetailTracker.Action.SCREEN_NAME

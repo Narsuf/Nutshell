@@ -1,4 +1,4 @@
-package org.n27.nutshell.presentation.common.constants
+package org.n27.nutshell.presentation.common.fundamental
 
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight

@@ -18,8 +18,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import org.n27.nutshell.presentation.common.constants.Spacing
-import org.n27.nutshell.presentation.common.constants.Typography
+import org.n27.nutshell.presentation.common.composables.theme.themeDefaultBackground
+import org.n27.nutshell.presentation.common.composables.theme.themeDefaultTypography
+import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
+import org.n27.nutshell.presentation.common.fundamental.Typography
 import androidx.compose.material3.Icon as MaterialIcon
 
 internal const val TEST_TAG_TOOLBAR_BACK_BUTTON = "toolbar_back.button"
@@ -30,7 +32,7 @@ fun Toolbar(text: String, onBackClick: (() -> Unit)? = null) {
     Surface {
         Row(
             Modifier
-                .background(Color.White)
+                .background(themeDefaultBackground())
                 .fillMaxWidth()
                 .padding(
                     vertical = Spacing.tight,
@@ -70,6 +72,7 @@ fun Toolbar(text: String, onBackClick: (() -> Unit)? = null) {
                 ) { value ->
                     Text(
                         text = value,
+                        color = themeDefaultTypography(),
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1,
                         style = if (onBackClick != null)

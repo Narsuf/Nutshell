@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import org.n27.nutshell.presentation.common.composables.Toolbar
+import org.n27.nutshell.presentation.common.composables.theme.Theme
+import org.n27.nutshell.presentation.common.composables.theme.themeDefaultBackground
 
 @Composable
 fun Screen(
@@ -22,17 +24,19 @@ fun Screen(
     content: @Composable ColumnScope.() -> Unit
 ) {
 
-    Scaffold(
-        topBar = { Toolbar(title, onBackClick) }
-    ) { paddingValues ->
-        Column(
-            modifier = modifier
-                .background(Color.White)
-                .fillMaxSize()
-                .padding(paddingValues),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = horizontalAlignment,
-            content = content
-        )
+    Theme {
+        Scaffold(
+            topBar = { Toolbar(title, onBackClick) }
+        ) { paddingValues ->
+            Column(
+                modifier = modifier
+                    .background(themeDefaultBackground())
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = horizontalAlignment,
+                content = content
+            )
+        }
     }
 }

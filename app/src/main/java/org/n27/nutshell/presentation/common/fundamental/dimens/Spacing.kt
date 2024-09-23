@@ -1,4 +1,4 @@
-package org.n27.nutshell.presentation.common.constants
+package org.n27.nutshell.presentation.common.fundamental.dimens
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp

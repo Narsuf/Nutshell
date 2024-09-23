@@ -1,4 +1,4 @@
-package org.n27.nutshell.presentation.common
+package org.n27.nutshell.presentation.common.tracking
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 

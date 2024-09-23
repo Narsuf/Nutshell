@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import org.n27.nutshell.presentation.common.constants.Palette
-import org.n27.nutshell.presentation.common.constants.Spacing
+import org.n27.nutshell.presentation.common.fundamental.color.Palette
+import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 private val IconSize = 16.dp
 

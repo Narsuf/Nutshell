@@ -7,8 +7,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import org.n27.nutshell.presentation.common.composables.Icon
-import org.n27.nutshell.presentation.common.constants.Palette
-import org.n27.nutshell.presentation.common.constants.Spacing
+import org.n27.nutshell.presentation.common.fundamental.color.Palette
+import org.n27.nutshell.presentation.common.fundamental.dimens.Spacing
 
 private val NavIconSize = 16.dp
 
