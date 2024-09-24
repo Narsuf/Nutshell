@@ -17,6 +17,34 @@ import org.n27.nutshell.presentation.detail.entities.DetailUiState.NoContent
 @Preview
 @Composable
 @VisibleForTesting
+internal fun DetailLoadingScreenPreview() = Theme {
+    DetailScreen(
+        title = "Taxes in Europe",
+        uiState = NoContent(
+            isLoading = true,
+            error = null
+        ),
+        onAction = { }
+    )
+}
+
+@Preview
+@Composable
+@VisibleForTesting
+internal fun DetailLoadingScreenDarkThemePreview() = Theme(isDarkTheme = true) {
+    DetailScreen(
+        title = "Taxes in Europe",
+        uiState = NoContent(
+            isLoading = true,
+            error = null
+        ),
+        onAction = { }
+    )
+}
+
+@Preview
+@Composable
+@VisibleForTesting
 internal fun DetailErrorScreenPreview() = Theme {
     DetailScreen(
         title = "Taxes in Europe",
@@ -331,20 +359,6 @@ internal fun DetailContentWithoutNavScrollableScreenDarkModePreview() = Theme(is
                     label = "Gini"
                 )
             )
-        ),
-        onAction = { }
-    )
-}
-
-@Preview
-@Composable
-@VisibleForTesting
-internal fun DetailLoadingScreenPreview() = Theme {
-    DetailScreen(
-        title = "Taxes in Europe",
-        uiState = NoContent(
-            isLoading = true,
-            error = null
         ),
         onAction = { }
     )
