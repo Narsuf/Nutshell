@@ -14,7 +14,68 @@ import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Loading
 @Preview
 @Composable
 @VisibleForTesting
+internal fun TopicsLoadingScreenPreview() = Theme {
+    TopicsScreen(uiState = Loading, onAction = { })
+}
+
+@Preview
+@Composable
+@VisibleForTesting
+internal fun TopicsLoadingScreenDarkModePreview() = Theme(isDarkTheme = true) {
+    TopicsScreen(uiState = Loading, onAction = { })
+}
+
+@Preview
+@Composable
+@VisibleForTesting
+internal fun TopicsErrorScreenPreview() = Theme {
+    TopicsScreen(
+        uiState = Error(
+            error = org.n27.nutshell.presentation.common.model.Error()
+        ),
+        onAction = { }
+    )
+}
+
+@Preview
+@Composable
+@VisibleForTesting
+internal fun TopicsErrorScreenDarkModePreview() = Theme(isDarkTheme = true) {
+    TopicsScreen(
+        uiState = Error(
+            error = org.n27.nutshell.presentation.common.model.Error()
+        ),
+        onAction = { }
+    )
+}
+
+@Preview
+@Composable
+@VisibleForTesting
 internal fun TopicsContentScreenPreview() = Theme {
+    TopicsScreen(
+        uiState = Content(
+            topics = persistentListOf(
+                Topic(
+                    key = "taxes",
+                    title = "Taxes in Europe",
+                    imageUrl = "http://fake.icon.url.com"
+                ),
+                Topic(
+                    key = "gini",
+                    title = "Income equality in Europe",
+                    imageUrl = "http://fake.icon.url.com"
+                )
+            )
+        ),
+        onAction = { }
+    )
+}
+
+@Preview
+@Composable
+@VisibleForTesting
+internal fun TopicsContentScreenDarkModePreview() = Theme(isDarkTheme = true) {
     TopicsScreen(
         uiState = Content(
             topics = persistentListOf(
@@ -59,48 +120,6 @@ internal fun TopicsContentScrollableScreenPreview() = Theme {
 @Preview
 @Composable
 @VisibleForTesting
-internal fun TopicsErrorScreenPreview() = Theme {
-    TopicsScreen(
-        uiState = Error(
-            error = org.n27.nutshell.presentation.common.model.Error()
-        ),
-        onAction = { }
-    )
-}
-
-@Preview
-@Composable
-@VisibleForTesting
-internal fun TopicsLoadingScreenPreview() = Theme {
-    TopicsScreen(uiState = Loading, onAction = { })
-}
-
-@Preview
-@Composable
-@VisibleForTesting
-internal fun TopicsContentScreenDarkModePreview() = Theme(isDarkTheme = true) {
-    TopicsScreen(
-        uiState = Content(
-            topics = persistentListOf(
-                Topic(
-                    key = "taxes",
-                    title = "Taxes in Europe",
-                    imageUrl = "http://fake.icon.url.com"
-                ),
-                Topic(
-                    key = "gini",
-                    title = "Income equality in Europe",
-                    imageUrl = "http://fake.icon.url.com"
-                )
-            )
-        ),
-        onAction = { }
-    )
-}
-
-@Preview
-@Composable
-@VisibleForTesting
 internal fun TopicsContentScrollableScreenDarkModePreview() = Theme(isDarkTheme = true) {
     TopicsScreen(
         uiState = Content(
@@ -118,23 +137,4 @@ internal fun TopicsContentScrollableScreenDarkModePreview() = Theme(isDarkTheme 
         ),
         onAction = { }
     )
-}
-
-@Preview
-@Composable
-@VisibleForTesting
-internal fun TopicsErrorScreenDarkModePreview() = Theme(isDarkTheme = true) {
-    TopicsScreen(
-        uiState = Error(
-            error = org.n27.nutshell.presentation.common.model.Error()
-        ),
-        onAction = { }
-    )
-}
-
-@Preview
-@Composable
-@VisibleForTesting
-internal fun TopicsLoadingScreenDarkModePreview() = Theme(isDarkTheme = true) {
-    TopicsScreen(uiState = Loading, onAction = { })
 }
