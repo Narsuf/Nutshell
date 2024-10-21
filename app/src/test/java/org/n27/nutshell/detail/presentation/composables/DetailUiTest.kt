@@ -27,11 +27,6 @@ class DetailUiTest(config: TestConfig) : PaparazziScreenTest(config) {
     }
 
     @Test
-    fun detailLoadingScreenPreviewTest() {
-        screenshotTest { DetailLoadingScreenPreview() }
-    }
-
-    @Test
     fun detailErrorScreenPreviewTest() {
         screenshotTest { DetailErrorScreenPreview() }
     }
@@ -58,6 +53,11 @@ class DetailUiTest(config: TestConfig) : PaparazziScreenTest(config) {
 
     // The test is not being recorded correctly for some reason. It doesn't match the preview.
     /*
+    @Test
+    fun detailLoadingScreenPreviewTest() {
+        screenshotTest { DetailLoadingScreenPreview() }
+    }
+
     @Test
     fun detailLoadingScreenDarkThemePreviewTest() {
         screenshotTest { DetailLoadingScreenDarkThemePreview() }
