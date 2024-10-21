@@ -11,8 +11,9 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
-import org.n27.nutshell.Constants.NO_INTERNET_CONNECTION
-import org.n27.nutshell.data.common.DataUtils
+import org.n27.nutshell.common.Constants.NO_INTERNET_CONNECTION
+import org.n27.nutshell.common.data.DataUtils
+import org.n27.nutshell.common.data.api.FirebaseApi
 
 class FirebaseApiTest {
 

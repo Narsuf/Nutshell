@@ -6,7 +6,8 @@ import com.n27.nutshell.presentation.getNavContent
 import com.n27.nutshell.presentation.getNoContent
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.n27.nutshell.presentation.detail.entities.DetailViewModelState
+import org.n27.nutshell.detail.presentation.entities.DetailViewModelState
+import org.n27.nutshell.detail.presentation.mapping.toUiState
 
 class DetailUiStateMapperKtTest {
 

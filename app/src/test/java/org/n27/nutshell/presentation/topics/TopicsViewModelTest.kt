@@ -15,12 +15,14 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
-import org.n27.nutshell.data.NutshellRepositoryImpl
-import org.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClicked
-import org.n27.nutshell.presentation.topics.entities.TopicsAction.RetryButtonClicked
-import org.n27.nutshell.presentation.topics.entities.TopicsEvent.GoToNextScreen
-import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Loading
+import org.n27.nutshell.common.data.repository.NutshellRepositoryImpl
+import org.n27.nutshell.topics.presentation.entities.TopicsAction.NextButtonClicked
+import org.n27.nutshell.topics.presentation.entities.TopicsAction.RetryButtonClicked
+import org.n27.nutshell.topics.presentation.entities.TopicsEvent.GoToNextScreen
+import org.n27.nutshell.topics.presentation.entities.TopicsUiState.Loading
 import org.n27.nutshell.test
+import org.n27.nutshell.topics.presentation.TopicsTracker
+import org.n27.nutshell.topics.presentation.TopicsViewModel
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 

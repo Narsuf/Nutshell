@@ -1,14 +1,14 @@
 package org.n27.nutshell.presentation.topics
 
 import org.junit.Test
-import org.n27.nutshell.presentation.topics.composables.TopicsContentScreenDarkModePreview
-import org.n27.nutshell.presentation.topics.composables.TopicsContentScreenPreview
-import org.n27.nutshell.presentation.topics.composables.TopicsContentScrollableScreenDarkModePreview
-import org.n27.nutshell.presentation.topics.composables.TopicsContentScrollableScreenPreview
-import org.n27.nutshell.presentation.topics.composables.TopicsErrorScreenDarkModePreview
-import org.n27.nutshell.presentation.topics.composables.TopicsErrorScreenPreview
-import org.n27.nutshell.presentation.topics.composables.TopicsLoadingScreenDarkModePreview
-import org.n27.nutshell.presentation.topics.composables.TopicsLoadingScreenPreview
+import org.n27.nutshell.topics.presentation.composables.TopicsContentScreenDarkModePreview
+import org.n27.nutshell.topics.presentation.composables.TopicsContentScreenPreview
+import org.n27.nutshell.topics.presentation.composables.TopicsContentScrollableScreenDarkModePreview
+import org.n27.nutshell.topics.presentation.composables.TopicsContentScrollableScreenPreview
+import org.n27.nutshell.topics.presentation.composables.TopicsErrorScreenDarkModePreview
+import org.n27.nutshell.topics.presentation.composables.TopicsErrorScreenPreview
+import org.n27.nutshell.topics.presentation.composables.TopicsLoadingScreenDarkModePreview
+import org.n27.nutshell.topics.presentation.composables.TopicsLoadingScreenPreview
 import org.n27.nutshell.screenshot.PaparazziScreenTest
 import org.n27.nutshell.screenshot.TestConfig
 

@@ -3,7 +3,7 @@ package org.n27.nutshell.presentation.common.mapping
 import com.n27.nutshell.presentation.getError
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.n27.nutshell.Constants.NO_INTERNET_CONNECTION
+import org.n27.nutshell.common.Constants.NO_INTERNET_CONNECTION
 import org.n27.nutshell.R
 
 class ErrorMapperKtTest {

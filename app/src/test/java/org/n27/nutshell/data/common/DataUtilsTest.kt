@@ -10,6 +10,7 @@ import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
+import org.n27.nutshell.common.data.DataUtils
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)

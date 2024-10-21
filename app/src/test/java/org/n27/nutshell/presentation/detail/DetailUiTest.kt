@@ -1,17 +1,17 @@
 package org.n27.nutshell.presentation.detail
 
 import org.junit.Test
-import org.n27.nutshell.presentation.detail.composables.DetailContentScreenDarkModePreview
-import org.n27.nutshell.presentation.detail.composables.DetailContentScreenPreview
-import org.n27.nutshell.presentation.detail.composables.DetailContentScrollableScreenDarkModePreview
-import org.n27.nutshell.presentation.detail.composables.DetailContentScrollableScreenPreview
-import org.n27.nutshell.presentation.detail.composables.DetailContentWithoutNavScreenDarkModePreview
-import org.n27.nutshell.presentation.detail.composables.DetailContentWithoutNavScreenPreview
-import org.n27.nutshell.presentation.detail.composables.DetailContentWithoutNavScrollableScreenDarkModePreview
-import org.n27.nutshell.presentation.detail.composables.DetailContentWithoutNavScrollableScreenPreview
-import org.n27.nutshell.presentation.detail.composables.DetailErrorScreenDarkModePreview
-import org.n27.nutshell.presentation.detail.composables.DetailErrorScreenPreview
-import org.n27.nutshell.presentation.detail.composables.DetailLoadingScreenPreview
+import org.n27.nutshell.detail.presentation.composables.DetailContentScreenDarkModePreview
+import org.n27.nutshell.detail.presentation.composables.DetailContentScreenPreview
+import org.n27.nutshell.detail.presentation.composables.DetailContentScrollableScreenDarkModePreview
+import org.n27.nutshell.detail.presentation.composables.DetailContentScrollableScreenPreview
+import org.n27.nutshell.detail.presentation.composables.DetailContentWithoutNavScreenDarkModePreview
+import org.n27.nutshell.detail.presentation.composables.DetailContentWithoutNavScreenPreview
+import org.n27.nutshell.detail.presentation.composables.DetailContentWithoutNavScrollableScreenDarkModePreview
+import org.n27.nutshell.detail.presentation.composables.DetailContentWithoutNavScrollableScreenPreview
+import org.n27.nutshell.detail.presentation.composables.DetailErrorScreenDarkModePreview
+import org.n27.nutshell.detail.presentation.composables.DetailErrorScreenPreview
+import org.n27.nutshell.detail.presentation.composables.DetailLoadingScreenPreview
 import org.n27.nutshell.screenshot.PaparazziScreenTest
 import org.n27.nutshell.screenshot.TestConfig
 

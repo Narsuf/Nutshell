@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/TopicsFragment"
-        android:name="org.n27.nutshell.presentation.topics.TopicsFragment"
+        android:name="org.n27.nutshell.topics.presentation.TopicsFragment"
         android:label="@string/topics_fragment_label">
 
         <action
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/DetailFragment"
-        android:name="org.n27.nutshell.presentation.detail.DetailFragment">
+        android:name="org.n27.nutshell.detail.presentation.DetailFragment">
 
         <action
             android:id="@+id/action_DetailFragment_to_TopicsFragment"

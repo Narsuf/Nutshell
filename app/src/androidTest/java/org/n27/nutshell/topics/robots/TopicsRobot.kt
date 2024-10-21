@@ -9,8 +9,8 @@ import androidx.compose.ui.test.performClick
 import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_DESCRIPTION
 import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_TITLE
 import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_VIEW
-import org.n27.nutshell.presentation.topics.composables.TEST_TAG_TOPICS_ITEM
-import org.n27.nutshell.presentation.topics.composables.TEST_TAG_TOPICS_LOADING_VIEW
+import org.n27.nutshell.topics.presentation.composables.TEST_TAG_TOPICS_ITEM
+import org.n27.nutshell.topics.presentation.composables.TEST_TAG_TOPICS_LOADING_VIEW
 
 class TopicsRobot(composeTestRule: ComposeTestRule) : ComposeTestRule by composeTestRule {
 
