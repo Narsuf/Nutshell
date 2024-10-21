@@ -21,7 +21,7 @@ abstract class PaparazziScreenTest(config: TestConfig) {
         maxPercentDifference = 0.0,
         showSystemUi = false,
         deviceConfig = when (config.device) {
-            Device.PIXEL_6 -> DeviceConfig.PIXEL_6
+            TestDevice.PIXEL_6 -> DeviceConfig.PIXEL_6
         }.copy(
             nightMode = config.nightMode,
             fontScale = config.fontScale,
@@ -32,7 +32,7 @@ abstract class PaparazziScreenTest(config: TestConfig) {
         @JvmStatic
         @Parameterized.Parameters(name = "{0}")
         fun data(): Collection<Array<Any>> {
-            val devices = listOf(Device.PIXEL_6)
+            val devices = listOf(TestDevice.PIXEL_6)
             val fontScales = listOf(1f)
             val modes = listOf(NightMode.NOTNIGHT)
 

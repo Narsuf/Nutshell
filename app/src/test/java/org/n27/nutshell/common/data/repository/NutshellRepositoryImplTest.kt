@@ -11,7 +11,6 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.common.Constants.EMPTY_RESPONSE_FROM_FIREBASE
 import org.n27.nutshell.common.data.api.FirebaseApi
-import org.n27.nutshell.common.data.repository.NutshellRepositoryImpl
 import org.robolectric.RobolectricTestRunner
 import kotlin.Result.Companion.success
 

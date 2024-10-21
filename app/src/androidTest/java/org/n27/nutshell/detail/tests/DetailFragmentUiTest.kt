@@ -12,12 +12,12 @@ import org.junit.Test
 import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
 import org.n27.nutshell.common.presentation.composables.theme.Theme
-import org.n27.nutshell.detail.robots.DetailRobot.Companion.detail
 import org.n27.nutshell.detail.presentation.composables.DetailScreen
 import org.n27.nutshell.detail.presentation.entities.DetailAction
 import org.n27.nutshell.detail.presentation.entities.DetailAction.BackClicked
 import org.n27.nutshell.detail.presentation.entities.DetailAction.InfoClicked
 import org.n27.nutshell.detail.presentation.entities.DetailAction.NavItemClicked
+import org.n27.nutshell.detail.robots.DetailRobot.Companion.detail
 
 @RunWith(AndroidJUnit4::class)
 class DetailFragmentUiTest {
