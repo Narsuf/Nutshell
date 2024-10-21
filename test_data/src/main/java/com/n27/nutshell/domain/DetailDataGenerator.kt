@@ -1,9 +1,9 @@
 package com.n27.nutshell.domain
 
-import org.n27.nutshell.domain.detail.model.Detail
-import org.n27.nutshell.domain.detail.model.Detail.NavItem
-import org.n27.nutshell.domain.detail.model.Detail.Tab
-import org.n27.nutshell.domain.detail.model.Detail.Tab.Info
+import org.n27.nutshell.detail.domain.model.Detail
+import org.n27.nutshell.detail.domain.model.Detail.NavItem
+import org.n27.nutshell.detail.domain.model.Detail.Tab
+import org.n27.nutshell.detail.domain.model.Detail.Tab.Info
 
 fun getDetail(tabs: List<Tab> = getTabs()) = Detail(
     tabs = tabs,

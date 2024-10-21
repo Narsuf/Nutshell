@@ -7,14 +7,14 @@ import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
-import org.n27.nutshell.presentation.common.composables.TEST_TAG_TOOLBAR_BACK_BUTTON
-import org.n27.nutshell.presentation.common.composables.screen.TEST_TAG_ERROR_VIEW
-import org.n27.nutshell.presentation.detail.composables.TEST_TAG_DETAIL_END_CONTENT_ITEM
-import org.n27.nutshell.presentation.detail.composables.TEST_TAG_DETAIL_INFO_ITEM
-import org.n27.nutshell.presentation.detail.composables.TEST_TAG_DETAIL_LOADING_VIEW
-import org.n27.nutshell.presentation.detail.composables.TEST_TAG_DETAIL_MAIN_CONTENT_ITEM
-import org.n27.nutshell.presentation.detail.composables.TEST_TAG_DETAIL_NAV_BAR
-import org.n27.nutshell.presentation.detail.composables.TEST_TAG_DETAIL_NAV_ITEM
+import org.n27.nutshell.common.presentation.composables.TEST_TAG_TOOLBAR_BACK_BUTTON
+import org.n27.nutshell.common.presentation.composables.screen.TEST_TAG_ERROR_VIEW
+import org.n27.nutshell.detail.presentation.composables.TEST_TAG_DETAIL_END_CONTENT_ITEM
+import org.n27.nutshell.detail.presentation.composables.TEST_TAG_DETAIL_INFO_ITEM
+import org.n27.nutshell.detail.presentation.composables.TEST_TAG_DETAIL_LOADING_VIEW
+import org.n27.nutshell.detail.presentation.composables.TEST_TAG_DETAIL_MAIN_CONTENT_ITEM
+import org.n27.nutshell.detail.presentation.composables.TEST_TAG_DETAIL_NAV_BAR
+import org.n27.nutshell.detail.presentation.composables.TEST_TAG_DETAIL_NAV_ITEM
 
 class DetailRobot(composeTestRule: ComposeTestRule) : ComposeTestRule by composeTestRule {
 

@@ -1,7 +1,7 @@
 package com.n27.nutshell.domain
 
-import org.n27.nutshell.domain.topics.model.Topic
-import org.n27.nutshell.domain.topics.model.Topics
+import org.n27.nutshell.topics.domain.model.Topic
+import org.n27.nutshell.topics.domain.model.Topics
 
 fun getTopics() = Topics(listOf(getTopic()))
 

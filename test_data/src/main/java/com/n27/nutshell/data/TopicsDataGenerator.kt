@@ -1,6 +1,6 @@
 package com.n27.nutshell.data
 
-import org.n27.nutshell.data.topics.model.TopicRaw
+import org.n27.nutshell.topics.data.model.TopicRaw
 
 fun getTopicsRaw() = listOf(getTopicRaw())
 

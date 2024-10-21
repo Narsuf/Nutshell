@@ -15,13 +15,19 @@ plugins {
 jacoco { toolVersion = "0.8.12" }
 
 val exclusions = listOf(
-    "**/R.class",
-    "**/R$*.class",
-    "**/BuildConfig.*",
-    "**/Manifest*.*",
     "**/*Test*.*",
     "**/*Robot*.*",
-    "**/*Binding*.*"
+    "**/*Application*.*",
+    "**/*Fragment*.*",
+    "**/*Activity*.*",
+    "**/*Tracker*.*",
+    "**/*Factory*.*",
+    "**/composables/**/*",
+    "**/di/**/*",
+    "**/extensions/**/*",
+    "**/fundamental/**/*",
+    "**/model/**/*",
+    "**/entities/**/*",
 )
 
 tasks.withType(Test::class) {

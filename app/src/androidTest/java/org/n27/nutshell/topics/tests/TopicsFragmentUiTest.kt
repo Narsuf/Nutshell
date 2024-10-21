@@ -9,11 +9,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
-import org.n27.nutshell.presentation.common.composables.theme.Theme
-import org.n27.nutshell.presentation.topics.composables.TopicsScreen
-import org.n27.nutshell.presentation.topics.entities.TopicsAction
-import org.n27.nutshell.presentation.topics.entities.TopicsAction.NextButtonClicked
-import org.n27.nutshell.presentation.topics.entities.TopicsUiState.Loading
+import org.n27.nutshell.common.presentation.composables.theme.Theme
+import org.n27.nutshell.topics.presentation.composables.TopicsScreen
+import org.n27.nutshell.topics.presentation.entities.TopicsAction
+import org.n27.nutshell.topics.presentation.entities.TopicsAction.NextButtonClicked
+import org.n27.nutshell.topics.presentation.entities.TopicsUiState.Loading
 import org.n27.nutshell.topics.robots.TopicsRobot.Companion.topics
 
 @RunWith(AndroidJUnit4::class)

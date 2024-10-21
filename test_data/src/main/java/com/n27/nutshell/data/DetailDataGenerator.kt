@@ -1,9 +1,9 @@
 package com.n27.nutshell.data
 
-import org.n27.nutshell.data.detail.model.DetailRaw
-import org.n27.nutshell.data.detail.model.DetailRaw.NavItemRaw
-import org.n27.nutshell.data.detail.model.DetailRaw.TabRaw
-import org.n27.nutshell.data.detail.model.DetailRaw.TabRaw.InfoRaw
+import org.n27.nutshell.detail.data.model.DetailRaw
+import org.n27.nutshell.detail.data.model.DetailRaw.NavItemRaw
+import org.n27.nutshell.detail.data.model.DetailRaw.TabRaw
+import org.n27.nutshell.detail.data.model.DetailRaw.TabRaw.InfoRaw
 
 fun getDetailRaw() = DetailRaw(
     tabs = listOf(
