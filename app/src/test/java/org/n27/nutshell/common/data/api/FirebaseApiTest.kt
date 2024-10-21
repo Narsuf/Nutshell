@@ -1,4 +1,4 @@
-package org.n27.nutshell.data
+package org.n27.nutshell.common.data.api
 
 import com.google.firebase.database.FirebaseDatabase
 import junit.framework.TestCase.assertEquals

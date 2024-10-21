@@ -1,4 +1,4 @@
-package org.n27.nutshell.presentation.detail.mapping
+package org.n27.nutshell.detail.presentation.mapping
 
 import com.n27.nutshell.domain.getTab
 import com.n27.nutshell.presentation.getHasContent

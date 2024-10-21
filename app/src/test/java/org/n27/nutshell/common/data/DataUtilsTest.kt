@@ -1,4 +1,4 @@
-package org.n27.nutshell.data.common
+package org.n27.nutshell.common.data
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -10,7 +10,6 @@ import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
-import org.n27.nutshell.common.data.DataUtils
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)

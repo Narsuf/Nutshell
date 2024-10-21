@@ -1,4 +1,4 @@
-package org.n27.nutshell.data
+package org.n27.nutshell.common.data.repository
 
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking

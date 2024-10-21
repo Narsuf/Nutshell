@@ -1,10 +1,11 @@
-package org.n27.nutshell.presentation.common.mapping
+package org.n27.nutshell.common.presentation.mapping
 
 import com.n27.nutshell.presentation.getError
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.n27.nutshell.common.Constants.NO_INTERNET_CONNECTION
 import org.n27.nutshell.R
+import org.n27.nutshell.common.presentation.mapping.toError
 
 class ErrorMapperKtTest {
 

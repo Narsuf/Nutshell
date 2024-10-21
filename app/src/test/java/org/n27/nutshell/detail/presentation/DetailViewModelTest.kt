@@ -1,4 +1,4 @@
-package org.n27.nutshell.presentation.detail
+package org.n27.nutshell.detail.presentation
 
 import com.n27.nutshell.domain.getDetail
 import com.n27.nutshell.domain.getInfo
@@ -19,8 +19,6 @@ import org.mockito.Mockito.anyString
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.common.data.repository.NutshellRepositoryImpl
-import org.n27.nutshell.detail.presentation.DetailTracker
-import org.n27.nutshell.detail.presentation.DetailViewModel
 import org.n27.nutshell.detail.presentation.entities.DetailAction.BackClicked
 import org.n27.nutshell.detail.presentation.entities.DetailAction.GetDetail
 import org.n27.nutshell.detail.presentation.entities.DetailAction.InfoClicked
@@ -28,7 +26,7 @@ import org.n27.nutshell.detail.presentation.entities.DetailAction.NavItemClicked
 import org.n27.nutshell.detail.presentation.entities.DetailAction.RetryClicked
 import org.n27.nutshell.detail.presentation.entities.DetailEvent.GoBack
 import org.n27.nutshell.detail.presentation.entities.DetailEvent.OpenUrl
-import org.n27.nutshell.test
+import org.n27.nutshell.utils.test
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 

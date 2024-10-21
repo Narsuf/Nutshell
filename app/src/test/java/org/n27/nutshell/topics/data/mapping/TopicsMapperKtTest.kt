@@ -1,4 +1,4 @@
-package org.n27.nutshell.data.topics.mapping
+package org.n27.nutshell.topics.data.mapping
 
 import com.n27.nutshell.data.getTopicsRaw
 import com.n27.nutshell.domain.getTopics

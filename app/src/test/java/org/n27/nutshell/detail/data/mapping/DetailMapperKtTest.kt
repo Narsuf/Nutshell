@@ -1,4 +1,4 @@
-package org.n27.nutshell.data.detail.mapping
+package org.n27.nutshell.detail.data.mapping
 
 import com.n27.nutshell.data.getDetailRaw
 import com.n27.nutshell.domain.getDetail

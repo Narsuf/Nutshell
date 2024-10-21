@@ -1,4 +1,4 @@
-package org.n27.nutshell.presentation.topics
+package org.n27.nutshell.topics.presentation
 
 import com.n27.nutshell.domain.getTopics
 import com.n27.nutshell.presentation.getTopicsContent
@@ -20,9 +20,7 @@ import org.n27.nutshell.topics.presentation.entities.TopicsAction.NextButtonClic
 import org.n27.nutshell.topics.presentation.entities.TopicsAction.RetryButtonClicked
 import org.n27.nutshell.topics.presentation.entities.TopicsEvent.GoToNextScreen
 import org.n27.nutshell.topics.presentation.entities.TopicsUiState.Loading
-import org.n27.nutshell.test
-import org.n27.nutshell.topics.presentation.TopicsTracker
-import org.n27.nutshell.topics.presentation.TopicsViewModel
+import org.n27.nutshell.utils.test
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 
