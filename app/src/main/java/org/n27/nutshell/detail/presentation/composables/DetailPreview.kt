@@ -50,7 +50,7 @@ internal fun DetailErrorScreenPreview() = Theme {
         title = "Taxes in Europe",
         uiState = NoContent(
             isLoading = false,
-            error = org.n27.nutshell.common.presentation.model.Error(
+            error = MyError(
                 title = R.string.no_internet_error_title,
                 description = R.string.no_internet_error_description
             )

@@ -4,6 +4,7 @@ import com.n27.nutshell.domain.getInfo
 import com.n27.nutshell.domain.getNavs
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
+import org.n27.nutshell.common.presentation.model.Error
 import org.n27.nutshell.detail.domain.model.Detail.NavItem
 import org.n27.nutshell.detail.domain.model.Detail.Tab.Info
 import org.n27.nutshell.detail.presentation.entities.DetailUiState.HasContent
