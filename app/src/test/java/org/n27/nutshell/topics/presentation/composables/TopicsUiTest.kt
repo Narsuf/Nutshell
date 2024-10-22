@@ -22,11 +22,6 @@ class TopicsUiTest(config: TestConfig) : PaparazziScreenTest(config) {
     }
 
     @Test
-    fun topicsLoadingScreenPreviewTest() {
-        screenshotTest { TopicsLoadingScreenPreview() }
-    }
-
-    @Test
     fun topicsContentScreenDarkModePreviewTest() {
         screenshotTest { TopicsContentScreenDarkModePreview() }
     }
@@ -39,10 +34,5 @@ class TopicsUiTest(config: TestConfig) : PaparazziScreenTest(config) {
     @Test
     fun topicsErrorScreenDarkModePreviewTest() {
         screenshotTest { TopicsErrorScreenDarkModePreview() }
-    }
-
-    @Test
-    fun topicsLoadingScreenDarkModePreviewTest() {
-        screenshotTest { TopicsLoadingScreenDarkModePreview() }
     }
 }

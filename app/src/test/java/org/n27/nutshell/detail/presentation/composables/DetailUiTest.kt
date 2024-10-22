@@ -51,18 +51,6 @@ class DetailUiTest(config: TestConfig) : PaparazziScreenTest(config) {
         screenshotTest { DetailContentWithoutNavScrollableScreenDarkModePreview() }
     }
 
-    // The test is not being recorded correctly for some reason. It doesn't match the preview.
-    /*
-    @Test
-    fun detailLoadingScreenPreviewTest() {
-        screenshotTest { DetailLoadingScreenPreview() }
-    }
-
-    @Test
-    fun detailLoadingScreenDarkThemePreviewTest() {
-        screenshotTest { DetailLoadingScreenDarkThemePreview() }
-    }*/
-
     @Test
     fun detailErrorScreenDarkModePreviewTest() {
         screenshotTest { DetailErrorScreenDarkModePreview() }

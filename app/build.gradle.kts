@@ -17,17 +17,6 @@ jacoco { toolVersion = "0.8.12" }
 val exclusions = listOf(
     "**/*Test*.*",
     "**/*Robot*.*",
-    "**/*Application*.*",
-    "**/*Fragment*.*",
-    "**/*Activity*.*",
-    "**/*Tracker*.*",
-    "**/*Factory*.*",
-    "**/composables/**/*",
-    "**/di/**/*",
-    "**/extensions/**/*",
-    "**/fundamental/**/*",
-    "**/model/**/*",
-    "**/entities/**/*",
 )
 
 tasks.withType(Test::class) {
