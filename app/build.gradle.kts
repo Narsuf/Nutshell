@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.google.services)
     alias(libs.plugins.crashlytics)
     alias(libs.plugins.paparazzi)
+    alias(libs.plugins.kotlin.compose)
     jacoco
 }
 
