@@ -34,9 +34,7 @@ class FirebaseApi @Inject constructor(
         failure(Throwable(NO_INTERNET_CONNECTION))
     } else {
         runCatching {
-            withTimeout(10000) {
-                firebaseDatabase.getReference(key).get().await()
-            }
+            withTimeout(10000) { firebaseDatabase.getReference(key).get().await() }
         }
     }
 }
