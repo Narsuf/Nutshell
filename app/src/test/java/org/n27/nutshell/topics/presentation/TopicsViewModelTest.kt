@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
@@ -16,6 +17,7 @@ import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.common.data.repository.NutshellRepositoryImpl
+import org.n27.nutshell.common.dispatcher.TestDispatcherProvider
 import org.n27.nutshell.topics.presentation.entities.TopicsAction.NextButtonClicked
 import org.n27.nutshell.topics.presentation.entities.TopicsAction.RetryButtonClicked
 import org.n27.nutshell.topics.presentation.entities.TopicsEvent.GoToNextScreen
@@ -90,7 +92,7 @@ internal class TopicsViewModelTest {
         observer.close()
     }
 
-    private fun getViewModel() = TopicsViewModel(repository, tracker)
+    private fun TestScope.getViewModel() = TopicsViewModel(repository, tracker, TestDispatcherProvider(StandardTestDispatcher(testScheduler)))
 
     private companion object {
         private const val KEY = "taxes"

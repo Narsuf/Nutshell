@@ -1,8 +1,10 @@
 package org.n27.nutshell.common.data.api
 
+import android.util.Log
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.GenericTypeIndicator
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeout
 import org.n27.nutshell.common.Constants.EMPTY_RESPONSE_FROM_FIREBASE
@@ -34,7 +36,9 @@ class FirebaseApi @Inject constructor(
         failure(Throwable(NO_INTERNET_CONNECTION))
     } else {
         runCatching {
-            withTimeout(10000) { firebaseDatabase.getReference(key).get().await() }
+            withTimeout(10000) {
+                firebaseDatabase.getReference(key).get().await()
+            }
         }
     }
 }

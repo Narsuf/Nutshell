@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.n27.nutshell.common.Constants.EMPTY_LIST
 import org.n27.nutshell.common.data.repository.NutshellRepositoryImpl
+import org.n27.nutshell.common.dispatcher.CoroutineDispatcherProvider
 import org.n27.nutshell.common.presentation.mapping.toError
 import org.n27.nutshell.detail.domain.model.Detail
 import org.n27.nutshell.detail.presentation.entities.DetailAction
@@ -33,7 +34,8 @@ import org.n27.nutshell.detail.presentation.mapping.toUiState
 class DetailViewModel @AssistedInject constructor(
     @Assisted private val key: String,
     private val repository: NutshellRepositoryImpl,
-    private val tracker: DetailTracker
+    private val tracker: DetailTracker,
+    private val coroutineDispatcher: CoroutineDispatcherProvider,
 ) : ViewModel() {
 
     private val viewModelState = MutableStateFlow(DetailViewModelState())
@@ -87,7 +89,7 @@ class DetailViewModel @AssistedInject constructor(
     }
 
     private fun getDetail() {
-        viewModelScope.launch {
+        viewModelScope.launch(coroutineDispatcher.default) {
 
             viewModelState.update { it.copy(isLoading = true) }
 

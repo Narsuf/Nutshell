@@ -13,12 +13,14 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import kotlinx.coroutines.test.TestScope
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.anyString
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.common.data.repository.NutshellRepositoryImpl
+import org.n27.nutshell.common.dispatcher.TestDispatcherProvider
 import org.n27.nutshell.detail.presentation.entities.DetailAction.BackClicked
 import org.n27.nutshell.detail.presentation.entities.DetailAction.GetDetail
 import org.n27.nutshell.detail.presentation.entities.DetailAction.InfoClicked
@@ -153,7 +155,7 @@ internal class DetailViewModelTest {
         observer.close()
     }
 
-    private fun getViewModel() = DetailViewModel(KEY, repository, tracker)
+    private fun TestScope.getViewModel() = DetailViewModel(KEY, repository, tracker, TestDispatcherProvider(StandardTestDispatcher(testScheduler)))
 
     private companion object {
         private const val KEY = "taxes"
