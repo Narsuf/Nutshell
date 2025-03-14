@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -14,7 +15,6 @@ import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.common.Constants.NO_INTERNET_CONNECTION
-import org.n27.nutshell.common.Constants.TIMEOUT
 import org.n27.nutshell.common.data.DataUtils
 
 class FirebaseApiTest {
@@ -48,22 +48,23 @@ class FirebaseApiTest {
     }
 
     @Test
+    fun getWithException(): Unit = runBlocking {
+        val taskCompletionSource = TaskCompletionSource<DataSnapshot>()
+        `when`(databaseReference.get()).thenReturn(taskCompletionSource.task)
+
+        launch { taskCompletionSource.setException(NullPointerException()) }
+
+        assertTrue(api.get("").isFailure)
+        api.get("").onFailure { assertTrue(it is NullPointerException) }
+    }
+
+    @Test
     fun getWithTimeout(): Unit = runBlocking {
         val task: Task<DataSnapshot> = mock()
         `when`(databaseReference.get()).thenReturn(task)
 
         assertTrue(api.get("").isFailure)
-        api.get("").onFailure { assertEquals(TIMEOUT, it.message) }
-    }
-
-    @Test
-    fun `test get when non-timeout error occurs`() = runBlocking {
-        val taskCompletionSource = TaskCompletionSource<DataSnapshot>()
-        `when`(databaseReference.get()).thenReturn(taskCompletionSource.task)
-
-        launch { taskCompletionSource.setException(Exception()) }
-
-        assertTrue(api.get("").isFailure)
+        api.get("").onFailure { assertTrue(it is TimeoutCancellationException) }
     }
 
     @Test
