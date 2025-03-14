@@ -5,7 +5,6 @@ import com.google.android.gms.tasks.TaskCompletionSource
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.launch
@@ -32,7 +31,7 @@ class FirebaseApiTest {
         databaseReference = mock()
 
         `when`(utils.isConnectedToInternet()).thenReturn(true)
-        whenever(firebaseDatabase.getReference("")).thenReturn(databaseReference)
+        `when`(firebaseDatabase.getReference("")).thenReturn(databaseReference)
 
         api = FirebaseApi(utils, firebaseDatabase)
     }
@@ -41,7 +40,7 @@ class FirebaseApiTest {
     fun get(): Unit = runBlocking {
         val taskCompletionSource = TaskCompletionSource<DataSnapshot>()
         val dataSnapshot: DataSnapshot = mock()
-        whenever(databaseReference.get()).thenReturn(taskCompletionSource.task)
+        `when`(databaseReference.get()).thenReturn(taskCompletionSource.task)
 
         launch { taskCompletionSource.setResult(dataSnapshot) }
 
@@ -51,7 +50,7 @@ class FirebaseApiTest {
     @Test
     fun getWithTimeout(): Unit = runBlocking {
         val task: Task<DataSnapshot> = mock()
-        whenever(databaseReference.get()).thenReturn(task)
+        `when`(databaseReference.get()).thenReturn(task)
 
         assertTrue(api.get("").isFailure)
         api.get("").onFailure { assertEquals(TIMEOUT, it.message) }
@@ -60,7 +59,7 @@ class FirebaseApiTest {
     @Test
     fun `test get when non-timeout error occurs`() = runBlocking {
         val taskCompletionSource = TaskCompletionSource<DataSnapshot>()
-        whenever(databaseReference.get()).thenReturn(taskCompletionSource.task)
+        `when`(databaseReference.get()).thenReturn(taskCompletionSource.task)
 
         launch { taskCompletionSource.setException(Exception()) }
 
