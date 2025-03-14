@@ -24,5 +24,7 @@ class FlowTestObserver<T>(scope: CoroutineScope, flow: Flow<T>) : Closeable {
         return this
     }
 
+    fun reset() { values.clear() }
+
     override fun close() = job.cancel()
 }

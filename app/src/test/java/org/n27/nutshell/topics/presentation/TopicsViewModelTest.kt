@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
@@ -16,6 +17,7 @@ import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.common.data.repository.NutshellRepositoryImpl
+import org.n27.nutshell.common.dispatcher.TestDispatcherProvider
 import org.n27.nutshell.topics.presentation.entities.TopicsAction.NextButtonClicked
 import org.n27.nutshell.topics.presentation.entities.TopicsAction.RetryButtonClicked
 import org.n27.nutshell.topics.presentation.entities.TopicsEvent.GoToNextScreen
@@ -38,7 +40,6 @@ internal class TopicsViewModelTest {
         val expected = getTopicsContent()
         val viewModel = getViewModel()
         val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
-
         `when`(repository.getTopics()).thenReturn(success(getTopics()))
 
         runCurrent()
@@ -52,7 +53,6 @@ internal class TopicsViewModelTest {
         val expected = getTopicsContent()
         val viewModel = getViewModel()
         val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
-
         `when`(repository.getTopics()).thenReturn(success(getTopics()))
 
         viewModel.handleAction(RetryButtonClicked)
@@ -66,7 +66,6 @@ internal class TopicsViewModelTest {
     fun `should emit go to next screen when next button clicked`() = runTest {
         val viewModel = getViewModel()
         val observer = viewModel.viewEvent.test(this + UnconfinedTestDispatcher(testScheduler))
-
         `when`(repository.getTopics()).thenReturn(success(getTopics()))
 
         viewModel.handleAction(NextButtonClicked(KEY, TITLE))
@@ -81,7 +80,6 @@ internal class TopicsViewModelTest {
         val expected = getTopicsError()
         val viewModel = getViewModel()
         val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
-
         `when`(repository.getTopics()).thenReturn(failure(Throwable()))
 
         runCurrent()
@@ -90,7 +88,11 @@ internal class TopicsViewModelTest {
         observer.close()
     }
 
-    private fun getViewModel() = TopicsViewModel(repository, tracker)
+    private fun TestScope.getViewModel() = TopicsViewModel(
+        repository = repository,
+        tracker = tracker,
+        coroutineDispatcher = TestDispatcherProvider(StandardTestDispatcher(testScheduler)),
+    )
 
     private companion object {
         private const val KEY = "taxes"
