@@ -1,10 +1,8 @@
 package org.n27.nutshell.common.data.api
 
-import android.util.Log
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.GenericTypeIndicator
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeout
 import org.n27.nutshell.common.Constants.EMPTY_RESPONSE_FROM_FIREBASE

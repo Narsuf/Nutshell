@@ -1,7 +1,6 @@
 package org.n27.nutshell.common.dispatcher
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestDispatcher
 
 class TestDispatcherProvider(testDispatcher: TestDispatcher) : CoroutineDispatcherProvider {
