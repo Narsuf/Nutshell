@@ -46,7 +46,6 @@ internal class DetailViewModelTest {
         val expected = getHasContent()
         val viewModel = getViewModel()
         val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
-
         `when`(repository.getDetail(anyString())).thenReturn(success(getDetail()))
 
         viewModel.handleAction(GetDetail)
@@ -61,7 +60,6 @@ internal class DetailViewModelTest {
         val expected = getHasContent()
         val viewModel = getViewModel()
         val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
-
         `when`(repository.getDetail(anyString())).thenReturn(success(getDetail()))
 
         viewModel.handleAction(RetryClicked)
@@ -106,16 +104,15 @@ internal class DetailViewModelTest {
                 value = "54"
             )
         )
-
         `when`(repository.getDetail(anyString())).thenReturn(success(getDetail()))
-
         viewModel.handleAction(GetDetail)
         runCurrent()
+        observer.reset()
 
         viewModel.handleAction(NavItemClicked(1, "Income"))
         runCurrent()
 
-        observer.assertValues(getNoContent(), getHasContent(), expected)
+        observer.assertValues(expected)
         observer.close()
     }
 
@@ -127,7 +124,6 @@ internal class DetailViewModelTest {
             isLoading = false,
             error = getError()
         )
-
         `when`(repository.getDetail(anyString())).thenReturn(failure(Throwable()))
 
         viewModel.handleAction(GetDetail)
@@ -145,7 +141,6 @@ internal class DetailViewModelTest {
             isLoading = false,
             error = getError()
         )
-
         `when`(repository.getDetail(anyString())).thenReturn(success(getDetail(tabs = listOf())))
 
         viewModel.handleAction(GetDetail)
@@ -155,7 +150,12 @@ internal class DetailViewModelTest {
         observer.close()
     }
 
-    private fun TestScope.getViewModel() = DetailViewModel(KEY, repository, tracker, TestDispatcherProvider(StandardTestDispatcher(testScheduler)))
+    private fun TestScope.getViewModel() = DetailViewModel(
+        key = KEY,
+        repository = repository,
+        tracker = tracker,
+        coroutineDispatcher = TestDispatcherProvider(StandardTestDispatcher(testScheduler)),
+    )
 
     private companion object {
         private const val KEY = "taxes"

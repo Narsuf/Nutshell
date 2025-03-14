@@ -40,7 +40,6 @@ internal class TopicsViewModelTest {
         val expected = getTopicsContent()
         val viewModel = getViewModel()
         val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
-
         `when`(repository.getTopics()).thenReturn(success(getTopics()))
 
         runCurrent()
@@ -54,7 +53,6 @@ internal class TopicsViewModelTest {
         val expected = getTopicsContent()
         val viewModel = getViewModel()
         val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
-
         `when`(repository.getTopics()).thenReturn(success(getTopics()))
 
         viewModel.handleAction(RetryButtonClicked)
@@ -68,7 +66,6 @@ internal class TopicsViewModelTest {
     fun `should emit go to next screen when next button clicked`() = runTest {
         val viewModel = getViewModel()
         val observer = viewModel.viewEvent.test(this + UnconfinedTestDispatcher(testScheduler))
-
         `when`(repository.getTopics()).thenReturn(success(getTopics()))
 
         viewModel.handleAction(NextButtonClicked(KEY, TITLE))
@@ -83,7 +80,6 @@ internal class TopicsViewModelTest {
         val expected = getTopicsError()
         val viewModel = getViewModel()
         val observer = viewModel.uiState.test(this + UnconfinedTestDispatcher(testScheduler))
-
         `when`(repository.getTopics()).thenReturn(failure(Throwable()))
 
         runCurrent()
@@ -92,7 +88,11 @@ internal class TopicsViewModelTest {
         observer.close()
     }
 
-    private fun TestScope.getViewModel() = TopicsViewModel(repository, tracker, TestDispatcherProvider(StandardTestDispatcher(testScheduler)))
+    private fun TestScope.getViewModel() = TopicsViewModel(
+        repository = repository,
+        tracker = tracker,
+        coroutineDispatcher = TestDispatcherProvider(StandardTestDispatcher(testScheduler)),
+    )
 
     private companion object {
         private const val KEY = "taxes"
