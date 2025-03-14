@@ -1,12 +1,10 @@
 package org.n27.nutshell.common.data.api
 
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withTimeout
 import org.n27.nutshell.common.Constants.NO_INTERNET_CONNECTION
 import org.n27.nutshell.common.Constants.TIMEOUT
 import org.n27.nutshell.common.data.DataUtils
@@ -21,20 +19,20 @@ class FirebaseApi @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase,
 ) {
 
-    // Result has to be Any to make the Repository testable.
-    fun get(key: String) = channelFlow<Result<Any>> {
-        if (!utils.isConnectedToInternet()) {
-            send(failure(Throwable(NO_INTERNET_CONNECTION)))
-        } else {
-            val timeoutJob = launch {
-                delay(10000)
-                send(failure(Throwable(TIMEOUT)))
+    suspend fun get(key: String): Result<DataSnapshot> = if (!utils.isConnectedToInternet()) {
+        failure(Throwable(NO_INTERNET_CONNECTION))
+    } else {
+        runCatching {
+            withTimeout(10000) {
+                firebaseDatabase.getReference(key).get().await()
             }
-
-            firebaseDatabase.getReference(key).get().await().let {
-                timeoutJob.cancel()
-                send(success(it))
+        }.fold(
+            onSuccess = { success(it) },
+            onFailure = {
+                failure(
+                    if (it is TimeoutCancellationException) Throwable(TIMEOUT) else it
+                )
             }
-        }
-    }.flowOn(Dispatchers.IO)
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package org.n27.nutshell.common.data.repository
 
-import kotlinx.coroutines.flow.flowOf
+import com.google.firebase.database.DataSnapshot
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -19,12 +19,14 @@ class NutshellRepositoryImplTest {
 
     private lateinit var repository: NutshellRepositoryImpl
     private lateinit var api: FirebaseApi
+    private lateinit var mockSnapshot: DataSnapshot
 
     @Before
     fun setUp() = runBlocking {
         api = mock(FirebaseApi::class.java)
+        mockSnapshot = mock()
 
-        `when`(api.get(anyString())).thenReturn(flowOf(success("")))
+        `when`(api.get(anyString())).thenReturn(success(mockSnapshot))
 
         repository = NutshellRepositoryImpl(api)
     }
