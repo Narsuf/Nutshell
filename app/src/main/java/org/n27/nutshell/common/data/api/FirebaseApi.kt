@@ -1,19 +1,18 @@
 package org.n27.nutshell.common.data.api
 
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.launch
+import com.google.firebase.database.GenericTypeIndicator
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withTimeout
+import org.n27.nutshell.common.Constants.EMPTY_RESPONSE_FROM_FIREBASE
 import org.n27.nutshell.common.Constants.NO_INTERNET_CONNECTION
-import org.n27.nutshell.common.Constants.TIMEOUT
 import org.n27.nutshell.common.data.DataUtils
+import org.n27.nutshell.detail.data.model.DetailRaw
+import org.n27.nutshell.topics.data.model.TopicRaw
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.Result.Companion.failure
-import kotlin.Result.Companion.success
 
 @Singleton
 class FirebaseApi @Inject constructor(
@@ -21,20 +20,21 @@ class FirebaseApi @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase,
 ) {
 
-    // Result has to be Any to make the Repository testable.
-    fun get(key: String) = channelFlow<Result<Any>> {
-        if (!utils.isConnectedToInternet()) {
-            send(failure(Throwable(NO_INTERNET_CONNECTION)))
-        } else {
-            val timeoutJob = launch {
-                delay(10000)
-                send(failure(Throwable(TIMEOUT)))
-            }
+    suspend fun getTopics(): Result<List<TopicRaw>> = get("topics").mapCatching {
+        it.getValue(object : GenericTypeIndicator<List<TopicRaw>>() {})
+            ?: throw Throwable(EMPTY_RESPONSE_FROM_FIREBASE)
+    }
 
-            firebaseDatabase.getReference(key).get().await().let {
-                timeoutJob.cancel()
-                send(success(it))
-            }
+    suspend fun getDetail(key: String): Result<DetailRaw> = get(key).mapCatching {
+        it.getValue(object : GenericTypeIndicator<DetailRaw>() {})
+            ?: throw Throwable(EMPTY_RESPONSE_FROM_FIREBASE)
+    }
+
+    internal suspend fun get(key: String): Result<DataSnapshot> = if (!utils.isConnectedToInternet()) {
+        failure(Throwable(NO_INTERNET_CONNECTION))
+    } else {
+        runCatching {
+            withTimeout(10000) { firebaseDatabase.getReference(key).get().await() }
         }
-    }.flowOn(Dispatchers.IO)
+    }
 }
