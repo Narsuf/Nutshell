@@ -14,6 +14,7 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
+import org.n27.nutshell.common.Constants.EMPTY_RESPONSE_FROM_FIREBASE
 import org.n27.nutshell.common.Constants.NO_INTERNET_CONNECTION
 import org.n27.nutshell.common.data.DataUtils
 
@@ -48,14 +49,28 @@ class FirebaseApiTest {
     }
 
     @Test
+    fun getEmptyResponse(): Unit = runBlocking {
+        val taskCompletionSource = TaskCompletionSource<DataSnapshot>()
+        val dataSnapshot: DataSnapshot = mock()
+        `when`(databaseReference.get()).thenReturn(taskCompletionSource.task)
+
+        launch { taskCompletionSource.setResult(dataSnapshot) }
+        val result = api.getDetail("")
+
+        assertTrue(result.isFailure)
+        result.onFailure { assertEquals(EMPTY_RESPONSE_FROM_FIREBASE, it.message) }
+    }
+
+    @Test
     fun getWithException(): Unit = runBlocking {
         val taskCompletionSource = TaskCompletionSource<DataSnapshot>()
         `when`(databaseReference.get()).thenReturn(taskCompletionSource.task)
 
         launch { taskCompletionSource.setException(NullPointerException()) }
+        val result = api.get("")
 
-        assertTrue(api.get("").isFailure)
-        api.get("").onFailure { assertTrue(it is NullPointerException) }
+        assertTrue(result.isFailure)
+        result.onFailure { assertTrue(it is NullPointerException) }
     }
 
     @Test
@@ -63,15 +78,19 @@ class FirebaseApiTest {
         val task: Task<DataSnapshot> = mock()
         `when`(databaseReference.get()).thenReturn(task)
 
-        assertTrue(api.get("").isFailure)
-        api.get("").onFailure { assertTrue(it is TimeoutCancellationException) }
+        val result = api.get("")
+
+        assertTrue(result.isFailure)
+        result.onFailure { assertTrue(it is TimeoutCancellationException) }
     }
 
     @Test
     fun getWithNoInternet(): Unit = runBlocking {
         `when`(utils.isConnectedToInternet()).thenReturn(false)
 
-        assertTrue(api.get("").isFailure)
-        api.get("").onFailure { assertEquals(NO_INTERNET_CONNECTION, it.message) }
+        val result = api.get("")
+
+        assertTrue(result.isFailure)
+        result.onFailure { assertEquals(NO_INTERNET_CONNECTION, it.message) }
     }
 }

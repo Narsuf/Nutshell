@@ -1,7 +1,5 @@
 package org.n27.nutshell.detail.data.mapping
 
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.GenericTypeIndicator
 import org.n27.nutshell.detail.data.model.DetailRaw
 import org.n27.nutshell.detail.data.model.DetailRaw.NavItemRaw
 import org.n27.nutshell.detail.data.model.DetailRaw.TabRaw
@@ -10,11 +8,7 @@ import org.n27.nutshell.detail.domain.model.Detail.NavItem
 import org.n27.nutshell.detail.domain.model.Detail.Tab
 import org.n27.nutshell.detail.domain.model.Detail.Tab.Info
 
-fun DataSnapshot.toDetail() = getValue(
-    object : GenericTypeIndicator<DetailRaw>() {}
-)?.toDetail()
-
-internal fun DetailRaw.toDetail() = Detail(
+fun DetailRaw.toDetail() = Detail(
     tabs = tabs.map { it.toTab() },
     nav = nav.mapIndexed { index, navRaw ->
         navRaw.toNav(index)
