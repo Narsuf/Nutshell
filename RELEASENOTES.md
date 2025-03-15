@@ -1,5 +1,9 @@
 # Release notes #
 
+### 1.0.3 (2025-03-15) ###
+
+* Hotfix caused by obfuscation.
+
 ### 1.0.2 (2025-03-14) ###
 
 * Replace `Flow` by `Coroutines`.

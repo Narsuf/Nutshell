@@ -8,7 +8,9 @@ import kotlinx.coroutines.withTimeout
 import org.n27.nutshell.common.Constants.EMPTY_RESPONSE_FROM_FIREBASE
 import org.n27.nutshell.common.Constants.NO_INTERNET_CONNECTION
 import org.n27.nutshell.common.data.DataUtils
+import org.n27.nutshell.detail.data.mapping.toDetail
 import org.n27.nutshell.detail.data.model.DetailRaw
+import org.n27.nutshell.topics.data.mapping.toTopics
 import org.n27.nutshell.topics.data.model.TopicRaw
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,13 +23,11 @@ class FirebaseApi @Inject constructor(
 ) {
 
     suspend fun getTopics(): Result<List<TopicRaw>> = get("topics").mapCatching {
-        it.getValue(object : GenericTypeIndicator<List<TopicRaw>>() {})
-            ?: throw Throwable(EMPTY_RESPONSE_FROM_FIREBASE)
+        it.toTopics() ?: throw Throwable(EMPTY_RESPONSE_FROM_FIREBASE)
     }
 
     suspend fun getDetail(key: String): Result<DetailRaw> = get(key).mapCatching {
-        it.getValue(object : GenericTypeIndicator<DetailRaw>() {})
-            ?: throw Throwable(EMPTY_RESPONSE_FROM_FIREBASE)
+        it.toDetail() ?: throw Throwable(EMPTY_RESPONSE_FROM_FIREBASE)
     }
 
     internal suspend fun get(key: String): Result<DataSnapshot> = if (!utils.isConnectedToInternet()) {
