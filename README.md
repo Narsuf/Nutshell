@@ -6,7 +6,13 @@
 
 Android app that shows random facts and bits of summarized information in a practical and beautiful way.
 
-<h2 id="screenshots">Screenshots :camera:</h2>
+<h2 id="link">Play Store 🔗:</h2>
+
+<a href="https://play.google.com/store/apps/details?id=org.n27.nutshell">
+  <img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="200">
+</a>
+
+<h2 id="screenshots">Screenshots 📷:</h2>
 
 | Topics | Detail |
 |:-:|:-:|
