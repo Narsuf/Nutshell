@@ -53,7 +53,7 @@ private val LightThemeColors = ContextualColors(
     typography = Typography(
         neutral = Color.Black,
         neutralAlternative = Palette.Gray600,
-        teal = Palette.Teal500,
+        teal = Palette.Teal,
     ),
     backgroundInternal = BackgroundInternal(
         overlay = Color(0x29121212)
@@ -71,7 +71,7 @@ private val DarkThemeColors = ContextualColors(
     typography = Typography(
         neutral = Color.White,
         neutralAlternative = Palette.Gray500,
-        teal = Palette.Teal500
+        teal = Palette.Teal
     ),
     backgroundInternal = BackgroundInternal(
         overlay = Color(0x14F9F9F9)

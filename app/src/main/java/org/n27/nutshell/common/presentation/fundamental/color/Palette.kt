@@ -9,7 +9,7 @@ object Palette {
     val Gray600 = Color(0xFF6D6D6D)
     val Gray815 = Color(0xFF2D2D2D)
 
-    val Teal500 = Color(0xFF36A18B)
+    val Teal = Color(0xFF088177)
 
     val Dark = Color(0xFF181818)
     val SofterDark = Color(0xFF202020)
