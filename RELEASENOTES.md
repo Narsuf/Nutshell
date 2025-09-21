@@ -1,5 +1,9 @@
 # Release notes #
 
+### 1.0.4 (2025-09-21) ###
+
+* Target SDK version updated.
+
 ### 1.0.3 (2025-03-15) ###
 
 * Hotfix caused by obfuscation.
