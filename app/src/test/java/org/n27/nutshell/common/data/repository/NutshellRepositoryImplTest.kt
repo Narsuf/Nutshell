@@ -9,12 +9,9 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.common.data.api.FirebaseApi
-import org.robolectric.RobolectricTestRunner
-import kotlin.Result.Companion.success
 
 class NutshellRepositoryImplTest {
 
