@@ -16,7 +16,6 @@ import org.n27.nutshell.common.data.api.FirebaseApi
 import org.robolectric.RobolectricTestRunner
 import kotlin.Result.Companion.success
 
-@RunWith(RobolectricTestRunner::class)
 class NutshellRepositoryImplTest {
 
     private lateinit var repository: NutshellRepositoryImpl
