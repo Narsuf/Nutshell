@@ -6,9 +6,9 @@ import org.n27.nutshell.topics.data.model.TopicRaw
 import org.n27.nutshell.topics.domain.model.Topic
 import org.n27.nutshell.topics.domain.model.Topics
 
-fun DataSnapshot.toTopics() = getValue(object : GenericTypeIndicator<List<TopicRaw>>() {})
+fun DataSnapshot.toTopicRawList() = getValue(object : GenericTypeIndicator<List<TopicRaw>>() {})
 
-fun List<TopicRaw>.toTopics() = Topics(
+fun List<TopicRaw>.toDomainEntity() = Topics(
     items = map { it.toTopic() }
 )
 

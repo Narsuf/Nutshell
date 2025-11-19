@@ -10,9 +10,9 @@ import org.n27.nutshell.detail.domain.model.Detail.NavItem
 import org.n27.nutshell.detail.domain.model.Detail.Tab
 import org.n27.nutshell.detail.domain.model.Detail.Tab.Info
 
-fun DataSnapshot.toDetail() = getValue(object : GenericTypeIndicator<DetailRaw>() {})
+fun DataSnapshot.toDetailRaw() = getValue(object : GenericTypeIndicator<DetailRaw>() {})
 
-fun DetailRaw.toDetail() = Detail(
+fun DetailRaw.toDomainEntity() = Detail(
     tabs = tabs.map { it.toTab() },
     nav = nav.mapIndexed { index, navRaw ->
         navRaw.toNav(index)

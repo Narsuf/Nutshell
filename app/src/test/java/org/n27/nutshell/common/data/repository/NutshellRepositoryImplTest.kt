@@ -9,14 +9,10 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.n27.nutshell.common.data.api.FirebaseApi
-import org.robolectric.RobolectricTestRunner
-import kotlin.Result.Companion.success
 
-@RunWith(RobolectricTestRunner::class)
 class NutshellRepositoryImplTest {
 
     private lateinit var repository: NutshellRepositoryImpl
@@ -33,7 +29,7 @@ class NutshellRepositoryImplTest {
     @Test
     fun getTopicsSuccess() = runBlocking {
         val expected = getTopics()
-        `when`(api.getTopics()).thenReturn(success(getTopicsRaw()))
+        `when`(api.getTopics()).thenReturn(getTopicsRaw())
 
         assertEquals(expected, repository.getTopics().getOrNull())
     }
@@ -41,7 +37,7 @@ class NutshellRepositoryImplTest {
     @Test
     fun getDetailSuccess() = runBlocking {
         val expected = getDetail()
-        `when`(api.getDetail("")).thenReturn(success(getDetailRaw()))
+        `when`(api.getDetail("")).thenReturn(getDetailRaw())
 
         assertEquals(expected, repository.getDetail("").getOrNull())
     }

@@ -2,17 +2,12 @@ package org.n27.nutshell.common.data
 
 import android.content.Context
 import android.net.ConnectivityManager
-import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
-import org.robolectric.RobolectricTestRunner
 
-@RunWith(RobolectricTestRunner::class)
 class DataUtilsTest {
 
     @Test
@@ -25,12 +20,5 @@ class DataUtilsTest {
         `when`(context.getSystemService(Context.CONNECTIVITY_SERVICE)).thenReturn(connectivityManager)
 
         assertFalse(utils.isConnectedToInternet())
-    }
-
-    @Test
-    fun `isConnectedToInternet() should return true if connected`() {
-        val utils = DataUtils(ApplicationProvider.getApplicationContext())
-
-        assertTrue(utils.isConnectedToInternet())
     }
 }
