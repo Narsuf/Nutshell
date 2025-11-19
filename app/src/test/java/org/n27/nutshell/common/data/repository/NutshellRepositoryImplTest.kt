@@ -33,7 +33,7 @@ class NutshellRepositoryImplTest {
     @Test
     fun getTopicsSuccess() = runBlocking {
         val expected = getTopics()
-        `when`(api.getTopics()).thenReturn(success(getTopicsRaw()))
+        `when`(api.getTopics()).thenReturn(getTopicsRaw())
 
         assertEquals(expected, repository.getTopics().getOrNull())
     }
@@ -41,7 +41,7 @@ class NutshellRepositoryImplTest {
     @Test
     fun getDetailSuccess() = runBlocking {
         val expected = getDetail()
-        `when`(api.getDetail("")).thenReturn(success(getDetailRaw()))
+        `when`(api.getDetail("")).thenReturn(getDetailRaw())
 
         assertEquals(expected, repository.getDetail("").getOrNull())
     }

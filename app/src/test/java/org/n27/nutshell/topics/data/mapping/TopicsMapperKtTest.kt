@@ -11,7 +11,7 @@ class TopicsMapperKtTest {
     fun `should return expected topics`() {
         val expected = getTopics()
 
-        val actual = getTopicsRaw().toTopics()
+        val actual = getTopicsRaw().toDomainEntity()
 
         assertEquals(expected, actual)
     }

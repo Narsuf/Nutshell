@@ -11,7 +11,7 @@ class DetailMapperKtTest {
     fun `should return expected detail`() {
         val expected = getDetail()
 
-        val actual = getDetailRaw().toDetail()
+        val actual = getDetailRaw().toDomainEntity()
 
         assertEquals(expected, actual)
     }

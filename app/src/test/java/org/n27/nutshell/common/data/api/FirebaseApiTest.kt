@@ -45,7 +45,7 @@ class FirebaseApiTest {
 
         launch { taskCompletionSource.setResult(dataSnapshot) }
 
-        assertEquals(api.get("").getOrNull(), dataSnapshot)
+        assertEquals(api.get(""), dataSnapshot)
     }
 
     @Test
@@ -55,10 +55,13 @@ class FirebaseApiTest {
         `when`(databaseReference.get()).thenReturn(taskCompletionSource.task)
 
         launch { taskCompletionSource.setResult(dataSnapshot) }
-        val result = api.getDetail("")
 
-        assertTrue(result.isFailure)
-        result.onFailure { assertEquals(EMPTY_RESPONSE_FROM_FIREBASE, it.message) }
+        try {
+            api.getDetail("")
+            error("Exception")
+        } catch (e: IllegalStateException) {
+            assertEquals(EMPTY_RESPONSE_FROM_FIREBASE, e.message)
+        }
     }
 
     @Test
@@ -67,10 +70,13 @@ class FirebaseApiTest {
         `when`(databaseReference.get()).thenReturn(taskCompletionSource.task)
 
         launch { taskCompletionSource.setException(NullPointerException()) }
-        val result = api.get("")
 
-        assertTrue(result.isFailure)
-        result.onFailure { assertTrue(it is NullPointerException) }
+        try {
+            api.get("")
+            error("Expected exception")
+        } catch (e: Exception) {
+            assertTrue(e is NullPointerException)
+        }
     }
 
     @Test
@@ -78,19 +84,23 @@ class FirebaseApiTest {
         val task: Task<DataSnapshot> = mock()
         `when`(databaseReference.get()).thenReturn(task)
 
-        val result = api.get("")
-
-        assertTrue(result.isFailure)
-        result.onFailure { assertTrue(it is TimeoutCancellationException) }
+        try {
+            api.get("")
+            error("Expected exception")
+        } catch (e: Exception) {
+            assertTrue(e is TimeoutCancellationException)
+        }
     }
 
     @Test
     fun getWithNoInternet(): Unit = runBlocking {
         `when`(utils.isConnectedToInternet()).thenReturn(false)
 
-        val result = api.get("")
-
-        assertTrue(result.isFailure)
-        result.onFailure { assertEquals(NO_INTERNET_CONNECTION, it.message) }
+        try {
+            api.get("")
+            error("Exception")
+        } catch (e: IllegalStateException) {
+            assertEquals(NO_INTERNET_CONNECTION, e.message)
+        }
     }
 }
