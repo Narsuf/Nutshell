@@ -3,7 +3,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.safe.args)
     alias(libs.plugins.google.services)
     alias(libs.plugins.crashlytics)
@@ -69,8 +69,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions { jvmTarget = "1.8" }
-
     buildFeatures {
         viewBinding = true
         compose = true
@@ -81,32 +79,40 @@ android {
     testOptions {
         unitTests { isIncludeAndroidResources = true }
     }
+}
 
-    tasks.register<JacocoReport>("jacocoTestReport") {
-        dependsOn("testDebugUnitTest", "createDebugCoverageReport")
+tasks.register<JacocoReport>("jacocoTestReport") {
+    dependsOn("testDebugUnitTest", "createDebugCoverageReport")
 
-        reports {
-            xml.required.set(true)
-            html.required.set(true)
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    val debugTree = fileTree(layout.buildDirectory.dir("intermediates/javac/")) {
+        exclude(exclusions)
+    }
+
+    val kotlinDebugTree = fileTree(layout.buildDirectory.dir("tmp/kotlin-classes/")) {
+        exclude(exclusions)
+    }
+
+    val mainSrc = layout.projectDirectory.dir("src/main")
+
+    sourceDirectories.setFrom(files(mainSrc))
+    classDirectories.setFrom(files(debugTree, kotlinDebugTree))
+    executionData.setFrom(files(
+        fileTree(layout.buildDirectory) {
+            include(listOf("**/*.exec", "**/*.ec"))
         }
+    ))
+}
 
-        val debugTree = fileTree(layout.buildDirectory.dir("intermediates/javac/")) {
-            exclude(exclusions)
+configurations.all {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "androidx.tracing" && requested.name == "tracing") {
+            useVersion("1.3.0")
         }
-
-        val kotlinDebugTree = fileTree(layout.buildDirectory.dir("tmp/kotlin-classes/")) {
-            exclude(exclusions)
-        }
-
-        val mainSrc = layout.projectDirectory.dir("src/main")
-
-        sourceDirectories.setFrom(files(mainSrc))
-        classDirectories.setFrom(files(debugTree, kotlinDebugTree))
-        executionData.setFrom(files(
-            fileTree(layout.buildDirectory) {
-                include(listOf("**/*.exec", "**/*.ec"))
-            }
-        ))
     }
 }
 
@@ -118,7 +124,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     // Compose
-    val composeBom = platform("androidx.compose:compose-bom:2024.06.00")
+    val composeBom = platform("androidx.compose:compose-bom:2025.06.00")
     implementation(composeBom)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material)
@@ -134,7 +140,7 @@ dependencies {
 
     // Dagger 2
     implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
+    ksp(libs.dagger.compiler)
 
     // Android Jetpack
 
