@@ -46,8 +46,8 @@ android {
         applicationId = "org.n27.nutshell"
         minSdk = properties.getProperty("minSdkV").toInt()
         targetSdk = sdkV
-        versionCode = 10
-        versionName = "1.0.5-debug"
+        versionCode = 11
+        versionName = "1.0.6-debug"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
