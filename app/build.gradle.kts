@@ -29,6 +29,7 @@ tasks.withType(Test::class) {
         isIncludeNoLocationClasses = true
         excludes = listOf("jdk.internal.*")
     }
+    reports.html.required.set(false)
 }
 //endregion
 
